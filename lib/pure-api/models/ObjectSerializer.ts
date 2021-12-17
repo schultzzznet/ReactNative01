@@ -1,11 +1,21 @@
 export * from './AcademicQualification';
+export * from './AccessDefinitionRef';
 export * from './ActivityRef';
+export * from './AdditionalFileElectronicVersion';
 export * from './AdditionalISSN';
 export * from './Address';
+export * from './AllowedTemplate';
+export * from './AllowedTemplateListResult';
 export * from './AlternativeISSN';
 export * from './ApplicationRef';
+export * from './ArticleProcessingCharge';
+export * from './AuthorCollaborationRef';
 export * from './AwardRef';
+export * from './BookAnthology';
+export * from './BookAnthologyAllOf';
+export * from './BookSeriesJournalAssociation';
 export * from './CERIFAddress';
+export * from './CaseNote';
 export * from './ClassificationRef';
 export * from './ClassificationRefList';
 export * from './ClassificationSchemeRef';
@@ -13,6 +23,7 @@ export * from './ClassificationSchemeRefAllOf';
 export * from './ClassificationsKeywordGroup';
 export * from './ClassificationsKeywordGroupAllOf';
 export * from './ClassifiedAddress';
+export * from './ClassifiedCaseNoteSource';
 export * from './ClassifiedFile';
 export * from './ClassifiedId';
 export * from './ClassifiedIdAllOf';
@@ -21,14 +32,39 @@ export * from './ClassifiedName';
 export * from './ClassifiedValue';
 export * from './CompoundDate';
 export * from './CompoundDateRange';
+export * from './ConferenceSeriesRef';
 export * from './ContentRef';
 export * from './ContentRefListResult';
+export * from './ContributionToBookAnthology';
+export * from './ContributionToBookAnthologyAllOf';
+export * from './ContributionToConference';
+export * from './ContributionToConferenceAllOf';
+export * from './ContributionToJournal';
+export * from './ContributionToJournalAllOf';
+export * from './ContributionToMemorandum';
+export * from './ContributionToMemorandumAllOf';
+export * from './ContributionToPeriodical';
+export * from './ContributionToPeriodicalAllOf';
+export * from './ContributorAssociation';
 export * from './DataSetRef';
 export * from './DateRange';
 export * from './DependencyViolationProblemDetails';
 export * from './DependencyViolationProblemDetailsAllOf';
+export * from './DisciplinesAssociation';
+export * from './DisciplinesAssociationListResult';
+export * from './DisciplinesAssociationsQuery';
+export * from './DisciplinesDiscipline';
+export * from './DisciplinesDisciplineAssignment';
+export * from './DisciplinesDisciplineListResult';
+export * from './DisciplinesDisciplineScheme';
+export * from './DisciplinesDisciplineSchemeListResult';
 export * from './Document';
+export * from './DoiElectronicVersion';
+export * from './DoiElectronicVersionAllOf';
 export * from './ElectronicISSN';
+export * from './ElectronicVersion';
+export * from './ElectronicVersionFile';
+export * from './EquipmentRef';
 export * from './Event';
 export * from './EventListResult';
 export * from './EventRef';
@@ -44,6 +80,9 @@ export * from './ExternalPerson';
 export * from './ExternalPersonListResult';
 export * from './ExternalPersonRef';
 export * from './ExternalPersonsQuery';
+export * from './FileElectronicVersion';
+export * from './FileElectronicVersionAllOf';
+export * from './FormattedString';
 export * from './FreeKeywordsKeywordGroup';
 export * from './FreeKeywordsKeywordGroupAllOf';
 export * from './FullKeywordGroup';
@@ -55,14 +94,18 @@ export * from './HighlightedContent';
 export * from './HonoraryStaffOrganizationAssociation';
 export * from './HonoraryStaffOrganizationAssociationAllOf';
 export * from './ISSN';
+export * from './ISSNRef';
 export * from './Id';
 export * from './IdAllOf';
 export * from './Identifier';
+export * from './ImpactRef';
 export * from './InternalOrExternalSupervisor';
 export * from './Journal';
+export * from './JournalAssociation';
 export * from './JournalListResult';
 export * from './JournalRef';
 export * from './JournalTitle';
+export * from './JournalTitleRef';
 export * from './JournalsQuery';
 export * from './Keyword';
 export * from './KeywordContainer';
@@ -70,9 +113,14 @@ export * from './KeywordGroup';
 export * from './KeywordGroupConfiguration';
 export * from './KeywordGroupConfigurationList';
 export * from './Link';
+export * from './LinkElectronicVersion';
+export * from './LinkElectronicVersionAllOf';
 export * from './LocalesList';
+export * from './Memorandum';
 export * from './Name';
 export * from './NavigationLink';
+export * from './NonTextual';
+export * from './NonTextualAllOf';
 export * from './Note';
 export * from './NoteListResult';
 export * from './OrderingsList';
@@ -81,7 +129,11 @@ export * from './OrganizationListResult';
 export * from './OrganizationOrExternalOrganizationRef';
 export * from './OrganizationRef';
 export * from './OrganizationsQuery';
+export * from './OtherContribution';
+export * from './OtherContributionAllOf';
 export * from './PageInformation';
+export * from './Patent';
+export * from './PatentAllOf';
 export * from './Person';
 export * from './PersonClassifiedLeaveOfAbsence';
 export * from './PersonListResult';
@@ -91,18 +143,37 @@ export * from './PersonSuperviseeAssociation';
 export * from './PersonSuperviseeAssociationListResult';
 export * from './PersonSupervisorAssociation';
 export * from './PersonsQuery';
+export * from './PressMediaRef';
+export * from './PrimaryId';
+export * from './PrimaryIdAllOf';
+export * from './PrizeRef';
 export * from './ProblemDetails';
 export * from './ProfessionalQualification';
+export * from './ProjectRef';
+export * from './PublicationSeries';
+export * from './PublicationStatus';
 export * from './Publisher';
 export * from './PublisherListResult';
 export * from './PublisherRef';
 export * from './PublishersQuery';
+export * from './ResearchOutput';
+export * from './ResearchOutputListResult';
+export * from './ResearchOutputPeerReviewConfiguration';
+export * from './ResearchOutputPeerReviewConfigurationCombination';
+export * from './ResearchOutputPeerReviewConfigurationListResult';
 export * from './ResearchOutputRef';
+export * from './ResearchOutputsQuery';
 export * from './StaffOrganizationAssociation';
 export * from './StaffOrganizationAssociationAllOf';
 export * from './StudentOrganizationAssociation';
 export * from './StudentOrganizationAssociationAllOf';
+export * from './StudentThesisRef';
+export * from './SupervisorAssociation';
+export * from './Thesis';
+export * from './ThesisAllOf';
 export * from './UploadedFile';
+export * from './User';
+export * from './UserListResult';
 export * from './UserRef';
 export * from './ValidationError';
 export * from './ValidationProblemDetails';
@@ -112,15 +183,27 @@ export * from './VisitingScholarOrganizationAssociation';
 export * from './VisitingScholarOrganizationAssociationAllOf';
 export * from './Workflow';
 export * from './WorkflowListResult';
+export * from './WorkingPaper';
+export * from './WorkingPaperAllOf';
 
 import { AcademicQualification } from './AcademicQualification';
+import { AccessDefinitionRef } from './AccessDefinitionRef';
 import { ActivityRef } from './ActivityRef';
+import { AdditionalFileElectronicVersion } from './AdditionalFileElectronicVersion';
 import { AdditionalISSN } from './AdditionalISSN';
 import { Address } from './Address';
+import { AllowedTemplate } from './AllowedTemplate';
+import { AllowedTemplateListResult } from './AllowedTemplateListResult';
 import { AlternativeISSN } from './AlternativeISSN';
 import { ApplicationRef } from './ApplicationRef';
+import { ArticleProcessingCharge } from './ArticleProcessingCharge';
+import { AuthorCollaborationRef } from './AuthorCollaborationRef';
 import { AwardRef } from './AwardRef';
+import { BookAnthology } from './BookAnthology';
+import { BookAnthologyAllOf } from './BookAnthologyAllOf';
+import { BookSeriesJournalAssociation } from './BookSeriesJournalAssociation';
 import { CERIFAddress } from './CERIFAddress';
+import { CaseNote } from './CaseNote';
 import { ClassificationRef } from './ClassificationRef';
 import { ClassificationRefList } from './ClassificationRefList';
 import { ClassificationSchemeRef } from './ClassificationSchemeRef';
@@ -128,6 +211,7 @@ import { ClassificationSchemeRefAllOf } from './ClassificationSchemeRefAllOf';
 import { ClassificationsKeywordGroup } from './ClassificationsKeywordGroup';
 import { ClassificationsKeywordGroupAllOf } from './ClassificationsKeywordGroupAllOf';
 import { ClassifiedAddress } from './ClassifiedAddress';
+import { ClassifiedCaseNoteSource } from './ClassifiedCaseNoteSource';
 import { ClassifiedFile } from './ClassifiedFile';
 import { ClassifiedId } from './ClassifiedId';
 import { ClassifiedIdAllOf } from './ClassifiedIdAllOf';
@@ -136,14 +220,39 @@ import { ClassifiedName } from './ClassifiedName';
 import { ClassifiedValue } from './ClassifiedValue';
 import { CompoundDate } from './CompoundDate';
 import { CompoundDateRange } from './CompoundDateRange';
+import { ConferenceSeriesRef } from './ConferenceSeriesRef';
 import { ContentRef } from './ContentRef';
 import { ContentRefListResult } from './ContentRefListResult';
+import { ContributionToBookAnthology } from './ContributionToBookAnthology';
+import { ContributionToBookAnthologyAllOf } from './ContributionToBookAnthologyAllOf';
+import { ContributionToConference } from './ContributionToConference';
+import { ContributionToConferenceAllOf } from './ContributionToConferenceAllOf';
+import { ContributionToJournal } from './ContributionToJournal';
+import { ContributionToJournalAllOf } from './ContributionToJournalAllOf';
+import { ContributionToMemorandum } from './ContributionToMemorandum';
+import { ContributionToMemorandumAllOf } from './ContributionToMemorandumAllOf';
+import { ContributionToPeriodical } from './ContributionToPeriodical';
+import { ContributionToPeriodicalAllOf } from './ContributionToPeriodicalAllOf';
+import { ContributorAssociation } from './ContributorAssociation';
 import { DataSetRef } from './DataSetRef';
 import { DateRange } from './DateRange';
 import { DependencyViolationProblemDetails } from './DependencyViolationProblemDetails';
 import { DependencyViolationProblemDetailsAllOf } from './DependencyViolationProblemDetailsAllOf';
+import { DisciplinesAssociation } from './DisciplinesAssociation';
+import { DisciplinesAssociationListResult } from './DisciplinesAssociationListResult';
+import { DisciplinesAssociationsQuery } from './DisciplinesAssociationsQuery';
+import { DisciplinesDiscipline } from './DisciplinesDiscipline';
+import { DisciplinesDisciplineAssignment } from './DisciplinesDisciplineAssignment';
+import { DisciplinesDisciplineListResult } from './DisciplinesDisciplineListResult';
+import { DisciplinesDisciplineScheme } from './DisciplinesDisciplineScheme';
+import { DisciplinesDisciplineSchemeListResult } from './DisciplinesDisciplineSchemeListResult';
 import { Document } from './Document';
+import { DoiElectronicVersion } from './DoiElectronicVersion';
+import { DoiElectronicVersionAllOf } from './DoiElectronicVersionAllOf';
 import { ElectronicISSN } from './ElectronicISSN';
+import { ElectronicVersion } from './ElectronicVersion';
+import { ElectronicVersionFile } from './ElectronicVersionFile';
+import { EquipmentRef } from './EquipmentRef';
 import { Event } from './Event';
 import { EventListResult } from './EventListResult';
 import { EventRef } from './EventRef';
@@ -159,6 +268,9 @@ import { ExternalPerson } from './ExternalPerson';
 import { ExternalPersonListResult } from './ExternalPersonListResult';
 import { ExternalPersonRef } from './ExternalPersonRef';
 import { ExternalPersonsQuery } from './ExternalPersonsQuery';
+import { FileElectronicVersion } from './FileElectronicVersion';
+import { FileElectronicVersionAllOf } from './FileElectronicVersionAllOf';
+import { FormattedString } from './FormattedString';
 import { FreeKeywordsKeywordGroup } from './FreeKeywordsKeywordGroup';
 import { FreeKeywordsKeywordGroupAllOf } from './FreeKeywordsKeywordGroupAllOf';
 import { FullKeywordGroup } from './FullKeywordGroup';
@@ -170,14 +282,18 @@ import { HighlightedContent } from './HighlightedContent';
 import { HonoraryStaffOrganizationAssociation } from './HonoraryStaffOrganizationAssociation';
 import { HonoraryStaffOrganizationAssociationAllOf } from './HonoraryStaffOrganizationAssociationAllOf';
 import { ISSN } from './ISSN';
+import { ISSNRef } from './ISSNRef';
 import { Id } from './Id';
 import { IdAllOf } from './IdAllOf';
 import { Identifier } from './Identifier';
+import { ImpactRef } from './ImpactRef';
 import { InternalOrExternalSupervisor } from './InternalOrExternalSupervisor';
 import { Journal } from './Journal';
+import { JournalAssociation } from './JournalAssociation';
 import { JournalListResult } from './JournalListResult';
 import { JournalRef } from './JournalRef';
 import { JournalTitle } from './JournalTitle';
+import { JournalTitleRef } from './JournalTitleRef';
 import { JournalsQuery } from './JournalsQuery';
 import { Keyword } from './Keyword';
 import { KeywordContainer } from './KeywordContainer';
@@ -185,9 +301,14 @@ import { KeywordGroup } from './KeywordGroup';
 import { KeywordGroupConfiguration } from './KeywordGroupConfiguration';
 import { KeywordGroupConfigurationList } from './KeywordGroupConfigurationList';
 import { Link } from './Link';
+import { LinkElectronicVersion } from './LinkElectronicVersion';
+import { LinkElectronicVersionAllOf } from './LinkElectronicVersionAllOf';
 import { LocalesList } from './LocalesList';
+import { Memorandum } from './Memorandum';
 import { Name } from './Name';
 import { NavigationLink } from './NavigationLink';
+import { NonTextual } from './NonTextual';
+import { NonTextualAllOf } from './NonTextualAllOf';
 import { Note } from './Note';
 import { NoteListResult } from './NoteListResult';
 import { OrderingsList } from './OrderingsList';
@@ -196,7 +317,11 @@ import { OrganizationListResult } from './OrganizationListResult';
 import { OrganizationOrExternalOrganizationRef } from './OrganizationOrExternalOrganizationRef';
 import { OrganizationRef } from './OrganizationRef';
 import { OrganizationsQuery } from './OrganizationsQuery';
+import { OtherContribution } from './OtherContribution';
+import { OtherContributionAllOf } from './OtherContributionAllOf';
 import { PageInformation } from './PageInformation';
+import { Patent } from './Patent';
+import { PatentAllOf } from './PatentAllOf';
 import { Person } from './Person';
 import { PersonClassifiedLeaveOfAbsence } from './PersonClassifiedLeaveOfAbsence';
 import { PersonListResult } from './PersonListResult';
@@ -206,18 +331,37 @@ import { PersonSuperviseeAssociation } from './PersonSuperviseeAssociation';
 import { PersonSuperviseeAssociationListResult } from './PersonSuperviseeAssociationListResult';
 import { PersonSupervisorAssociation } from './PersonSupervisorAssociation';
 import { PersonsQuery } from './PersonsQuery';
+import { PressMediaRef } from './PressMediaRef';
+import { PrimaryId } from './PrimaryId';
+import { PrimaryIdAllOf } from './PrimaryIdAllOf';
+import { PrizeRef } from './PrizeRef';
 import { ProblemDetails } from './ProblemDetails';
 import { ProfessionalQualification } from './ProfessionalQualification';
+import { ProjectRef } from './ProjectRef';
+import { PublicationSeries } from './PublicationSeries';
+import { PublicationStatus } from './PublicationStatus';
 import { Publisher } from './Publisher';
 import { PublisherListResult } from './PublisherListResult';
 import { PublisherRef } from './PublisherRef';
 import { PublishersQuery } from './PublishersQuery';
+import { ResearchOutput } from './ResearchOutput';
+import { ResearchOutputListResult } from './ResearchOutputListResult';
+import { ResearchOutputPeerReviewConfiguration } from './ResearchOutputPeerReviewConfiguration';
+import { ResearchOutputPeerReviewConfigurationCombination , ResearchOutputPeerReviewConfigurationCombinationPeerReviewableEnum   } from './ResearchOutputPeerReviewConfigurationCombination';
+import { ResearchOutputPeerReviewConfigurationListResult } from './ResearchOutputPeerReviewConfigurationListResult';
 import { ResearchOutputRef } from './ResearchOutputRef';
+import { ResearchOutputsQuery } from './ResearchOutputsQuery';
 import { StaffOrganizationAssociation } from './StaffOrganizationAssociation';
 import { StaffOrganizationAssociationAllOf } from './StaffOrganizationAssociationAllOf';
 import { StudentOrganizationAssociation } from './StudentOrganizationAssociation';
 import { StudentOrganizationAssociationAllOf } from './StudentOrganizationAssociationAllOf';
+import { StudentThesisRef } from './StudentThesisRef';
+import { SupervisorAssociation } from './SupervisorAssociation';
+import { Thesis } from './Thesis';
+import { ThesisAllOf } from './ThesisAllOf';
 import { UploadedFile } from './UploadedFile';
+import { User } from './User';
+import { UserListResult } from './UserListResult';
 import { UserRef } from './UserRef';
 import { ValidationError } from './ValidationError';
 import { ValidationProblemDetails } from './ValidationProblemDetails';
@@ -227,6 +371,8 @@ import { VisitingScholarOrganizationAssociation } from './VisitingScholarOrganiz
 import { VisitingScholarOrganizationAssociationAllOf } from './VisitingScholarOrganizationAssociationAllOf';
 import { Workflow } from './Workflow';
 import { WorkflowListResult } from './WorkflowListResult';
+import { WorkingPaper } from './WorkingPaper';
+import { WorkingPaperAllOf } from './WorkingPaperAllOf';
 
 /* tslint:disable:no-unused-variable */
 let primitives = [
@@ -248,18 +394,29 @@ const supportedMediaTypes: { [mediaType: string]: number } = {
                  
 let enumsMap: Set<string> = new Set<string>([
     "GenderKeyEnum",
+    "ResearchOutputPeerReviewConfigurationCombinationPeerReviewableEnum",
     "VisibilityKeyEnum",
 ]);
 
 let typeMap: {[index: string]: any} = {
     "AcademicQualification": AcademicQualification,
+    "AccessDefinitionRef": AccessDefinitionRef,
     "ActivityRef": ActivityRef,
+    "AdditionalFileElectronicVersion": AdditionalFileElectronicVersion,
     "AdditionalISSN": AdditionalISSN,
     "Address": Address,
+    "AllowedTemplate": AllowedTemplate,
+    "AllowedTemplateListResult": AllowedTemplateListResult,
     "AlternativeISSN": AlternativeISSN,
     "ApplicationRef": ApplicationRef,
+    "ArticleProcessingCharge": ArticleProcessingCharge,
+    "AuthorCollaborationRef": AuthorCollaborationRef,
     "AwardRef": AwardRef,
+    "BookAnthology": BookAnthology,
+    "BookAnthologyAllOf": BookAnthologyAllOf,
+    "BookSeriesJournalAssociation": BookSeriesJournalAssociation,
     "CERIFAddress": CERIFAddress,
+    "CaseNote": CaseNote,
     "ClassificationRef": ClassificationRef,
     "ClassificationRefList": ClassificationRefList,
     "ClassificationSchemeRef": ClassificationSchemeRef,
@@ -267,6 +424,7 @@ let typeMap: {[index: string]: any} = {
     "ClassificationsKeywordGroup": ClassificationsKeywordGroup,
     "ClassificationsKeywordGroupAllOf": ClassificationsKeywordGroupAllOf,
     "ClassifiedAddress": ClassifiedAddress,
+    "ClassifiedCaseNoteSource": ClassifiedCaseNoteSource,
     "ClassifiedFile": ClassifiedFile,
     "ClassifiedId": ClassifiedId,
     "ClassifiedIdAllOf": ClassifiedIdAllOf,
@@ -275,14 +433,39 @@ let typeMap: {[index: string]: any} = {
     "ClassifiedValue": ClassifiedValue,
     "CompoundDate": CompoundDate,
     "CompoundDateRange": CompoundDateRange,
+    "ConferenceSeriesRef": ConferenceSeriesRef,
     "ContentRef": ContentRef,
     "ContentRefListResult": ContentRefListResult,
+    "ContributionToBookAnthology": ContributionToBookAnthology,
+    "ContributionToBookAnthologyAllOf": ContributionToBookAnthologyAllOf,
+    "ContributionToConference": ContributionToConference,
+    "ContributionToConferenceAllOf": ContributionToConferenceAllOf,
+    "ContributionToJournal": ContributionToJournal,
+    "ContributionToJournalAllOf": ContributionToJournalAllOf,
+    "ContributionToMemorandum": ContributionToMemorandum,
+    "ContributionToMemorandumAllOf": ContributionToMemorandumAllOf,
+    "ContributionToPeriodical": ContributionToPeriodical,
+    "ContributionToPeriodicalAllOf": ContributionToPeriodicalAllOf,
+    "ContributorAssociation": ContributorAssociation,
     "DataSetRef": DataSetRef,
     "DateRange": DateRange,
     "DependencyViolationProblemDetails": DependencyViolationProblemDetails,
     "DependencyViolationProblemDetailsAllOf": DependencyViolationProblemDetailsAllOf,
+    "DisciplinesAssociation": DisciplinesAssociation,
+    "DisciplinesAssociationListResult": DisciplinesAssociationListResult,
+    "DisciplinesAssociationsQuery": DisciplinesAssociationsQuery,
+    "DisciplinesDiscipline": DisciplinesDiscipline,
+    "DisciplinesDisciplineAssignment": DisciplinesDisciplineAssignment,
+    "DisciplinesDisciplineListResult": DisciplinesDisciplineListResult,
+    "DisciplinesDisciplineScheme": DisciplinesDisciplineScheme,
+    "DisciplinesDisciplineSchemeListResult": DisciplinesDisciplineSchemeListResult,
     "Document": Document,
+    "DoiElectronicVersion": DoiElectronicVersion,
+    "DoiElectronicVersionAllOf": DoiElectronicVersionAllOf,
     "ElectronicISSN": ElectronicISSN,
+    "ElectronicVersion": ElectronicVersion,
+    "ElectronicVersionFile": ElectronicVersionFile,
+    "EquipmentRef": EquipmentRef,
     "Event": Event,
     "EventListResult": EventListResult,
     "EventRef": EventRef,
@@ -298,6 +481,9 @@ let typeMap: {[index: string]: any} = {
     "ExternalPersonListResult": ExternalPersonListResult,
     "ExternalPersonRef": ExternalPersonRef,
     "ExternalPersonsQuery": ExternalPersonsQuery,
+    "FileElectronicVersion": FileElectronicVersion,
+    "FileElectronicVersionAllOf": FileElectronicVersionAllOf,
+    "FormattedString": FormattedString,
     "FreeKeywordsKeywordGroup": FreeKeywordsKeywordGroup,
     "FreeKeywordsKeywordGroupAllOf": FreeKeywordsKeywordGroupAllOf,
     "FullKeywordGroup": FullKeywordGroup,
@@ -309,14 +495,18 @@ let typeMap: {[index: string]: any} = {
     "HonoraryStaffOrganizationAssociation": HonoraryStaffOrganizationAssociation,
     "HonoraryStaffOrganizationAssociationAllOf": HonoraryStaffOrganizationAssociationAllOf,
     "ISSN": ISSN,
+    "ISSNRef": ISSNRef,
     "Id": Id,
     "IdAllOf": IdAllOf,
     "Identifier": Identifier,
+    "ImpactRef": ImpactRef,
     "InternalOrExternalSupervisor": InternalOrExternalSupervisor,
     "Journal": Journal,
+    "JournalAssociation": JournalAssociation,
     "JournalListResult": JournalListResult,
     "JournalRef": JournalRef,
     "JournalTitle": JournalTitle,
+    "JournalTitleRef": JournalTitleRef,
     "JournalsQuery": JournalsQuery,
     "Keyword": Keyword,
     "KeywordContainer": KeywordContainer,
@@ -324,9 +514,14 @@ let typeMap: {[index: string]: any} = {
     "KeywordGroupConfiguration": KeywordGroupConfiguration,
     "KeywordGroupConfigurationList": KeywordGroupConfigurationList,
     "Link": Link,
+    "LinkElectronicVersion": LinkElectronicVersion,
+    "LinkElectronicVersionAllOf": LinkElectronicVersionAllOf,
     "LocalesList": LocalesList,
+    "Memorandum": Memorandum,
     "Name": Name,
     "NavigationLink": NavigationLink,
+    "NonTextual": NonTextual,
+    "NonTextualAllOf": NonTextualAllOf,
     "Note": Note,
     "NoteListResult": NoteListResult,
     "OrderingsList": OrderingsList,
@@ -335,7 +530,11 @@ let typeMap: {[index: string]: any} = {
     "OrganizationOrExternalOrganizationRef": OrganizationOrExternalOrganizationRef,
     "OrganizationRef": OrganizationRef,
     "OrganizationsQuery": OrganizationsQuery,
+    "OtherContribution": OtherContribution,
+    "OtherContributionAllOf": OtherContributionAllOf,
     "PageInformation": PageInformation,
+    "Patent": Patent,
+    "PatentAllOf": PatentAllOf,
     "Person": Person,
     "PersonClassifiedLeaveOfAbsence": PersonClassifiedLeaveOfAbsence,
     "PersonListResult": PersonListResult,
@@ -345,18 +544,37 @@ let typeMap: {[index: string]: any} = {
     "PersonSuperviseeAssociationListResult": PersonSuperviseeAssociationListResult,
     "PersonSupervisorAssociation": PersonSupervisorAssociation,
     "PersonsQuery": PersonsQuery,
+    "PressMediaRef": PressMediaRef,
+    "PrimaryId": PrimaryId,
+    "PrimaryIdAllOf": PrimaryIdAllOf,
+    "PrizeRef": PrizeRef,
     "ProblemDetails": ProblemDetails,
     "ProfessionalQualification": ProfessionalQualification,
+    "ProjectRef": ProjectRef,
+    "PublicationSeries": PublicationSeries,
+    "PublicationStatus": PublicationStatus,
     "Publisher": Publisher,
     "PublisherListResult": PublisherListResult,
     "PublisherRef": PublisherRef,
     "PublishersQuery": PublishersQuery,
+    "ResearchOutput": ResearchOutput,
+    "ResearchOutputListResult": ResearchOutputListResult,
+    "ResearchOutputPeerReviewConfiguration": ResearchOutputPeerReviewConfiguration,
+    "ResearchOutputPeerReviewConfigurationCombination": ResearchOutputPeerReviewConfigurationCombination,
+    "ResearchOutputPeerReviewConfigurationListResult": ResearchOutputPeerReviewConfigurationListResult,
     "ResearchOutputRef": ResearchOutputRef,
+    "ResearchOutputsQuery": ResearchOutputsQuery,
     "StaffOrganizationAssociation": StaffOrganizationAssociation,
     "StaffOrganizationAssociationAllOf": StaffOrganizationAssociationAllOf,
     "StudentOrganizationAssociation": StudentOrganizationAssociation,
     "StudentOrganizationAssociationAllOf": StudentOrganizationAssociationAllOf,
+    "StudentThesisRef": StudentThesisRef,
+    "SupervisorAssociation": SupervisorAssociation,
+    "Thesis": Thesis,
+    "ThesisAllOf": ThesisAllOf,
     "UploadedFile": UploadedFile,
+    "User": User,
+    "UserListResult": UserListResult,
     "UserRef": UserRef,
     "ValidationError": ValidationError,
     "ValidationProblemDetails": ValidationProblemDetails,
@@ -366,6 +584,8 @@ let typeMap: {[index: string]: any} = {
     "VisitingScholarOrganizationAssociationAllOf": VisitingScholarOrganizationAssociationAllOf,
     "Workflow": Workflow,
     "WorkflowListResult": WorkflowListResult,
+    "WorkingPaper": WorkingPaper,
+    "WorkingPaperAllOf": WorkingPaperAllOf,
 }
 
 export class ObjectSerializer {

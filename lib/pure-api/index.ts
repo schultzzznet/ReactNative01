@@ -7,5 +7,5 @@ export * from "./apis/exception";
 export * from "./servers";
 
 export { PromiseMiddleware as Middleware } from './middleware';
-export { PromiseEventApi as EventApi,  PromiseExternalOrganizationApi as ExternalOrganizationApi,  PromiseExternalPersonApi as ExternalPersonApi,  PromiseJournalApi as JournalApi,  PromiseOrganizationApi as OrganizationApi,  PromisePersonApi as PersonApi,  PromisePublisherApi as PublisherApi } from './types/PromiseAPI';
+export { PromiseEventApi as EventApi,  PromiseExternalOrganizationApi as ExternalOrganizationApi,  PromiseExternalPersonApi as ExternalPersonApi,  PromiseJournalApi as JournalApi,  PromiseOrganizationApi as OrganizationApi,  PromisePersonApi as PersonApi,  PromisePublisherApi as PublisherApi,  PromiseResearchOutputApi as ResearchOutputApi,  PromiseUserApi as UserApi } from './types/PromiseAPI';
 

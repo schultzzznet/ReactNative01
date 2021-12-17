@@ -11,7 +11,6 @@
  */
 
 import { ExternalPerson } from './ExternalPerson';
-import { NavigationLink } from './NavigationLink';
 import { PageInformation } from './PageInformation';
 import { HttpFile } from '../http/http';
 
@@ -24,10 +23,6 @@ export class ExternalPersonListResult {
     */
     'count'?: number;
     'pageInformation'?: PageInformation;
-    /**
-    * Links to navigate from this result. Such as a 'prev' link to link to the previous page of items
-    */
-    'navigationLinks'?: Array<NavigationLink>;
     /**
     * External Persons
     */
@@ -46,12 +41,6 @@ export class ExternalPersonListResult {
             "name": "pageInformation",
             "baseName": "pageInformation",
             "type": "PageInformation",
-            "format": ""
-        },
-        {
-            "name": "navigationLinks",
-            "baseName": "navigationLinks",
-            "type": "Array<NavigationLink>",
             "format": ""
         },
         {

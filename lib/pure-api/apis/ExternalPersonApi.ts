@@ -8,6 +8,11 @@ import {isCodeInRange} from '../util';
 
 import { ClassificationRefList } from '../models/ClassificationRefList';
 import { ContentRefListResult } from '../models/ContentRefListResult';
+import { DisciplinesAssociation } from '../models/DisciplinesAssociation';
+import { DisciplinesAssociationListResult } from '../models/DisciplinesAssociationListResult';
+import { DisciplinesAssociationsQuery } from '../models/DisciplinesAssociationsQuery';
+import { DisciplinesDisciplineListResult } from '../models/DisciplinesDisciplineListResult';
+import { DisciplinesDisciplineSchemeListResult } from '../models/DisciplinesDisciplineSchemeListResult';
 import { ExternalPerson } from '../models/ExternalPerson';
 import { ExternalPersonListResult } from '../models/ExternalPersonListResult';
 import { ExternalPersonsQuery } from '../models/ExternalPersonsQuery';
@@ -266,6 +271,39 @@ export class ExternalPersonApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for external persons
+     * A list of allowed discipline schemes
+     */
+    public async externalPersonGetAllowedDisciplineSchemes(options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // Path Params
+        const localVarPath = '/external-persons/disciplines/allowed-discipline-schemes';
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Get a list of allowed classifications that can be used when submitting a specified keyword group.
      * A list of allowed classifications for the specified keyword group
      * @param id Pure id of the keyword group configuration
@@ -439,6 +477,55 @@ export class ExternalPersonApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the external person with specific UUID.
+     * Get disciplines from the discipline scheme associated with the external person
+     * @param uuid UUID of the desired external person
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public async externalPersonGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'uuid' is not null or undefined
+        if (uuid === null || uuid === undefined) {
+            throw new RequiredError('Required parameter uuid was null or undefined when calling externalPersonGetDisciplineAssociation.');
+        }
+
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling externalPersonGetDisciplineAssociation.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/external-persons/{uuid}/disciplines/{discipline-scheme}'
+            .replace('{' + 'uuid' + '}', encodeURIComponent(String(uuid)))
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Lists all orderings available to the external person endpoint. These values can be used by the order parameter.
      * Lists available orderings
      */
@@ -508,6 +595,128 @@ export class ExternalPersonApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Lists disciplines from the discipline scheme associated with external persons in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with external persons
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public async externalPersonListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling externalPersonListDisciplineAssociations.');
+        }
+
+
+        // verify required parameter 'disciplinesAssociationsQuery' is not null or undefined
+        if (disciplinesAssociationsQuery === null || disciplinesAssociationsQuery === undefined) {
+            throw new RequiredError('Required parameter disciplinesAssociationsQuery was null or undefined when calling externalPersonListDisciplineAssociations.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/external-persons/disciplines/{discipline-scheme}/search'
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(disciplinesAssociationsQuery, "DisciplinesAssociationsQuery", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the external person with specific UUID.
+     * Update disciplines from the discipline scheme associated with the external person
+     * @param uuid UUID of the external person to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public async externalPersonPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'uuid' is not null or undefined
+        if (uuid === null || uuid === undefined) {
+            throw new RequiredError('Required parameter uuid was null or undefined when calling externalPersonPutDisciplineAssociation.');
+        }
+
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling externalPersonPutDisciplineAssociation.');
+        }
+
+
+        // verify required parameter 'disciplinesAssociation' is not null or undefined
+        if (disciplinesAssociation === null || disciplinesAssociation === undefined) {
+            throw new RequiredError('Required parameter disciplinesAssociation was null or undefined when calling externalPersonPutDisciplineAssociation.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/external-persons/{uuid}/disciplines/{discipline-scheme}'
+            .replace('{' + 'uuid' + '}', encodeURIComponent(String(uuid)))
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(disciplinesAssociation, "DisciplinesAssociation", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
 
         let authMethod = null;
         // Apply auth methods
@@ -614,6 +823,57 @@ export class ExternalPersonApiRequestFactory extends BaseAPIRequestFactory {
             contentType
         );
         requestContext.setBody(serializedBody);
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for external persons
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for external persons
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public async getAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling getAllowedDisciplines.');
+        }
+
+
+
+
+        // Path Params
+        const localVarPath = '/external-persons/disciplines/{discipline-scheme}/allowed-disciplines'
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (size !== undefined) {
+            requestContext.setQueryParam("size", ObjectSerializer.serialize(size, "number", "int32"));
+        }
+        if (offset !== undefined) {
+            requestContext.setQueryParam("offset", ObjectSerializer.serialize(offset, "number", "int32"));
+        }
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
 
         let authMethod = null;
         // Apply auth methods
@@ -833,6 +1093,36 @@ export class ExternalPersonApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to externalPersonGetAllowedDisciplineSchemes
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async externalPersonGetAllowedDisciplineSchemes(response: ResponseContext): Promise<DisciplinesDisciplineSchemeListResult > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesDisciplineSchemeListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineSchemeListResult", ""
+            ) as DisciplinesDisciplineSchemeListResult;
+            return body;
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesDisciplineSchemeListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineSchemeListResult", ""
+            ) as DisciplinesDisciplineSchemeListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to externalPersonGetAllowedKeywordGroupConfigurationClassifications
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -983,6 +1273,43 @@ export class ExternalPersonApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to externalPersonGetDisciplineAssociation
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async externalPersonGetDisciplineAssociation(response: ResponseContext): Promise<DisciplinesAssociation > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
+            return body;
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(404, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to externalPersonGetOrderings
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1032,6 +1359,87 @@ export class ExternalPersonApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ExternalPersonListResult", ""
             ) as ExternalPersonListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to externalPersonListDisciplineAssociations
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async externalPersonListDisciplineAssociations(response: ResponseContext): Promise<DisciplinesAssociationListResult > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesAssociationListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociationListResult", ""
+            ) as DisciplinesAssociationListResult;
+            return body;
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(400, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesAssociationListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociationListResult", ""
+            ) as DisciplinesAssociationListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to externalPersonPutDisciplineAssociation
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async externalPersonPutDisciplineAssociation(response: ResponseContext): Promise<DisciplinesAssociation > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
+            return body;
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(400, body);
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(404, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
             return body;
         }
 
@@ -1113,6 +1521,36 @@ export class ExternalPersonApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ExternalPerson", ""
             ) as ExternalPerson;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to getAllowedDisciplines
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async getAllowedDisciplines(response: ResponseContext): Promise<DisciplinesDisciplineListResult > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesDisciplineListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineListResult", ""
+            ) as DisciplinesDisciplineListResult;
+            return body;
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesDisciplineListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineListResult", ""
+            ) as DisciplinesDisciplineListResult;
             return body;
         }
 

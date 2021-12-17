@@ -32,7 +32,7 @@ export class StaffOrganizationAssociation extends PersonOrganizationAssociation 
     */
     'fte'?: number;
     /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
+    * A set of string values, one for each submission locale. Note: invalid locale values will be ignored.
     */
     'jobDescription'?: { [key: string]: string; };
     'jobTitle'?: ClassificationRef;

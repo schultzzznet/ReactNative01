@@ -14,7 +14,7 @@ import { ClassificationRef } from './ClassificationRef';
 import { HttpFile } from '../http/http';
 
 /**
-* A hyperlink
+* A hyperlink describing a location on the web.
 */
 export class Link {
     /**
@@ -22,11 +22,11 @@ export class Link {
     */
     'pureId'?: number;
     /**
-    * URL
+    * The URL (Uniform Resource Locator) of the link
     */
     'url': string;
     /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
+    * A set of string values, one for each submission locale. Note: invalid locale values will be ignored.
     */
     'description'?: { [key: string]: string; };
     'linkType'?: ClassificationRef;

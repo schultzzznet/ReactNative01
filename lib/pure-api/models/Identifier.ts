@@ -13,10 +13,7 @@
 import { HttpFile } from '../http/http';
 
 export class Identifier {
-    /**
-    * A Identifier type discriminator property so we can differentiate between the different sub-types
-    */
-    'typeDiscriminator'?: string;
+    'typeDiscriminator': string;
 
     static readonly discriminator: string | undefined = "typeDiscriminator";
 

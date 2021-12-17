@@ -34,11 +34,11 @@ export class Document {
     /**
     * The documents mime type
     */
-    'mimeType'?: string;
+    'mimeType': string;
     /**
     * The documents size in bytes
     */
-    'size'?: number;
+    'size': number;
     /**
     * Download url for the binary file
     */

@@ -12,7 +12,6 @@
 
 import { ClassificationSchemeRefAllOf } from './ClassificationSchemeRefAllOf';
 import { ContentRef } from './ContentRef';
-import { NavigationLink } from './NavigationLink';
 import { HttpFile } from '../http/http';
 
 /**

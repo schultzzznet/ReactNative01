@@ -18,7 +18,11 @@ import { HttpFile } from '../http/http';
 */
 export class JournalTitle {
     /**
-    * The title of the journal
+    * Pure database ID of the object, prefer using the UUID if it is present on the entity
+    */
+    'pureId'?: number;
+    /**
+    * The title of the journal.
     */
     'title': string;
     'startDate'?: CompoundDate;
@@ -27,6 +31,12 @@ export class JournalTitle {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "pureId",
+            "baseName": "pureId",
+            "type": "number",
+            "format": "int64"
+        },
         {
             "name": "title",
             "baseName": "title",

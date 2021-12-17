@@ -7,6 +7,11 @@ import {ApiException} from './exception';
 import {isCodeInRange} from '../util';
 
 import { ClassificationRefList } from '../models/ClassificationRefList';
+import { DisciplinesAssociation } from '../models/DisciplinesAssociation';
+import { DisciplinesAssociationListResult } from '../models/DisciplinesAssociationListResult';
+import { DisciplinesAssociationsQuery } from '../models/DisciplinesAssociationsQuery';
+import { DisciplinesDisciplineListResult } from '../models/DisciplinesDisciplineListResult';
+import { DisciplinesDisciplineSchemeListResult } from '../models/DisciplinesDisciplineSchemeListResult';
 import { Event } from '../models/Event';
 import { EventListResult } from '../models/EventListResult';
 import { EventsQuery } from '../models/EventsQuery';
@@ -171,6 +176,47 @@ export class EventApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Get event with specific UUID.
+     * Get event
+     * @param uuid UUID of the desired event
+     */
+    public async eventGet(uuid: string, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'uuid' is not null or undefined
+        if (uuid === null || uuid === undefined) {
+            throw new RequiredError('Required parameter uuid was null or undefined when calling eventGet.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/events/{uuid}'
+            .replace('{' + 'uuid' + '}', encodeURIComponent(String(uuid)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Get a list of allowed classified identifier types that can be used for the 'identifiers.type' attribute of events
      * A list of allowed classified identifier types
      */
@@ -251,6 +297,90 @@ export class EventApiRequestFactory extends BaseAPIRequestFactory {
         requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
 
         // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Get a list fo a allowed discipline schemes for events
+     * A list of allowed discipline schemes
+     */
+    public async eventGetAllowedDisciplineSchemes(options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // Path Params
+        const localVarPath = '/events/disciplines/allowed-discipline-schemes';
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for events
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for events
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public async eventGetAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling eventGetAllowedDisciplines.');
+        }
+
+
+
+
+        // Path Params
+        const localVarPath = '/events/disciplines/{discipline-scheme}/allowed-disciplines'
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (size !== undefined) {
+            requestContext.setQueryParam("size", ObjectSerializer.serialize(size, "number", "int32"));
+        }
+        if (offset !== undefined) {
+            requestContext.setQueryParam("offset", ObjectSerializer.serialize(offset, "number", "int32"));
+        }
 
         // Header Params
 
@@ -509,6 +639,55 @@ export class EventApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Get disciplines from the discipline scheme  associated with the event with specific UUID.
+     * Get disciplines from the discipline scheme associated with the event
+     * @param uuid UUID of the desired event
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public async eventGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'uuid' is not null or undefined
+        if (uuid === null || uuid === undefined) {
+            throw new RequiredError('Required parameter uuid was null or undefined when calling eventGetDisciplineAssociation.');
+        }
+
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling eventGetDisciplineAssociation.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/events/{uuid}/disciplines/{discipline-scheme}'
+            .replace('{' + 'uuid' + '}', encodeURIComponent(String(uuid)))
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Lists all orderings available to the event endpoint. These values can be used by the order parameter.
      * Lists available orderings
      */
@@ -590,6 +769,63 @@ export class EventApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with events in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with events
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public async eventListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling eventListDisciplineAssociations.');
+        }
+
+
+        // verify required parameter 'disciplinesAssociationsQuery' is not null or undefined
+        if (disciplinesAssociationsQuery === null || disciplinesAssociationsQuery === undefined) {
+            throw new RequiredError('Required parameter disciplinesAssociationsQuery was null or undefined when calling eventListDisciplineAssociations.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/events/disciplines/{discipline-scheme}/search'
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(disciplinesAssociationsQuery, "DisciplinesAssociationsQuery", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Lists notes associated with an event ordered by date (nulls last)
      * Lists notes
      * @param uuid UUID of the event to get notes for
@@ -629,6 +865,71 @@ export class EventApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the event with specific UUID.
+     * Update disciplines from the discipline scheme associated with the event
+     * @param uuid UUID of the event to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public async eventPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'uuid' is not null or undefined
+        if (uuid === null || uuid === undefined) {
+            throw new RequiredError('Required parameter uuid was null or undefined when calling eventPutDisciplineAssociation.');
+        }
+
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling eventPutDisciplineAssociation.');
+        }
+
+
+        // verify required parameter 'disciplinesAssociation' is not null or undefined
+        if (disciplinesAssociation === null || disciplinesAssociation === undefined) {
+            throw new RequiredError('Required parameter disciplinesAssociation was null or undefined when calling eventPutDisciplineAssociation.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/events/{uuid}/disciplines/{discipline-scheme}'
+            .replace('{' + 'uuid' + '}', encodeURIComponent(String(uuid)))
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(disciplinesAssociation, "DisciplinesAssociation", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
 
         let authMethod = null;
         // Apply auth methods
@@ -861,6 +1162,46 @@ export class EventApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to eventGet
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async eventGet(response: ResponseContext): Promise<Event > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: Event = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "Event", ""
+            ) as Event;
+            return body;
+        }
+        if (isCodeInRange("301", response.httpStatusCode)) {
+            throw new ApiException<string>(response.httpStatusCode, "The requested content have changed UUID");
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(404, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: Event = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "Event", ""
+            ) as Event;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to eventGetAllowedClassifiedIdentifierTypes
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -940,6 +1281,66 @@ export class EventApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "ClassificationRefList", ""
             ) as ClassificationRefList;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to eventGetAllowedDisciplineSchemes
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async eventGetAllowedDisciplineSchemes(response: ResponseContext): Promise<DisciplinesDisciplineSchemeListResult > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesDisciplineSchemeListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineSchemeListResult", ""
+            ) as DisciplinesDisciplineSchemeListResult;
+            return body;
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesDisciplineSchemeListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineSchemeListResult", ""
+            ) as DisciplinesDisciplineSchemeListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to eventGetAllowedDisciplines
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async eventGetAllowedDisciplines(response: ResponseContext): Promise<DisciplinesDisciplineListResult > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesDisciplineListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineListResult", ""
+            ) as DisciplinesDisciplineListResult;
+            return body;
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesDisciplineListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineListResult", ""
+            ) as DisciplinesDisciplineListResult;
             return body;
         }
 
@@ -1161,6 +1562,43 @@ export class EventApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to eventGetDisciplineAssociation
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async eventGetDisciplineAssociation(response: ResponseContext): Promise<DisciplinesAssociation > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
+            return body;
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(404, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to eventGetOrderings
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1221,6 +1659,43 @@ export class EventApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to eventListDisciplineAssociations
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async eventListDisciplineAssociations(response: ResponseContext): Promise<DisciplinesAssociationListResult > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesAssociationListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociationListResult", ""
+            ) as DisciplinesAssociationListResult;
+            return body;
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(400, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesAssociationListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociationListResult", ""
+            ) as DisciplinesAssociationListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to eventListNotes
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1247,6 +1722,50 @@ export class EventApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "NoteListResult", ""
             ) as NoteListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to eventPutDisciplineAssociation
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async eventPutDisciplineAssociation(response: ResponseContext): Promise<DisciplinesAssociation > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
+            return body;
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(400, body);
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(404, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
             return body;
         }
 

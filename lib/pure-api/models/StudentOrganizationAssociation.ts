@@ -35,14 +35,17 @@ export class StudentOrganizationAssociation extends PersonOrganizationAssociatio
     */
     'awardGained'?: string;
     /**
+    * The FTE (Full-Time Equivalent). A decimal number ranging between 0 (0% equivalent of full time) and 1 (100% equivalent of full time).
+    */
+    'fte'?: number;
+    /**
     * The name or title of a program often consists of the degree (e.g., BS) and the discipline or field of study (e.g., Business Administration).
     */
     'programme'?: string;
     /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
+    * A set of string values, one for each submission locale. Note: invalid locale values will be ignored.
     */
     'projectTitle'?: { [key: string]: string; };
-    'fte'?: number;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -60,6 +63,12 @@ export class StudentOrganizationAssociation extends PersonOrganizationAssociatio
             "format": ""
         },
         {
+            "name": "fte",
+            "baseName": "fte",
+            "type": "number",
+            "format": "double"
+        },
+        {
             "name": "programme",
             "baseName": "programme",
             "type": "string",
@@ -70,12 +79,6 @@ export class StudentOrganizationAssociation extends PersonOrganizationAssociatio
             "baseName": "projectTitle",
             "type": "{ [key: string]: string; }",
             "format": ""
-        },
-        {
-            "name": "fte",
-            "baseName": "fte",
-            "type": "number",
-            "format": "double"
         }    ];
 
     static getAttributeTypeMap() {

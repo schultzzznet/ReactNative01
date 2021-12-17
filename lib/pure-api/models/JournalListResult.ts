@@ -11,7 +11,6 @@
  */
 
 import { Journal } from './Journal';
-import { NavigationLink } from './NavigationLink';
 import { PageInformation } from './PageInformation';
 import { HttpFile } from '../http/http';
 
@@ -24,10 +23,6 @@ export class JournalListResult {
     */
     'count'?: number;
     'pageInformation'?: PageInformation;
-    /**
-    * Links to navigate from this result. Such as a 'prev' link to link to the previous page of items
-    */
-    'navigationLinks'?: Array<NavigationLink>;
     'items'?: Array<Journal>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -43,12 +38,6 @@ export class JournalListResult {
             "name": "pageInformation",
             "baseName": "pageInformation",
             "type": "PageInformation",
-            "format": ""
-        },
-        {
-            "name": "navigationLinks",
-            "baseName": "navigationLinks",
-            "type": "Array<NavigationLink>",
             "format": ""
         },
         {

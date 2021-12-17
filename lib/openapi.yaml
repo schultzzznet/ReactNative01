@@ -237,6 +237,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkflowListResult'
+  /events/disciplines/allowed-discipline-schemes:
+    get:
+      tags:
+      - event
+      summary: A list of allowed discipline schemes
+      description: Get a list fo a allowed discipline schemes for events
+      operationId: event_getAllowedDisciplineSchemes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineSchemeListResult'
+  /events/disciplines/{discipline-scheme}/allowed-disciplines:
+    get:
+      tags:
+      - event
+      summary: A list of allowed disciplines for a specific discipline scheme
+      description: Get a list of a allowed disciplines for specific discipline scheme
+        for events
+      operationId: event_getAllowedDisciplines
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme for events
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of returned disciplines per request
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineListResult'
+  /events/disciplines/{discipline-scheme}/search:
+    post:
+      tags:
+      - event
+      summary: Query operation for disciplines associated with events
+      description: Lists disciplines from the discipline scheme associated with events
+        in the Pure instance that matches the provided query.
+      operationId: event_listDisciplineAssociations
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The query to perform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociationsQuery'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociationListResult'
+        400:
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /events/orderings:
     get:
       tags:
@@ -284,6 +371,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
   /events/{uuid}:
+    get:
+      tags:
+      - event
+      summary: Get event
+      description: Get event with specific UUID.
+      operationId: event_get
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired event
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        301:
+          description: The requested content have changed UUID
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
     put:
       tags:
       - event
@@ -341,6 +457,88 @@ paths:
       responses:
         204:
           description: Successful operation
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /events/{uuid}/disciplines/{discipline-scheme}:
+    get:
+      tags:
+      - event
+      summary: Get disciplines from the discipline scheme associated with the event
+      description: Get disciplines from the discipline scheme  associated with the
+        event with specific UUID.
+      operationId: event_getDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired event
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - event
+      summary: Update disciplines from the discipline scheme associated with the event
+      description: Update disciplines from the discipline scheme associated with the
+        event with specific UUID.
+      operationId: event_putDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the event to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The disciplines association to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociation'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         404:
           description: Resource not found
           content:
@@ -692,6 +890,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkflowListResult'
+  /external-organizations/disciplines/allowed-discipline-schemes:
+    get:
+      tags:
+      - externalOrganization
+      summary: A list of allowed discipline schemes
+      description: Get a list fo a allowed discipline schemes for external organizations
+      operationId: externalOrganization_getAllowedDisciplineSchemes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineSchemeListResult'
+  /external-organizations/disciplines/{discipline-scheme}/allowed-disciplines:
+    get:
+      tags:
+      - externalOrganization
+      summary: A list of allowed disciplines for a specific discipline scheme
+      description: Get a list of a allowed disciplines for specific discipline scheme
+        for external organizations
+      operationId: externalOrganization_getAllowedDisciplines
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme for external organizations
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of returned disciplines per request
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineListResult'
+  /external-organizations/disciplines/{discipline-scheme}/search:
+    post:
+      tags:
+      - externalOrganization
+      summary: Query operation for disciplines associated with external organizations
+      description: Lists disciplines from the discipline scheme associated with external
+        organizations in the Pure instance that matches the provided query.
+      operationId: externalOrganization_listDisciplineAssociations
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The query to perform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociationsQuery'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociationListResult'
+        400:
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /external-organizations/file-uploads:
     put:
       tags:
@@ -950,6 +1235,90 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentRefListResult'
+  /external-organizations/{uuid}/disciplines/{discipline-scheme}:
+    get:
+      tags:
+      - externalOrganization
+      summary: Get disciplines from the discipline scheme associated with the external
+        organization
+      description: Get disciplines from the discipline scheme associated with the
+        external organization with specific UUID.
+      operationId: externalOrganization_getDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired external organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - externalOrganization
+      summary: Update disciplines from the discipline scheme associated with the external
+        organization
+      description: Update disciplines from the discipline scheme associated with the
+        external organization with specific UUID.
+      operationId: externalOrganization_putDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the external organization to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The disciplines association to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociation'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /external-organizations/{uuid}/files/{fileId}:
     get:
       tags:
@@ -1235,6 +1604,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkflowListResult'
+  /external-persons/disciplines/allowed-discipline-schemes:
+    get:
+      tags:
+      - externalPerson
+      summary: A list of allowed discipline schemes
+      description: Get a list fo a allowed discipline schemes for external persons
+      operationId: externalPerson_getAllowedDisciplineSchemes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineSchemeListResult'
+  /external-persons/disciplines/{discipline-scheme}/allowed-disciplines:
+    get:
+      tags:
+      - externalPerson
+      summary: A list of allowed disciplines for a specific discipline scheme
+      description: Get a list of a allowed disciplines for specific discipline scheme
+        for external persons
+      operationId: getAllowedDisciplines
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme for external persons
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of returned disciplines per request
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineListResult'
+  /external-persons/disciplines/{discipline-scheme}/search:
+    post:
+      tags:
+      - externalPerson
+      summary: Query operation for disciplines associated with external persons
+      description: Lists disciplines from the discipline scheme associated with external
+        persons in the Pure instance that matches the provided query.
+      operationId: externalPerson_listDisciplineAssociations
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The query to perform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociationsQuery'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociationListResult'
+        400:
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /external-persons/orderings:
     get:
       tags:
@@ -1405,6 +1861,90 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentRefListResult'
+  /external-persons/{uuid}/disciplines/{discipline-scheme}:
+    get:
+      tags:
+      - externalPerson
+      summary: Get disciplines from the discipline scheme associated with the external
+        person
+      description: Get disciplines from the discipline scheme associated with the
+        external person with specific UUID.
+      operationId: externalPerson_getDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired external person
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - externalPerson
+      summary: Update disciplines from the discipline scheme associated with the external
+        person
+      description: Update disciplines from the discipline scheme associated with the
+        external person with specific UUID.
+      operationId: externalPerson_putDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the external person to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The disciplines association to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociation'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /journals:
     get:
       tags:
@@ -1596,6 +2136,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkflowListResult'
+  /journals/disciplines/allowed-discipline-schemes:
+    get:
+      tags:
+      - journal
+      summary: A list of allowed discipline schemes
+      description: Get a list fo a allowed discipline schemes for journals
+      operationId: journal_getAllowedDisciplineSchemes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineSchemeListResult'
+  /journals/disciplines/{discipline-scheme}/allowed-disciplines:
+    get:
+      tags:
+      - journal
+      summary: A list of allowed disciplines for a specific discipline scheme
+      description: Get a list of a allowed disciplines for specific discipline scheme
+        for journals
+      operationId: journal_getAllowedDisciplines
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme for journals
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of returned disciplines per request
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineListResult'
+  /journals/disciplines/{discipline-scheme}/search:
+    post:
+      tags:
+      - journal
+      summary: Query operation for disciplines associated with journals
+      description: Lists disciplines from the discipline scheme associated with journals
+        in the Pure instance that matches the provided query.
+      operationId: journal_listDisciplineAssociations
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The query to perform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociationsQuery'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociationListResult'
+        400:
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /journals/orderings:
     get:
       tags:
@@ -1766,6 +2393,88 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentRefListResult'
+  /journals/{uuid}/disciplines/{discipline-scheme}:
+    get:
+      tags:
+      - journal
+      summary: Get disciplines from the discipline scheme associated with the journal
+      description: Get disciplines from the discipline scheme associated with the
+        journal with specific UUID.
+      operationId: journal_getDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired journal
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - journal
+      summary: Update disciplines from the discipline scheme associated with the journal
+      description: Update disciplines from the discipline scheme associated with the
+        journal with specific UUID.
+      operationId: journal_putDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the journal to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The disciplines association to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociation'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /journals/{uuid}/notes:
     get:
       tags:
@@ -2157,6 +2866,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClassificationRefList'
+  /organizations/disciplines/allowed-discipline-schemes:
+    get:
+      tags:
+      - organization
+      summary: A list of allowed discipline schemes
+      description: Get a list fo a allowed discipline schemes for organizations
+      operationId: organization_getAllowedDisciplineSchemes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineSchemeListResult'
+  /organizations/disciplines/{discipline-scheme}/allowed-disciplines:
+    get:
+      tags:
+      - organization
+      summary: A list of allowed disciplines for a specific discipline scheme
+      description: Get a list of a allowed disciplines for specific discipline scheme
+        for organizations
+      operationId: organization_getAllowedDisciplines
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme for organizations
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of returned disciplines per request
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineListResult'
+  /organizations/disciplines/{discipline-scheme}/search:
+    post:
+      tags:
+      - organization
+      summary: Query operation for disciplines associated with organizations
+      description: Lists disciplines from the discipline scheme associated with organizations
+        in the Pure instance that matches the provided query.
+      operationId: organization_listDisciplineAssociations
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The query to perform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociationsQuery'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociationListResult'
+        400:
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /organizations/file-uploads:
     put:
       tags:
@@ -2357,6 +3153,88 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentRefListResult'
+  /organizations/{uuid}/disciplines/{discipline-scheme}:
+    get:
+      tags:
+      - organization
+      summary: Get disciplines from the discipline scheme associated with the organization
+      description: Get disciplines from the discipline scheme associated with the
+        organization with specific UUID.
+      operationId: organization_getDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired organization
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - organization
+      summary: Update disciplines from the discipline scheme associated with the organization
+      description: Update disciplines from the discipline scheme associated with the
+        organization with specific UUID.
+      operationId: organization_putDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the organization to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The disciplines association to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociation'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /organizations/{uuid}/files/{fileId}:
     get:
       tags:
@@ -2984,6 +3862,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ClassificationRefList'
+  /persons/disciplines/allowed-discipline-schemes:
+    get:
+      tags:
+      - person
+      summary: A list of allowed discipline schemes
+      description: Get a list fo a allowed discipline schemes for persons
+      operationId: person_getAllowedDisciplineSchemes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineSchemeListResult'
+  /persons/disciplines/{discipline-scheme}/allowed-disciplines:
+    get:
+      tags:
+      - person
+      summary: A list of allowed disciplines for a specific discipline scheme
+      description: Get a list of a allowed disciplines for specific discipline scheme
+        for persons
+      operationId: person_getAllowedDisciplines
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme for persons
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of returned disciplines per request
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineListResult'
+  /persons/disciplines/{discipline-scheme}/search:
+    post:
+      tags:
+      - person
+      summary: Query operation for disciplines associated with persons
+      description: Lists disciplines from the discipline scheme associated with persons
+        in the Pure instance that matches the provided query.
+      operationId: person_listDisciplineAssociations
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The query to perform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociationsQuery'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociationListResult'
+        400:
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /persons/file-uploads:
     put:
       tags:
@@ -3147,6 +4112,88 @@ paths:
       responses:
         204:
           description: Successful operation
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /persons/{uuid}/disciplines/{discipline-scheme}:
+    get:
+      tags:
+      - person
+      summary: Get disciplines from the discipline scheme associated with the person
+      description: Get disciplines from the discipline scheme associated with the
+        person with specific UUID.
+      operationId: person_getDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired person
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - person
+      summary: Update disciplines from the discipline scheme associated with the person
+      description: Update disciplines from the discipline scheme associated with the
+        person with specific UUID.
+      operationId: person_putDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the person to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The disciplines association to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociation'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
         404:
           description: Resource not found
           content:
@@ -3515,6 +4562,93 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/WorkflowListResult'
+  /publishers/disciplines/allowed-discipline-schemes:
+    get:
+      tags:
+      - publisher
+      summary: A list of allowed discipline schemes
+      description: Get a list fo a allowed discipline schemes for publishers
+      operationId: publisher_getAllowedDisciplineSchemes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineSchemeListResult'
+  /publishers/disciplines/{discipline-scheme}/allowed-disciplines:
+    get:
+      tags:
+      - publisher
+      summary: A list of allowed disciplines for a specific discipline scheme
+      description: Get a list of a allowed disciplines for specific discipline scheme
+        for publishers
+      operationId: publisher_getAllowedDisciplines
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme for publishers
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of returned disciplines per request
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineListResult'
+  /publishers/disciplines/{discipline-scheme}/search:
+    post:
+      tags:
+      - publisher
+      summary: Query operation for disciplines associated with publishers
+      description: Lists disciplines from the discipline scheme associated with publishers
+        in the Pure instance that matches the provided query.
+      operationId: publisher_listDisciplineAssociations
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The query to perform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociationsQuery'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociationListResult'
+        400:
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /publishers/orderings:
     get:
       tags:
@@ -3685,6 +4819,88 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ContentRefListResult'
+  /publishers/{uuid}/disciplines/{discipline-scheme}:
+    get:
+      tags:
+      - publisher
+      summary: Get disciplines from the discipline scheme associated with the publisher
+      description: Get disciplines from the discipline scheme associated with the
+        publisher with specific UUID.
+      operationId: publisher_getDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired publisher
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - publisher
+      summary: Update disciplines from the discipline scheme associated with the publisher
+      description: Update disciplines from the discipline scheme associated with the
+        publisher with specific UUID.
+      operationId: publisher_putDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the publisher to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The disciplines association to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociation'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
   /publishers/{uuid}/notes:
     get:
       tags:
@@ -3764,6 +4980,1453 @@ paths:
             application/problem+json:
               schema:
                 $ref: '#/components/schemas/ProblemDetails'
+  /research-outputs:
+    get:
+      tags:
+      - researchOutput
+      summary: Lists all  research outputs
+      description: Lists all  research outputs in the Pure instance. If you need to
+        filter the research outputs returned, see the POST version which supports
+        additional filtering.
+      operationId: researchOutput_list
+      parameters:
+      - name: size
+        in: query
+        description: Number of returned  research outputs per request.
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: order
+        in: query
+        description: The order of the list, must be a value from getResearchOutputOrderings
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResearchOutputListResult'
+    put:
+      tags:
+      - researchOutput
+      summary: Create research output
+      description: Create research output
+      operationId: researchOutput_create
+      requestBody:
+        description: The content to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResearchOutput'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResearchOutput'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /research-outputs/allowed-additional-file-access-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed access types
+      description: Get a list of allowed access types for additional files on research
+        outputs
+      operationId: researchoutput_getAllowedAdditionalFileAccessTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-additional-file-license-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed license types
+      description: Get a list of allowed license types for additional files on research
+        outputs
+      operationId: researchoutput_getAllowedAdditionalFileLicenseTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-article-processing-charge-currencies:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed article processing charge currencies
+      description: Get a list of allowed article processing charge currencies on research
+        outputs
+      operationId: researchoutput_getAllowedArticleProcessingChargeCurrencies
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-book-anthology-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the book anthology subtype
+      description: Get a list of allowed roles for contributors on the book anthology
+        subtype of research outputs
+      operationId: researchoutput_getAllowedBookAnthologyContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-book-anthology-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the book anthology subtype
+      description: Get a list of allowed description types on the book anthology subtype
+        of research outputs
+      operationId: researchoutput_getAllowedBookAnthologyDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-case-note-sources:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed case note sources
+      description: Get a list of allowed case note sources for select subtypes of
+        research outputs
+      operationId: researchoutput_getAllowedCaseNoteSources
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-categories:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed categories
+      description: Get a list of allowed categories on research outputs
+      operationId: researchoutput_getAllowedCategories
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-book-anthology-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the contribution to book anthology
+        subtype
+      description: Get a list of allowed roles for contributors on the contribution
+        to book anthology subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToBookAnthologyContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-book-anthology-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the contribution to book anthology
+        subtype
+      description: Get a list of allowed description types on the contribution to
+        book anthology subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToBookAnthologyDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-conference-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the contribution to conference
+        subtype
+      description: Get a list of allowed roles for contributors on the contribution
+        to conference subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToConferenceContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-conference-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the contribution to conference
+        subtype
+      description: Get a list of allowed description types on the contribution to
+        conference subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToConferenceDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-journal-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the contribution to journal
+        subtype
+      description: Get a list of allowed roles for contributors on the contribution
+        to journal subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToJournalContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-journal-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the contribution to journal
+        subtype
+      description: Get a list of allowed description types on the contribution to
+        journal subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToJournalDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-memorandum-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the contribution to memorandum
+        subtype
+      description: Get a list of allowed roles for contributors on the contribution
+        to memorandum subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToMemorandumContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-memorandum-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the contribution to memorandum
+        subtype
+      description: Get a list of allowed description types on the contribution to
+        memorandum subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToMemorandumDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-periodical-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the contribution to periodical
+        subtype
+      description: Get a list of allowed roles for contributors on the contribution
+        to periodical subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToPeriodicalContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contribution-to-periodical-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the contribution to periodical
+        subtype
+      description: Get a list of allowed description types on the contribution to
+        periodical subtype of research outputs
+      operationId: researchoutput_getAllowedContributionToPeriodicalDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-contributor-countries:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor countries
+      description: Get a list of allowed countries for contributors on research outputs
+      operationId: researchoutput_getAllowedContributorCountries
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-countries:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed countries
+      description: Get a list of allowed countries that can be used for the 'countries'
+        attribute of research outputs
+      operationId: researchOutput_getAllowedCountries
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-electronic-version-access-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed access types
+      description: Get a list of allowed access types for electronic versions on research
+        outputs
+      operationId: researchoutput_getAllowedElectronicVersionAccessTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-electronic-version-license-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed license types
+      description: Get a list of allowed license types for electronic versions on
+        research outputs
+      operationId: researchoutput_getAllowedElectronicVersionLicenseTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-electronic-version-version-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed version types
+      description: Get a list of allowed version types for electronic versions on
+        research outputs
+      operationId: researchoutput_getAllowedElectronicVersionVersionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-keyword-group-configurations:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of keyword group configurations
+      description: Get a list of allowed keyword group configurations that can be
+        used when submitting keyword groups.
+      operationId: researchOutput_getAllowedKeywordGroupConfigurations
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeywordGroupConfigurationList'
+  /research-outputs/allowed-keyword-group-configurations/{id}/classifications:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed classifications for the specified keyword group
+      description: Get a list of allowed classifications that can be used when submitting
+        a specified keyword group.
+      operationId: researchOutput_getAllowedKeywordGroupConfigurationClassifications
+      parameters:
+      - name: id
+        in: path
+        description: Pure id of the keyword group configuration
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-languages:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed languages
+      description: Get a list of allowed languages on research outputs
+      operationId: researchoutput_getAllowedLanguages
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-link-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed link types
+      description: Get a list of allowed link types on research outputs
+      operationId: researchoutput_getAllowedLinkTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-locales:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed locales in localized strings
+      description: Get a list of allowed locales that can be used when submitting
+        localized string entities.
+      operationId: researchOutput_getAllowedLocales
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LocalesList'
+  /research-outputs/allowed-main-research-areas:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed main research areas
+      description: Get a list of allowed main research areas on research outputs
+      operationId: researchoutput_getAllowedMainResearchAreas
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-memorandum-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the memorandum subtype
+      description: Get a list of allowed roles for contributors on the memorandum
+        subtype of research outputs
+      operationId: researchoutput_getAllowedMemorandumContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-memorandum-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the memorandum subtype
+      description: Get a list of allowed description types on the memorandum subtype
+        of research outputs
+      operationId: researchoutput_getAllowedMemorandumDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-non-textual-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the non-textual subtype
+      description: Get a list of allowed roles for contributors on the non-textual
+        subtype of research outputs
+      operationId: researchoutput_getAllowedNonTextualContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-non-textual-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the non-textual subtype
+      description: Get a list of allowed description types on the non-textual subtype
+        of research outputs
+      operationId: researchoutput_getAllowedNonTextualDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-open-access-permissions:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed open access permissions
+      description: Get a list of allowed open access permissions on research outputs
+      operationId: researchoutput_getAllowedOpenAccessPermissions
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-other-contribution-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the other contribution subtype
+      description: Get a list of allowed roles for contributors on the other contribution
+        subtype of research outputs
+      operationId: researchoutput_getAllowedOtherContributionContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-other-contribution-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the other contribution subtype
+      description: Get a list of allowed description types on the other contribution
+        subtype of research outputs
+      operationId: researchoutput_getAllowedOtherContributionDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-output-medias:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed output medias
+      description: Get a list of allowed output medias for the non-textual subtype
+        of research outputs
+      operationId: researchoutput_getAllowedOutputMedias
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-patent-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the patent subtype
+      description: Get a list of allowed roles for contributors on the patent subtype
+        of research outputs
+      operationId: researchoutput_getAllowedPatentContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-patent-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the patent subtype
+      description: Get a list of allowed description types on the patent subtype of
+        research outputs
+      operationId: researchoutput_getAllowedPatentDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-peer-review-configurations:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of peer review configurations
+      description: 'Get a list of peer review configurations that describe the allowed
+        combinations of values for the interrelated fields: type, category, peerReview,
+        and internationalPeerReview'
+      operationId: researchOutput_getAllowedPeerReviewConfigurations
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResearchOutputPeerReviewConfigurationListResult'
+  /research-outputs/allowed-publication-statuses:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed publication statuses
+      description: Get a list of allowed publication statuses on research output
+      operationId: researchoutput_getAllowedPublicationStatuses
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-qualifications:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed qualifications
+      description: Get a list of allowed qualifications for the thesis subtype of
+        research outputs
+      operationId: researchoutput_getAllowedQualifications
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-supervisor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed supervisor roles
+      description: Get a list of allowed supervisors roles for the thesis subtype
+        of research outputs
+      operationId: researchoutput_getAllowedSupervisorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-templates:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed research output templates
+      description: Get a list of allowed templates that can be used for research outputs,
+        such as 'ContributionToJournal' or 'BookAnthology'. Some of the templates
+        that exists in the API specification may be disabled for the Pure installation.
+      operationId: researchOutput_getAllowedTemplates
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AllowedTemplateListResult'
+  /research-outputs/allowed-thesis-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the thesis subtype
+      description: Get a list of allowed roles for contributors on the thesis subtype
+        of research outputs
+      operationId: researchoutput_getAllowedThesisContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-thesis-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the thesis subtype
+      description: Get a list of allowed description types on the thesis subtype of
+        research outputs
+      operationId: researchoutput_getAllowedThesisDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed research output types
+      description: Get a list of allowed types that can be used for the 'type' attribute
+        of research outputs
+      operationId: researchOutput_getAllowedTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-workflow-steps:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed workflow steps
+      description: Get a list of allowed workflow steps that can be used for the 'workflow'
+        attribute of research outputs
+      operationId: researchOutput_getAllowedWorkflowSteps
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkflowListResult'
+  /research-outputs/allowed-working-paper-contributor-roles:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed contributor roles for the working paper subtype
+      description: Get a list of allowed roles for contributors on the working paper
+        subtype of research outputs
+      operationId: researchoutput_getAllowedWorkingPaperContributorRoles
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/allowed-working-paper-description-types:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed description types for the working paper subtype
+      description: Get a list of allowed description types on the working paper subtype
+        of research outputs
+      operationId: researchoutput_getAllowedWorkingPaperDescriptionTypes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRefList'
+  /research-outputs/disciplines/allowed-discipline-schemes:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed discipline schemes
+      description: Get a list fo a allowed discipline schemes for research outputs
+      operationId: researchoutput_getAllowedDisciplineSchemes
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineSchemeListResult'
+  /research-outputs/disciplines/{discipline-scheme}/allowed-disciplines:
+    get:
+      tags:
+      - researchOutput
+      summary: A list of allowed disciplines for a specific discipline scheme
+      description: Get a list of a allowed disciplines for specific discipline scheme
+        for research outputs
+      operationId: researchoutput_getAllowedDisciplines
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme for research output
+        required: true
+        schema:
+          type: string
+      - name: size
+        in: query
+        description: Number of returned disciplines per request
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesDisciplineListResult'
+  /research-outputs/disciplines/{discipline-scheme}/search:
+    post:
+      tags:
+      - researchOutput
+      summary: Query operation for disciplines associated with research outputs
+      description: Lists disciplines from the discipline scheme associated with research
+        outputs in the Pure instance that matches the provided query.
+      operationId: researchOutput_listDisciplineAssociations
+      parameters:
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The query to perform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociationsQuery'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociationListResult'
+        400:
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /research-outputs/file-uploads:
+    put:
+      tags:
+      - researchOutput
+      summary: Upload file to a specific research output
+      description: Uploads file for the research output
+      operationId: researchOutput_fileUploads
+      parameters:
+      - name: Content-Type
+        in: header
+        description: Set the mime type for the file
+        schema:
+          type: string
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              type: string
+              format: binary
+        required: true
+      responses:
+        default:
+          description: default response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadedFile'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UploadedFile'
+  /research-outputs/orderings:
+    get:
+      tags:
+      - researchOutput
+      summary: Lists available orderings
+      description: Lists all orderings available to the research output endpoint.
+        These values can be used by the order parameter.
+      operationId: researchOutput_getOrderings
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderingsList'
+  /research-outputs/search:
+    post:
+      tags:
+      - researchOutput
+      summary: Query operation for research outputs
+      description: Lists research outputs in the Pure instance that matches the provided
+        query, similar to the GET version, instead of using parameters to alter the
+        response, an JSON document is posted with the request. The JSON document contains
+        fields for all the parameters available for the GET version, but also additional
+        filtering options.
+      operationId: researchOutput_query
+      requestBody:
+        description: The query to perform
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResearchOutputsQuery'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResearchOutputListResult'
+        400:
+          description: Bad request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /research-outputs/{uuid}:
+    get:
+      tags:
+      - researchOutput
+      summary: Get research output
+      description: Get research output with specific UUID.
+      operationId: researchOutput_get
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired research output
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResearchOutput'
+        301:
+          description: The requested content have changed UUID
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - researchOutput
+      summary: Update research outputs
+      description: Update research outputs with specific UUID.
+      operationId: researchOutput_update
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the research output to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The content to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ResearchOutput'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResearchOutput'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+      - researchOutput
+      summary: Delete research output
+      description: Delete research output with specific UUID.
+      operationId: researchOutput_delete
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the research output
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        204:
+          description: Successful operation
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /research-outputs/{uuid}/dependents:
+    get:
+      tags:
+      - researchOutput
+      summary: Lists all dependents to a research output
+      description: 'Lists all dependents to a research output with the specified UUID.
+        If the user dont have access to view all the dependent content, an authorization
+        error will be thrown. '
+      operationId: researchOutput_dependents
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the research output
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: verbose
+        in: query
+        description: 'Default: false. Setting this to true will add links and names
+          to the output but will also have an impact on performance. Use with coution.'
+        schema:
+          type: boolean
+          default: false
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ContentRefListResult'
+  /research-outputs/{uuid}/disciplines/{discipline-scheme}:
+    get:
+      tags:
+      - researchOutput
+      summary: Get disciplinesfrom the discipline scheme associated with the research
+        output
+      description: Get disciplines from the discipline scheme associated with the
+        research output with specific UUID.
+      operationId: researchoutput_getDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired research output
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - researchOutput
+      summary: Update disciplines from the discipline scheme associated with the research
+        output
+      description: Update disciplines from the discipline scheme associated with the
+        research output with specific UUID.
+      operationId: researchOutput_putDisciplineAssociation
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the research output to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: discipline-scheme
+        in: path
+        description: Identifier for the discipline scheme
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The disciplines association to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DisciplinesAssociation'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DisciplinesAssociation'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /research-outputs/{uuid}/files/{fileId}:
+    get:
+      tags:
+      - researchOutput
+      summary: Get file from the research output
+      description: Get file from the research output
+      operationId: researchOutput_getFile
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the research output
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: fileId
+        in: path
+        description: 'File id '
+        required: true
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            '*/*':
+              schema:
+                type: string
+                format: binary
+  /research-outputs/{uuid}/notes:
+    get:
+      tags:
+      - researchOutput
+      summary: Lists notes
+      description: Lists notes associated with a research output ordered by date (nulls
+        last)
+      operationId: researchOutput_listNotes
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the research output to get notes for
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: size
+        in: query
+        description: Number of returned notes per request
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NoteListResult'
+        404:
+          description: Research output not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - researchOutput
+      summary: Create note
+      description: Create note and associate it with a research output
+      operationId: researchOutput_createNote
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the research output to add note to
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The note to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Note'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Note'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /users:
+    get:
+      tags:
+      - user
+      summary: Lists all users
+      description: Lists all users in the Pure instance. If you need to filter the
+        users returned, see the POST version which supports additional filtering.
+      operationId: user_list
+      parameters:
+      - name: size
+        in: query
+        description: Number of returned users per request.
+        schema:
+          maximum: 1000
+          type: integer
+          format: int32
+          default: 10
+      - name: offset
+        in: query
+        description: The offset for the returned list. 0 or null value is from the
+          start
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: order
+        in: query
+        description: The order of the list, must be a value from user_getOrderings
+        schema:
+          type: string
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserListResult'
+    put:
+      tags:
+      - user
+      summary: Create user
+      description: Create user
+      operationId: user_create
+      requestBody:
+        description: The content to create
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+  /users/{uuid}:
+    get:
+      tags:
+      - user
+      summary: Get user
+      description: Get user UUID.
+      operationId: user_get
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the desired user
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        301:
+          description: The requested content have changed UUID
+        404:
+          description: Resource not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    put:
+      tags:
+      - user
+      summary: Update user
+      description: Update user with specific UUID.
+      operationId: user_update
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the user to update
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The content to update
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        200:
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        400:
+          description: Bad Request
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
+    delete:
+      tags:
+      - user
+      summary: Delete user
+      description: Delete user with specific UUID.
+      operationId: user_delete
+      parameters:
+      - name: uuid
+        in: path
+        description: UUID of the user
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        204:
+          description: Successful operation
+        404:
+          description: Resource not found
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/ProblemDetails'
 components:
   schemas:
     AcademicQualification:
@@ -3779,6 +6442,7 @@ components:
           type: string
           description: Date that the education was awarded at.
           format: date-time
+          nullable: true
         period:
           $ref: '#/components/schemas/CompoundDateRange'
         fieldOfStudy:
@@ -3794,14 +6458,62 @@ components:
         qualificationUnstructured:
           $ref: '#/components/schemas/LocalizedString'
       description: An object mapping the data of an education received by a person
+    AccessDefinitionRef:
+      required:
+      - uuid
+      type: object
+      description: A reference to an access definition
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/ContentRef'
     ActivityRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to an activity
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
+    AdditionalFileElectronicVersion:
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        accessType:
+          $ref: '#/components/schemas/ClassificationRef'
+        embargoPeriod:
+          $ref: '#/components/schemas/DateRange'
+        licenseType:
+          $ref: '#/components/schemas/ClassificationRef'
+        userDefinedLicense:
+          type: string
+          description: License defined by the user.
+          nullable: true
+        visibleOnPortalDate:
+          type: string
+          description: Date where this document is/will be visible on the portal.
+          format: date-time
+          readOnly: true
+        creator:
+          type: string
+          description: Username of creator.
+          readOnly: true
+        created:
+          type: string
+          description: Date and time of creation.
+          format: date-time
+          readOnly: true
+        title:
+          type: string
+          description: The title of the file.
+          nullable: true
+        file:
+          $ref: '#/components/schemas/ElectronicVersionFile'
+      description: An additional file related to a research output.
     AdditionalISSN:
       required:
       - issn
@@ -3826,23 +6538,50 @@ components:
           type: string
           description: Name of road and house number, eg. 'Pennsylvania Avenue' or
             '123 Main St.'
+          nullable: true
         room:
           type: string
           description: Room number or name if available, eg. '1.23' or 'Office of
             Creative Services'
+          nullable: true
         building:
           type: string
           description: Building Name if available, eg. 'Couper Administration Building'
+          nullable: true
         postalCode:
           type: string
           description: Postal code
+          nullable: true
         city:
           type: string
           description: City or town, eg. 'Binghamton'
+          nullable: true
         country:
           $ref: '#/components/schemas/ClassificationRef'
       description: A physical address
       nullable: true
+    AllowedTemplate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the template.
+          readOnly: true
+        description:
+          type: string
+          description: The description of the template.
+          readOnly: true
+      description: An allowed template, such as 'ContributionToJournal' or 'BookAnthology'
+        for research outputs.
+    AllowedTemplateListResult:
+      type: object
+      properties:
+        items:
+          type: array
+          description: Allowed templates.
+          items:
+            $ref: '#/components/schemas/AllowedTemplate'
+      description: List of allowed templates.
     AlternativeISSN:
       required:
       - issn
@@ -3853,20 +6592,126 @@ components:
       - $ref: '#/components/schemas/AdditionalISSN'
     ApplicationRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to an application
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/ContentRef'
+    ArticleProcessingCharge:
+      type: object
+      properties:
+        paid:
+          type: boolean
+          description: This value is true if the processing charge has been paid,
+            false if not and null/not presentif unknown or not noted on content.
+        amountInCurrency:
+          type: number
+          description: A real number denoting the amount paid in the selected currency.
+          format: double
+          nullable: true
+        currency:
+          $ref: '#/components/schemas/ClassificationRef'
+        amount:
+          type: number
+          description: A real number denoting the amount paid in the system currency.
+          format: double
+          nullable: true
+      description: Holds information on the article processing charge
+    AuthorCollaborationRef:
+      required:
+      - uuid
+      type: object
+      description: A reference to an author collaboration
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     AwardRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to an award
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
+    BookAnthology:
+      type: object
+      description: Books, reports and anthologies/collected works where the author(s)
+        are responsible for the entire work.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          commissioningBody:
+            $ref: '#/components/schemas/ExternalOrganizationRef'
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
+          volume:
+            type: string
+            description: The volume that the research output was published in.
+            nullable: true
+          publicationSeries:
+            type: array
+            description: The publication series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/PublicationSeries'
+          placeOfPublication:
+            type: string
+            description: The place of publication.
+            nullable: true
+          edition:
+            type: string
+            description: The edition that the production was published in.
+            nullable: true
+          printISBNs:
+            type: array
+            description: The ISBN number for the printed versions of the production.
+            nullable: true
+            items:
+              type: string
+          electronicISBNs:
+            type: array
+            description: The ISBN number for the electronic versions of the production.
+            nullable: true
+            items:
+              type: string
+          publisher:
+            $ref: '#/components/schemas/PublisherRef'
+          bookSeries:
+            type: array
+            description: The book series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/BookSeriesJournalAssociation'
+          event:
+            $ref: '#/components/schemas/EventRef'
+    BookSeriesJournalAssociation:
+      required:
+      - journal
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        title:
+          $ref: '#/components/schemas/JournalTitleRef'
+        issn:
+          $ref: '#/components/schemas/ISSNRef'
+        journal:
+          $ref: '#/components/schemas/JournalRef'
+        no:
+          type: string
+        volume:
+          type: string
+      description: A relation describing the association between a book series and
+        the associated journal.
     CERIFAddress:
       type: object
       properties:
@@ -3910,6 +6755,34 @@ components:
           $ref: '#/components/schemas/GeoLocation'
       description: A physical address
       nullable: true
+    CaseNote:
+      required:
+      - court
+      - judgementDate
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        court:
+          $ref: '#/components/schemas/ExternalOrganizationRef'
+        title:
+          $ref: '#/components/schemas/LocalizedString'
+        judgementDate:
+          type: string
+          description: The judgement date.
+          format: date-time
+        sources:
+          type: array
+          description: Classified case note sources
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ClassifiedCaseNoteSource'
+      description: A note on a case, detailing title, judgement data and court processing
+        case.
     ClassificationRef:
       required:
       - uri
@@ -3935,10 +6808,10 @@ components:
     ClassificationSchemeRef:
       required:
       - baseUri
-      - systemName
       - uuid
       type: object
       description: A reference to a classification scheme
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
       - type: object
@@ -3949,7 +6822,6 @@ components:
     ClassificationsKeywordGroup:
       required:
       - logicalName
-      - typeDiscriminator
       type: object
       description: De-normalized version of the full keyword group representation
         for instances where only structured keywords can be selected
@@ -4002,9 +6874,29 @@ components:
         geoLocation:
           $ref: '#/components/schemas/GeoLocation'
       description: A physical address
+    ClassifiedCaseNoteSource:
+      required:
+      - classification
+      - value
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        classification:
+          $ref: '#/components/schemas/ClassificationRef'
+        value:
+          type: string
+          description: The identifier of the case note in the source system.
+      description: Identification value of the case note in the source system.
     ClassifiedFile:
       required:
       - fileName
+      - mimeType
+      - size
       type: object
       properties:
         pureId:
@@ -4045,7 +6937,6 @@ components:
     ClassifiedId:
       required:
       - id
-      - type
       type: object
       description: A classified ID
       allOf:
@@ -4091,6 +6982,8 @@ components:
           $ref: '#/components/schemas/ClassificationRef'
       description: A classified name
     ClassifiedValue:
+      required:
+      - value
       type: object
       properties:
         pureId:
@@ -4129,6 +7022,7 @@ components:
           nullable: true
       description: A date that can be defined by only year, year and month or a full
         date
+      nullable: true
     CompoundDateRange:
       type: object
       properties:
@@ -4138,6 +7032,14 @@ components:
           $ref: '#/components/schemas/CompoundDate'
       description: A date range of that can be defined by only year, year and month
         or a full date
+    ConferenceSeriesRef:
+      required:
+      - uuid
+      type: object
+      description: A reference to a conference series
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/ContentRef'
     ContentRef:
       required:
       - systemName
@@ -4150,28 +7052,32 @@ components:
           format: uuid
         systemName:
           type: string
-          description: The system name of the content
-        link:
-          $ref: '#/components/schemas/NavigationLink'
-        name:
-          $ref: '#/components/schemas/LocalizedString'
       nullable: true
       discriminator:
         propertyName: systemName
         mapping:
+          AccessDefinition: '#/components/schemas/AccessDefinitionRef'
+          Activity: '#/components/schemas/ActivityRef'
+          Application: '#/components/schemas/ApplicationRef'
+          AuthorCollaboration: '#/components/schemas/AuthorCollaborationRef'
+          Award: '#/components/schemas/AwardRef'
           ClassificationScheme: '#/components/schemas/ClassificationSchemeRef'
+          ConferenceSeries: '#/components/schemas/ConferenceSeriesRef'
+          DataSet: '#/components/schemas/DataSetRef'
+          Equipment: '#/components/schemas/EquipmentRef'
+          Event: '#/components/schemas/EventRef'
           ExternalOrganization: '#/components/schemas/ExternalOrganizationRef'
           ExternalPerson: '#/components/schemas/ExternalPersonRef'
-          Organization: '#/components/schemas/OrganizationRef'
-          ResearchOutput: '#/components/schemas/ResearchOutputRef'
-          DataSet: '#/components/schemas/DataSetRef'
+          Impact: '#/components/schemas/ImpactRef'
           Journal: '#/components/schemas/JournalRef'
-          Activity: '#/components/schemas/ActivityRef'
-          Publisher: '#/components/schemas/PublisherRef'
-          Application: '#/components/schemas/ApplicationRef'
-          Award: '#/components/schemas/AwardRef'
-          Event: '#/components/schemas/EventRef'
+          Organization: '#/components/schemas/OrganizationRef'
           Person: '#/components/schemas/PersonRef'
+          Publisher: '#/components/schemas/PublisherRef'
+          PressMedia: '#/components/schemas/PressMediaRef'
+          Prize: '#/components/schemas/PrizeRef'
+          Project: '#/components/schemas/ProjectRef'
+          ResearchOutput: '#/components/schemas/ResearchOutputRef'
+          StudentThesis: '#/components/schemas/StudentThesisRef'
           User: '#/components/schemas/UserRef'
     ContentRefListResult:
       type: object
@@ -4181,12 +7087,294 @@ components:
           items:
             $ref: '#/components/schemas/ContentRef'
       description: List of Content Refs
+    ContributionToBookAnthology:
+      type: object
+      description: Books, reports and anthologies/collected works where the author(s)
+        are only responsible for part of the work, e.g. a chapter.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          placeOfPublication:
+            type: string
+            description: The place of publication.
+            nullable: true
+          edition:
+            type: string
+            description: The edition that the production was published in.
+            nullable: true
+          printISBNs:
+            type: array
+            description: The ISBN number for the printed versions of the production.
+            nullable: true
+            items:
+              type: string
+          electronicISBNs:
+            type: array
+            description: The ISBN number for the electronic versions of the production.
+            nullable: true
+            items:
+              type: string
+          publisher:
+            $ref: '#/components/schemas/PublisherRef'
+          event:
+            $ref: '#/components/schemas/EventRef'
+          publicationSeries:
+            type: array
+            description: The publication series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/PublicationSeries'
+          pages:
+            type: string
+            description: The pages of the host publication covered by this contribution,
+              for example 10-15.
+            nullable: true
+          volume:
+            type: string
+            description: The volume that the research output was published in.
+            nullable: true
+          hostPublicationEditors:
+            type: array
+            description: A list of host publication editors.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/Name'
+          hostPublicationTitle:
+            $ref: '#/components/schemas/FormattedString'
+          hostPublicationSubTitle:
+            $ref: '#/components/schemas/FormattedString'
+          translatedHostPublicationTitle:
+            $ref: '#/components/schemas/LocalizedString'
+          translatedHostPublicationSubtitle:
+            $ref: '#/components/schemas/LocalizedString'
+          articleNumber:
+            type: string
+            description: The article number.
+            nullable: true
+          caseNotes:
+            type: array
+            description: A collection of court case notes related to this research
+              output.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/CaseNote'
+          commissioningBody:
+            $ref: '#/components/schemas/ExternalOrganizationRef'
+          bookSeries:
+            type: array
+            description: The book series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/BookSeriesJournalAssociation'
+          chapter:
+            type: string
+            description: The chapter of the host publication covered by this contribution,
+              for example 2.
+            nullable: true
+          conferenceSeries:
+            $ref: '#/components/schemas/ConferenceSeriesRef'
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
+    ContributionToConference:
+      type: object
+      description: Article, abstract or poster, published in continuation of a conference.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          pages:
+            type: string
+            description: The pages of the host publication covered by this contribution,
+              for example 10-15.
+            nullable: true
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
+          event:
+            $ref: '#/components/schemas/EventRef'
+    ContributionToJournal:
+      required:
+      - journalAssociation
+      type: object
+      description: A journal is published in a consecutive number of volumes/issues,
+        as a series with the same journal title.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          event:
+            $ref: '#/components/schemas/EventRef'
+          pages:
+            type: string
+            description: The pages of the host publication covered by this contribution,
+              for example 10-15.
+            nullable: true
+          volume:
+            type: string
+            description: The volume that the research output was published in.
+            nullable: true
+          journalAssociation:
+            $ref: '#/components/schemas/JournalAssociation'
+          articleNumber:
+            type: string
+            description: The article number.
+            nullable: true
+          journalNumber:
+            type: string
+            description: The issue number of the journal the research output is published
+              in.
+            nullable: true
+          caseNotes:
+            type: array
+            description: A collection of court case notes related to this research
+              output.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/CaseNote'
+          conferenceSeries:
+            $ref: '#/components/schemas/ConferenceSeriesRef'
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
+    ContributionToMemorandum:
+      type: object
+      description: A contribution to memorandum or exposition.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          applicant:
+            $ref: '#/components/schemas/ExternalOrganizationRef'
+          projectNumber:
+            type: string
+            description: The project number.
+            nullable: true
+          journalNumber:
+            type: string
+            description: The journal number.
+            nullable: true
+          dateFinished:
+            type: string
+            description: The date finished.
+            format: date-time
+            nullable: true
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
+          publicationSeries:
+            type: array
+            description: The publication series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/PublicationSeries'
+          bookSeries:
+            type: array
+            description: The book series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/BookSeriesJournalAssociation'
+    ContributionToPeriodical:
+      required:
+      - journalAssociation
+      type: object
+      description: A research output that has been published in a domain-specific
+        journal with a more communicative approach.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          publisher:
+            $ref: '#/components/schemas/PublisherRef'
+          volume:
+            type: string
+            description: The volume that the research output was published in.
+            nullable: true
+          journalAssociation:
+            $ref: '#/components/schemas/JournalAssociation'
+          number:
+            type: string
+            description: The number of periodical.
+            nullable: true
+          pages:
+            type: string
+            description: The pages of the host publication covered by this contribution,
+              for example 10-15.
+            nullable: true
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
+    ContributorAssociation:
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        person:
+          $ref: '#/components/schemas/PersonRef'
+        externalPerson:
+          $ref: '#/components/schemas/ExternalPersonRef'
+        name:
+          $ref: '#/components/schemas/Name'
+        role:
+          $ref: '#/components/schemas/ClassificationRef'
+        organisationalUnits:
+          type: array
+          description: A collection of organisational unit affiliations.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/OrganizationRef'
+        externalOrganisations:
+          type: array
+          description: A collection of external organisation affiliations.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalOrganizationRef'
+        hidden:
+          type: boolean
+          description: If this contribution should be hidden, this is set to true,
+            false otherwise. This is used for research output that have author collaborations.
+            If they do, we hide the individual contributors.
+        contributionDescription:
+          type: string
+          description: A string that details the contribution of the associated person.
+          nullable: true
+        contributionPercentage:
+          type: number
+          description: A real number between 0 and 1, describing the percentage of
+            the contribution of the person.
+          format: double
+          nullable: true
+        country:
+          $ref: '#/components/schemas/ClassificationRef'
+        correspondingAuthor:
+          type: boolean
+          description: True if the contributor is the corresponding author, false
+            otherwise.
+        authorCollaboration:
+          $ref: '#/components/schemas/AuthorCollaborationRef'
+      description: An association between research output and a person that has contributed
+        to it
     DataSetRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to a data set
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     DateRange:
@@ -4217,9 +7405,129 @@ components:
               be a complete list if the number of dependencies is very large
             items:
               $ref: '#/components/schemas/ContentRef'
+    DisciplinesAssociation:
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/ContentRef'
+        disciplineScheme:
+          type: string
+          description: The discipline scheme these disciplines are assigned from
+          readOnly: true
+        disciplineAssignments:
+          type: array
+          description: A collection of assigned disciplines
+          items:
+            $ref: '#/components/schemas/DisciplinesDisciplineAssignment'
+      description: An association between a content and a number of discipline assignments
+    DisciplinesAssociationListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The full count, ignoring paging
+          format: int32
+        pageInformation:
+          $ref: '#/components/schemas/PageInformation'
+        items:
+          type: array
+          description: Discipline associations
+          items:
+            $ref: '#/components/schemas/DisciplinesAssociation'
+      description: List of discipline associations. Can contain a subset of all items
+        along with the full count
+    DisciplinesAssociationsQuery:
+      type: object
+      properties:
+        uuids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        size:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+      description: Create a query for discipline associations
+    DisciplinesDiscipline:
+      type: object
+      properties:
+        disciplineId:
+          type: string
+          description: The discipline identifier
+          readOnly: true
+        title:
+          type: string
+          description: The discipline title
+          readOnly: true
+        description:
+          type: string
+          description: The discipline description
+          readOnly: true
+      description: A discipline within a specific discipline scheme
+    DisciplinesDisciplineAssignment:
+      required:
+      - disciplineId
+      - splitPercentage
+      type: object
+      properties:
+        disciplineId:
+          type: string
+          description: The assigned discipline
+        splitPercentage:
+          type: number
+          description: The split percentages within an assigned discipline scheme
+            must sum up to 100%
+          format: double
+      description: The assigned discipline and its split percentage
+    DisciplinesDisciplineListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The full count, ignoring paging
+          format: int32
+        pageInformation:
+          $ref: '#/components/schemas/PageInformation'
+        items:
+          type: array
+          description: Disciplines
+          items:
+            $ref: '#/components/schemas/DisciplinesDiscipline'
+      description: List of disciplines for a specific discipline scheme
+    DisciplinesDisciplineScheme:
+      required:
+      - disciplineScheme
+      - title
+      type: object
+      properties:
+        disciplineScheme:
+          type: string
+          description: The discipline scheme identifier
+        title:
+          type: string
+          description: The discipline title
+      description: A discipline scheme
+    DisciplinesDisciplineSchemeListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The amount of discipline schemes
+          format: int32
+        items:
+          type: array
+          description: Discipline schemes
+          items:
+            $ref: '#/components/schemas/DisciplinesDisciplineScheme'
+      description: List of discipline schemes
     Document:
       required:
       - fileName
+      - mimeType
+      - size
       type: object
       properties:
         pureId:
@@ -4279,6 +7587,20 @@ components:
           format: date-time
           readOnly: true
       description: Document
+    DoiElectronicVersion:
+      required:
+      - doi
+      type: object
+      description: DOI electronic version related to a research output.
+      allOf:
+      - $ref: '#/components/schemas/ElectronicVersion'
+      - type: object
+        properties:
+          doi:
+            type: string
+            description: The DOI of the electronic version.
+          versionType:
+            $ref: '#/components/schemas/ClassificationRef'
     ElectronicISSN:
       required:
       - issn
@@ -4287,6 +7609,99 @@ components:
         relating the journal to other content
       allOf:
       - $ref: '#/components/schemas/AdditionalISSN'
+    ElectronicVersion:
+      required:
+      - typeDiscriminator
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        accessType:
+          $ref: '#/components/schemas/ClassificationRef'
+        embargoPeriod:
+          $ref: '#/components/schemas/DateRange'
+        licenseType:
+          $ref: '#/components/schemas/ClassificationRef'
+        userDefinedLicense:
+          type: string
+          description: License defined by the user.
+          nullable: true
+        visibleOnPortalDate:
+          type: string
+          description: Date where this document is/will be visible on the portal.
+          format: date-time
+          readOnly: true
+        creator:
+          type: string
+          description: Username of creator
+          readOnly: true
+        created:
+          type: string
+          description: Date and time of creation
+          format: date-time
+          readOnly: true
+        typeDiscriminator:
+          type: string
+      description: Electronic version related to a research output.
+      nullable: true
+      discriminator:
+        propertyName: typeDiscriminator
+        mapping:
+          DoiElectronicVersion: '#/components/schemas/DoiElectronicVersion'
+          FileElectronicVersion: '#/components/schemas/FileElectronicVersion'
+          LinkElectronicVersion: '#/components/schemas/LinkElectronicVersion'
+    ElectronicVersionFile:
+      required:
+      - fileName
+      - mimeType
+      - size
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        fileId:
+          type: string
+          description: The id of the file
+          readOnly: true
+        fileName:
+          type: string
+          description: The documents file name
+        mimeType:
+          type: string
+          description: The documents mime type
+        size:
+          type: integer
+          description: The documents size in bytes
+          format: int64
+        url:
+          type: string
+          description: Download url for the binary file
+          readOnly: true
+        uploadedFile:
+          $ref: '#/components/schemas/UploadedFile'
+        fileData:
+          type: string
+          description: Base64 encoded file data for new files. This property can be
+            used instead of uploadedFile for small files
+          format: byte
+          writeOnly: true
+      description: Information about an electronic version file
+    EquipmentRef:
+      required:
+      - uuid
+      type: object
+      description: A reference to a piece of equipment
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/ContentRef'
     Event:
       type: object
       properties:
@@ -4341,11 +7756,6 @@ components:
             description: UUIDs of other content items which have been merged into
               this content item (or similar)
             readOnly: true
-        externallyManaged:
-          type: boolean
-          description: Signals that the information is maintained by synchronization
-            from an external system
-          readOnly: true
         version:
           type: string
           description: A hash representing the current version of the content. For
@@ -4438,12 +7848,6 @@ components:
           format: int32
         pageInformation:
           $ref: '#/components/schemas/PageInformation'
-        navigationLinks:
-          type: array
-          description: Links to navigate from this result. Such as a 'prev' link to
-            link to the previous page of items
-          items:
-            $ref: '#/components/schemas/NavigationLink'
         items:
           type: array
           description: Events
@@ -4453,10 +7857,10 @@ components:
         full count
     EventRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to an event
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     EventsQuery:
@@ -4556,11 +7960,6 @@ components:
             description: UUIDs of other content items which have been merged into
               this content item (or similar)
             readOnly: true
-        externallyManaged:
-          type: boolean
-          description: Signals that the information is maintained by synchronization
-            from an external system
-          readOnly: true
         version:
           type: string
           description: A hash representing the current version of the content. For
@@ -4677,12 +8076,6 @@ components:
           format: int32
         pageInformation:
           $ref: '#/components/schemas/PageInformation'
-        navigationLinks:
-          type: array
-          description: Links to navigate from this result. Such as a 'prev' link to
-            link to the previous page of items
-          items:
-            $ref: '#/components/schemas/NavigationLink'
         items:
           type: array
           description: External organizations
@@ -4692,10 +8085,10 @@ components:
         a subset of all items along with the full count
     ExternalOrganizationRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to an organization external to the institution
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     ExternalOrganizationRefList:
@@ -4790,11 +8183,6 @@ components:
             description: UUIDs of other content items which have been merged into
               this content item (or similar)
             readOnly: true
-        externallyManaged:
-          type: boolean
-          description: Signals that the information is maintained by synchronization
-            from an external system
-          readOnly: true
         version:
           type: string
           description: A hash representing the current version of the content. For
@@ -4843,12 +8231,6 @@ components:
           format: int32
         pageInformation:
           $ref: '#/components/schemas/PageInformation'
-        navigationLinks:
-          type: array
-          description: Links to navigate from this result. Such as a 'prev' link to
-            link to the previous page of items
-          items:
-            $ref: '#/components/schemas/NavigationLink'
         items:
           type: array
           description: External Persons
@@ -4858,10 +8240,10 @@ components:
         with the full count
     ExternalPersonRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to a person external to the institution
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     ExternalPersonsQuery:
@@ -4893,6 +8275,25 @@ components:
           type: string
           writeOnly: true
       description: Create a query for external persons
+    FileElectronicVersion:
+      type: object
+      description: File electronic version related to a research output.
+      allOf:
+      - $ref: '#/components/schemas/ElectronicVersion'
+      - type: object
+        properties:
+          title:
+            type: string
+            description: The title of the file.
+            nullable: true
+          rightsStatement:
+            type: string
+            description: A description of property rights for the file.
+            nullable: true
+          file:
+            $ref: '#/components/schemas/ElectronicVersionFile'
+          versionType:
+            $ref: '#/components/schemas/ClassificationRef'
     FormattedLocalizedString:
       type: object
       additionalProperties:
@@ -4908,10 +8309,18 @@ components:
       nullable: true
       example:
         en_GB: Some text
+    FormattedString:
+      required:
+      - value
+      type: object
+      properties:
+        value:
+          type: string
+          description: The actual formatted string
+      description: A string containing HTML formatted text
     FreeKeywordsKeywordGroup:
       required:
       - logicalName
-      - typeDiscriminator
       type: object
       description: De-normalized version of the full keyword group representation
         for instances where only free keywords can be selected
@@ -4928,7 +8337,6 @@ components:
     FullKeywordGroup:
       required:
       - logicalName
-      - typeDiscriminator
       type: object
       description: Keywords of a specific type. A type of keyword can be configured
         to solely support free keywords (represented as the FreeKeywordsKeywordGroup
@@ -5027,6 +8435,12 @@ components:
       - issn
       type: object
       properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
         startDate:
           $ref: '#/components/schemas/CompoundDate'
         endDate:
@@ -5036,6 +8450,21 @@ components:
           description: The actual ISSN value
       description: An ISSN of a journal, can be populated with a start and end date
         if the ISSN is only used in a specific period.
+    ISSNRef:
+      required:
+      - pureId
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the ISSN. This is found by retrieving the
+            Journal and going through the ISSNs collection.
+          format: int64
+        issn:
+          type: string
+          description: The actual ISSN value
+          readOnly: true
+      description: A reference to a journal ISSN
     Id:
       required:
       - idSource
@@ -5058,17 +8487,26 @@ components:
             type: string
             description: External ID
     Identifier:
+      required:
+      - typeDiscriminator
       type: object
       properties:
         typeDiscriminator:
           type: string
-          description: A Identifier type discriminator property so we can differentiate
-            between the different sub-types
       discriminator:
         propertyName: typeDiscriminator
         mapping:
           ClassifiedId: '#/components/schemas/ClassifiedId'
+          PrimaryId: '#/components/schemas/PrimaryId'
           Id: '#/components/schemas/Id'
+    ImpactRef:
+      required:
+      - uuid
+      type: object
+      description: A reference to impact
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/ContentRef'
     InternalOrExternalSupervisor:
       type: object
       properties:
@@ -5131,11 +8569,6 @@ components:
             description: UUIDs of other content items which have been merged into
               this content item (or similar)
             readOnly: true
-        externallyManaged:
-          type: boolean
-          description: Signals that the information is maintained by synchronization
-            from an external system
-          readOnly: true
         version:
           type: string
           description: A hash representing the current version of the content. For
@@ -5208,6 +8641,25 @@ components:
           description: The content system name
           readOnly: true
       description: A periodical presenting articles on a particular subject.
+    JournalAssociation:
+      required:
+      - journal
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        title:
+          $ref: '#/components/schemas/JournalTitleRef'
+        issn:
+          $ref: '#/components/schemas/ISSNRef'
+        journal:
+          $ref: '#/components/schemas/JournalRef'
+      description: A journal associated with a research output.
+      nullable: true
     JournalListResult:
       type: object
       properties:
@@ -5217,12 +8669,6 @@ components:
           format: int32
         pageInformation:
           $ref: '#/components/schemas/PageInformation'
-        navigationLinks:
-          type: array
-          description: Links to navigate from this result. Such as a 'prev' link to
-            link to the previous page of items
-          items:
-            $ref: '#/components/schemas/NavigationLink'
         items:
           type: array
           items:
@@ -5230,10 +8676,10 @@ components:
       description: A list of journals
     JournalRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to a Journal
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     JournalTitle:
@@ -5241,15 +8687,36 @@ components:
       - title
       type: object
       properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
         title:
           type: string
-          description: The title of the journal
+          description: The title of the journal.
         startDate:
           $ref: '#/components/schemas/CompoundDate'
         endDate:
           $ref: '#/components/schemas/CompoundDate'
       description: A title of a journal, can be populated with a start and end date
         if the title is only used in a specific period.
+    JournalTitleRef:
+      required:
+      - pureId
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the title. This is found by retrieving
+            the Journal and going through the titles collection.
+          format: int64
+        title:
+          type: string
+          description: The title of the journal.
+          readOnly: true
+      description: A reference to a journal title
     JournalsQuery:
       type: object
       properties:
@@ -5331,17 +8798,14 @@ components:
             is present on the entity
           format: int64
           readOnly: true
-        typeDiscriminator:
-          type: string
-          description: A KeywordGroup type discriminator property so we can differentiate
-            between the different sub-types, this is the schema type name of the child
-            type.
         logicalName:
           type: string
           description: Unique name of the configuration that specifies this keyword
             group
         name:
           $ref: '#/components/schemas/LocalizedString'
+        typeDiscriminator:
+          type: string
       discriminator:
         propertyName: typeDiscriminator
         mapping:
@@ -5399,12 +8863,26 @@ components:
           readOnly: true
         url:
           type: string
-          description: URL
+          description: The URL (Uniform Resource Locator) of the link
         description:
           $ref: '#/components/schemas/LocalizedString'
         linkType:
           $ref: '#/components/schemas/ClassificationRef'
-      description: A hyperlink
+      description: A hyperlink describing a location on the web.
+    LinkElectronicVersion:
+      required:
+      - link
+      type: object
+      description: Link electronic version related to a research output.
+      allOf:
+      - $ref: '#/components/schemas/ElectronicVersion'
+      - type: object
+        properties:
+          link:
+            type: string
+            description: A link to the electronic version.
+          versionType:
+            $ref: '#/components/schemas/ClassificationRef'
     LocalesList:
       type: object
       properties:
@@ -5425,15 +8903,54 @@ components:
       type: object
       additionalProperties:
         type: string
-        description: A set of localized string values each for a specific submission
-          locale. Please note that invalid locale values will be ignored.
+        description: 'A set of string values, one for each submission locale. Note:
+          invalid locale values will be ignored.'
         nullable: true
         example: '{"en_GB":"Some text"}'
-      description: A set of localized string values each for a specific submission
-        locale. Please note that invalid locale values will be ignored.
+      description: 'A set of string values, one for each submission locale. Note:
+        invalid locale values will be ignored.'
       nullable: true
       example:
         en_GB: Some text
+    Memorandum:
+      type: object
+      description: A memorandum or exposition.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          applicant:
+            $ref: '#/components/schemas/ExternalOrganizationRef'
+          projectNumber:
+            type: string
+            description: The project number.
+            nullable: true
+          journalNumber:
+            type: string
+            description: The journal number.
+            nullable: true
+          dateFinished:
+            type: string
+            description: The date finished.
+            format: date-time
+            nullable: true
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
+          publicationSeries:
+            type: array
+            description: The publication series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/PublicationSeries'
+          bookSeries:
+            type: array
+            description: The book series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/BookSeriesJournalAssociation'
     Name:
       type: object
       properties:
@@ -5455,6 +8972,32 @@ components:
           readOnly: true
       description: Link to resource
       readOnly: true
+    NonTextual:
+      type: object
+      description: Research output that is not explicitly text, e.g. content with
+        main focus on audio or images.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          placeOfPublication:
+            type: string
+            description: The place of publication.
+            nullable: true
+          edition:
+            type: string
+            description: The edition that the production was published in.
+            nullable: true
+          publisher:
+            $ref: '#/components/schemas/PublisherRef'
+          event:
+            $ref: '#/components/schemas/EventRef'
+          outputMedia:
+            $ref: '#/components/schemas/ClassificationRef'
+          size:
+            type: string
+            description: The size of the production.
+            nullable: true
     Note:
       required:
       - text
@@ -5465,10 +9008,12 @@ components:
           description: Date and time of when the note was created, an event occurred
             or similar. Can be any point in time, but <now> is normally preferred
           format: date-time
+          nullable: true
         username:
           type: string
           description: Username related to the note. Usually a username of the user
             creating the note. Does not have to be a username of a Pure user
+          nullable: true
         text:
           type: string
           description: Note text
@@ -5482,12 +9027,6 @@ components:
           format: int32
         pageInformation:
           $ref: '#/components/schemas/PageInformation'
-        navigationLinks:
-          type: array
-          description: Links to navigate from this result. Such as a 'prev' link to
-            link to the previous page of items
-          items:
-            $ref: '#/components/schemas/NavigationLink'
         items:
           type: array
           description: Notes
@@ -5558,11 +9097,6 @@ components:
             description: UUIDs of other content items which have been merged into
               this content item (or similar)
             readOnly: true
-        externallyManaged:
-          type: boolean
-          description: Signals that the information is maintained by synchronization
-            from an external system
-          readOnly: true
         version:
           type: string
           description: A hash representing the current version of the content. For
@@ -5667,12 +9201,6 @@ components:
           format: int32
         pageInformation:
           $ref: '#/components/schemas/PageInformation'
-        navigationLinks:
-          type: array
-          description: Links to navigate from this result. Such as a 'prev' link to
-            link to the previous page of items
-          items:
-            $ref: '#/components/schemas/NavigationLink'
         items:
           type: array
           items:
@@ -5687,12 +9215,13 @@ components:
           $ref: '#/components/schemas/ExternalOrganizationRef'
       description: A reference to an organization in the institution or an external
         organization
+      nullable: true
     OrganizationRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to an organization in the institution
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     OrganizationsQuery:
@@ -5724,6 +9253,68 @@ components:
           type: string
           writeOnly: true
       description: Create a query for organizations
+    OtherContribution:
+      type: object
+      description: Research output that does not fit into the other categories.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          publicationSeries:
+            type: array
+            description: The publication series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/PublicationSeries'
+          placeOfPublication:
+            type: string
+            description: The place of publication.
+            nullable: true
+          edition:
+            type: string
+            description: The edition that the production was published in.
+            nullable: true
+          printISBNs:
+            type: array
+            description: The ISBN number for the printed versions of the production.
+            nullable: true
+            items:
+              type: string
+          electronicISBNs:
+            type: array
+            description: The ISBN number for the electronic versions of the production.
+            nullable: true
+            items:
+              type: string
+          publisher:
+            $ref: '#/components/schemas/PublisherRef'
+          volume:
+            type: string
+            description: The volume that the research output was published in.
+            nullable: true
+          typeDescription:
+            $ref: '#/components/schemas/LocalizedString'
+          outputMedia:
+            type: string
+            nullable: true
+          caseNotes:
+            type: array
+            description: A collection of court case notes related to this research
+              output.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/CaseNote'
+          bookSeries:
+            type: array
+            description: The book series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/BookSeriesJournalAssociation'
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
     PageInformation:
       type: object
       properties:
@@ -5738,6 +9329,40 @@ components:
             requested
           format: int32
       description: Information about pages
+    Patent:
+      type: object
+      description: A patent is a document that grants the rights of a piece of work/invention
+        to its originator.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          country:
+            $ref: '#/components/schemas/ClassificationRef'
+          patentNumber:
+            type: string
+            description: The patent number.
+            nullable: true
+          date:
+            type: string
+            description: The filing date.
+            format: date-time
+            nullable: true
+          priorityDate:
+            type: string
+            description: The priority date.
+            format: date-time
+            nullable: true
+          priorityNumber:
+            type: string
+            description: The priority number.
+            nullable: true
+          publisher:
+            $ref: '#/components/schemas/PublisherRef'
+          ipcs:
+            type: array
+            items:
+              type: string
     Person:
       type: object
       properties:
@@ -5792,11 +9417,6 @@ components:
             description: UUIDs of other content items which have been merged into
               this content item (or similar)
             readOnly: true
-        externallyManaged:
-          type: boolean
-          description: Signals that the information is maintained by synchronization
-            from an external system
-          readOnly: true
         version:
           type: string
           description: A hash representing the current version of the content. For
@@ -5807,17 +9427,21 @@ components:
           type: string
           description: Date that the person entered into the academic profession.
           format: date-time
+          nullable: true
         affiliationNote:
           type: string
           description: Notes regarding affiliations of the person.
+          nullable: true
         dateOfBirth:
           type: string
           description: The person's date of birth.
           format: date-time
+          nullable: true
         employeeStartDate:
           type: string
           description: Date of the persons first day of the institution.
           format: date-time
+          nullable: true
         externalPositions:
           type: array
           description: positions held by the person, that are external to the institution
@@ -5855,6 +9479,7 @@ components:
         orcid:
           type: string
           description: orcid of the person .
+          nullable: true
         honoraryStaffOrganizationAssociations:
           type: array
           description: Organisations that the person is associated with under the
@@ -5933,6 +9558,7 @@ components:
           type: string
           description: Field to describe or list phd projects that the person will
             participate in.
+          nullable: true
         identifiers:
           type: array
           description: Identifiers related to the person
@@ -5970,12 +9596,6 @@ components:
           format: int32
         pageInformation:
           $ref: '#/components/schemas/PageInformation'
-        navigationLinks:
-          type: array
-          description: Links to navigate from this result. Such as a 'prev' link to
-            link to the previous page of items
-          items:
-            $ref: '#/components/schemas/NavigationLink'
         items:
           type: array
           description: Persons
@@ -6004,6 +9624,7 @@ components:
           type: string
           description: Affiliation identification. This could be a student ID or a
             staff ID.
+          nullable: true
         employmentType:
           $ref: '#/components/schemas/ClassificationRef'
         organization:
@@ -6055,10 +9676,10 @@ components:
           VisitingScholarOrganizationAssociation: '#/components/schemas/VisitingScholarOrganizationAssociation'
     PersonRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to a person internal to the institution
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     PersonSuperviseeAssociation:
@@ -6093,12 +9714,6 @@ components:
           format: int32
         pageInformation:
           $ref: '#/components/schemas/PageInformation'
-        navigationLinks:
-          type: array
-          description: Links to navigate from this result. Such as a 'prev' link to
-            link to the previous page of items
-          items:
-            $ref: '#/components/schemas/NavigationLink'
         items:
           type: array
           description: Supervisee Associations
@@ -6157,6 +9772,43 @@ components:
           type: string
           writeOnly: true
       description: Create a query for persons
+    PressMediaRef:
+      required:
+      - uuid
+      type: object
+      description: A reference to a press/media
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/ContentRef'
+    PrimaryId:
+      required:
+      - idSource
+      - value
+      type: object
+      description: A primary external ID
+      allOf:
+      - $ref: '#/components/schemas/Identifier'
+      - type: object
+        properties:
+          pureId:
+            type: integer
+            description: Pure database ID of the object
+            format: int64
+            readOnly: true
+          idSource:
+            type: string
+            description: Name of the external source
+          value:
+            type: string
+            description: Primary external ID
+    PrizeRef:
+      required:
+      - uuid
+      type: object
+      description: A reference to a prize
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/ContentRef'
     ProblemDetails:
       type: object
       properties:
@@ -6205,6 +9857,65 @@ components:
         qualification:
           $ref: '#/components/schemas/LocalizedString'
       description: The professional qualifications held by a person
+    ProjectRef:
+      required:
+      - uuid
+      type: object
+      description: A reference to project
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/ContentRef'
+    PublicationSeries:
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        name:
+          $ref: '#/components/schemas/FormattedString'
+        publisherName:
+          type: string
+          description: The publisher of the publication series.
+          nullable: true
+        printIssn:
+          type: string
+          description: The print ISSN of the publication series.
+          nullable: true
+        electronicIssn:
+          type: string
+          description: The electronic ISSN of the publication series.
+          nullable: true
+        no:
+          type: string
+          description: The number of the publication series.
+          nullable: true
+        volume:
+          type: string
+          description: The volume of the publication series.
+          nullable: true
+      description: A publication series.
+    PublicationStatus:
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        current:
+          type: boolean
+          description: True when this status element is the current, false otherwise.
+          readOnly: true
+        publicationStatus:
+          $ref: '#/components/schemas/ClassificationRef'
+        publicationDate:
+          $ref: '#/components/schemas/CompoundDate'
+      description: A representation of a point in time when the status of a publication
+        changed, e.g. the submission date or publication date of the publication.
     Publisher:
       required:
       - name
@@ -6261,11 +9972,6 @@ components:
             description: UUIDs of other content items which have been merged into
               this content item (or similar)
             readOnly: true
-        externallyManaged:
-          type: boolean
-          description: Signals that the information is maintained by synchronization
-            from an external system
-          readOnly: true
         version:
           type: string
           description: A hash representing the current version of the content. For
@@ -6320,12 +10026,6 @@ components:
           format: int32
         pageInformation:
           $ref: '#/components/schemas/PageInformation'
-        navigationLinks:
-          type: array
-          description: Links to navigate from this result. Such as a 'prev' link to
-            link to the previous page of items
-          items:
-            $ref: '#/components/schemas/NavigationLink'
         items:
           type: array
           description: Publishers
@@ -6335,10 +10035,10 @@ components:
         the full count
     PublisherRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to a publisher
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     PublishersQuery:
@@ -6370,14 +10070,300 @@ components:
           type: string
           writeOnly: true
       description: Create a query for publishers
+    ResearchOutput:
+      required:
+      - typeDiscriminator
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        uuid:
+          type: string
+          description: UUID, this is the primary identity of the entity
+          format: uuid
+          readOnly: true
+        createdBy:
+          type: string
+          description: Username of creator
+          readOnly: true
+        createdDate:
+          type: string
+          description: Date and time of creation
+          format: date-time
+          readOnly: true
+        modifiedBy:
+          type: string
+          description: Username of the user that performed a modification
+          readOnly: true
+        modifiedDate:
+          type: string
+          description: Date and time of last modification
+          format: date-time
+          readOnly: true
+        portalUrl:
+          type: string
+          description: URL of the content on the Pure Portal
+          readOnly: true
+        prettyUrlIdentifiers:
+          type: array
+          description: All pretty URLs
+          readOnly: true
+          items:
+            type: string
+            description: All pretty URLs
+            readOnly: true
+        previousUuids:
+          type: array
+          description: UUIDs of other content items which have been merged into this
+            content item (or similar)
+          readOnly: true
+          items:
+            type: string
+            description: UUIDs of other content items which have been merged into
+              this content item (or similar)
+            readOnly: true
+        version:
+          type: string
+          description: A hash representing the current version of the content. For
+            new content this is null, and for existing content the current value.
+            The property should never be modified explicitly by a client.
+          nullable: true
+        title:
+          $ref: '#/components/schemas/FormattedString'
+        subTitle:
+          $ref: '#/components/schemas/FormattedString'
+        type:
+          $ref: '#/components/schemas/ClassificationRef'
+        category:
+          $ref: '#/components/schemas/ClassificationRef'
+        peerReview:
+          type: boolean
+          description: Indicates whether the research output is peer reviewed or not.
+            Query the /research-outputs/allowed-peer-review-configurations endpoint
+            for allowed values.
+          nullable: true
+        internationalPeerReview:
+          type: boolean
+          description: Indicates whether the research output is internationally peer
+            reviewed or not. Query the /research-outputs/allowed-peer-review-configurations
+            endpoint for allowed values.
+          nullable: true
+        publicationStatuses:
+          type: array
+          description: Manage the research output's different statuses and dates these
+            were reached.
+          items:
+            $ref: '#/components/schemas/PublicationStatus'
+        language:
+          $ref: '#/components/schemas/ClassificationRef'
+        translatedTitle:
+          $ref: '#/components/schemas/LocalizedString'
+        translatedSubTitle:
+          $ref: '#/components/schemas/LocalizedString'
+        contributors:
+          type: array
+          description: Contributors and their affiliations
+          items:
+            $ref: '#/components/schemas/ContributorAssociation'
+        organizations:
+          type: array
+          description: A collection of organisational unit affiliations.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/OrganizationRef'
+        externalOrganisations:
+          type: array
+          description: A collection of external organisation affiliations.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalOrganizationRef'
+        totalNumberOfContributors:
+          type: integer
+          description: The total number of authors from author collaborations.
+          format: int32
+          nullable: true
+        managingOrganization:
+          $ref: '#/components/schemas/OrganizationRef'
+        openAccessPermission:
+          $ref: '#/components/schemas/ClassificationRef'
+        openAccessEmbargoDate:
+          type: string
+          description: The open access embargo end date describes the date at which
+            the embargo on public consumption is lifted.
+          format: date-time
+          nullable: true
+        submissionYear:
+          type: integer
+          description: The submission year of the research output.
+          format: int32
+          nullable: true
+        mainResearchArea:
+          $ref: '#/components/schemas/ClassificationRef'
+        electronicVersions:
+          type: array
+          description: Electronic versions of this research output.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ElectronicVersion'
+        additionalFiles:
+          type: array
+          description: Additional files related to this research output.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/AdditionalFileElectronicVersion'
+        links:
+          type: array
+          description: Additional links associated with this research output.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Link'
+        articleProcessingCharge:
+          $ref: '#/components/schemas/ArticleProcessingCharge'
+        keywordGroups:
+          type: array
+          description: Groups of keywords associated with the research output.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/KeywordGroup'
+        bibliographicalNote:
+          $ref: '#/components/schemas/LocalizedString'
+        descriptions:
+          type: array
+          description: A list of descriptions for this research output. Query the
+            relevant /research-outputs/allowed-*-description-types endpoint for allowed
+            types.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ClassifiedLocalizedValue'
+        visibility:
+          $ref: '#/components/schemas/Visibility'
+        workflow:
+          $ref: '#/components/schemas/Workflow'
+        identifiers:
+          type: array
+          description: Identifiers related to the research output.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/Identifier'
+        abstract:
+          $ref: '#/components/schemas/LocalizedString'
+        systemName:
+          type: string
+          description: The content system name
+          readOnly: true
+        typeDiscriminator:
+          type: string
+      description: Research output exists in many variations, from written to non-textual
+        form. Templates are available for a range of these variations.
+      discriminator:
+        propertyName: typeDiscriminator
+        mapping:
+          BookAnthology: '#/components/schemas/BookAnthology'
+          ContributionToBookAnthology: '#/components/schemas/ContributionToBookAnthology'
+          ContributionToConference: '#/components/schemas/ContributionToConference'
+          ContributionToJournal: '#/components/schemas/ContributionToJournal'
+          ContributionToMemorandum: '#/components/schemas/ContributionToMemorandum'
+          ContributionToPeriodical: '#/components/schemas/ContributionToPeriodical'
+          Memorandum: '#/components/schemas/Memorandum'
+          NonTextual: '#/components/schemas/NonTextual'
+          OtherContribution: '#/components/schemas/OtherContribution'
+          Patent: '#/components/schemas/Patent'
+          Thesis: '#/components/schemas/Thesis'
+          WorkingPaper: '#/components/schemas/WorkingPaper'
+    ResearchOutputListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The full count, ignoring paging
+          format: int32
+        pageInformation:
+          $ref: '#/components/schemas/PageInformation'
+        items:
+          type: array
+          description: ResearchOutput
+          items:
+            $ref: '#/components/schemas/ResearchOutput'
+      description: List of researchoutputs. Can contain a subset of all items along
+        with the full count
+    ResearchOutputPeerReviewConfiguration:
+      type: object
+      properties:
+        researchOutputType:
+          $ref: '#/components/schemas/ClassificationRef'
+        allowedCombinations:
+          type: array
+          description: The valid combinations of the interrelated fields
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/ResearchOutputPeerReviewConfigurationCombination'
+      description: 'A specification for a research output type and the allowed combinations
+        of it''s interrelated fields: category, peerReview, and internationPeerReview'
+    ResearchOutputPeerReviewConfigurationCombination:
+      type: object
+      properties:
+        category:
+          $ref: '#/components/schemas/ClassificationRef'
+        peerReviewable:
+          type: string
+          description: Research output peer reviewable
+          readOnly: true
+          enum:
+          - NOT_PEER_REVIEWABLE
+          - PEER_REVIEWABLE
+          - INTERNATIONAL_PEER_REVIEWABLE
+      description: 'A specification for a publication category and it''s interrelated
+        fields: peerReview and internationalPeerReview'
+      readOnly: true
+    ResearchOutputPeerReviewConfigurationListResult:
+      type: object
+      properties:
+        researchOutputPeerReviewConfigurations:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResearchOutputPeerReviewConfiguration'
+      description: List of research output peer review configurations
     ResearchOutputRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to a research output
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
+    ResearchOutputsQuery:
+      type: object
+      properties:
+        uuids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        size:
+          type: integer
+          format: int32
+        offset:
+          type: integer
+          format: int32
+        orderings:
+          type: array
+          items:
+            type: string
+        keywordURIs:
+          type: array
+          items:
+            type: string
+        searchString:
+          type: string
+          description: String used to perform search
+        orderBy:
+          type: string
+          writeOnly: true
+      description: Create a query for researchOutputs
     StaffOrganizationAssociation:
       type: object
       description: A relation describing the association between Staff and organisation
@@ -6393,6 +10379,7 @@ components:
               between 0 (0% equivalent of full time) and 1 (100% equivalent of full
               time).
             format: double
+            nullable: true
           jobDescription:
             $ref: '#/components/schemas/LocalizedString'
           jobTitle:
@@ -6410,18 +10397,63 @@ components:
             type: string
             description: The date when the student received an award.
             format: date-time
+            nullable: true
           awardGained:
             type: string
             description: Description of what award the student gained.
+            nullable: true
+          fte:
+            type: number
+            description: The FTE (Full-Time Equivalent). A decimal number ranging
+              between 0 (0% equivalent of full time) and 1 (100% equivalent of full
+              time).
+            format: double
+            nullable: true
           programme:
             type: string
             description: The name or title of a program often consists of the degree
               (e.g., BS) and the discipline or field of study (e.g., Business Administration).
+            nullable: true
           projectTitle:
             $ref: '#/components/schemas/LocalizedString'
-          fte:
-            type: number
-            format: double
+    StudentThesisRef:
+      required:
+      - uuid
+      type: object
+      description: A reference to student thesis
+      nullable: true
+      allOf:
+      - $ref: '#/components/schemas/ContentRef'
+    SupervisorAssociation:
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        person:
+          $ref: '#/components/schemas/PersonRef'
+        externalPerson:
+          $ref: '#/components/schemas/ExternalPersonRef'
+        name:
+          $ref: '#/components/schemas/Name'
+        role:
+          $ref: '#/components/schemas/ClassificationRef'
+        organisationalUnits:
+          type: array
+          description: A collection of organisational unit affiliations.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/OrganizationRef'
+        externalOrganisations:
+          type: array
+          description: A collection of external organisation affiliations.
+          nullable: true
+          items:
+            $ref: '#/components/schemas/ExternalOrganizationRef'
+      description: A supervisor on a research output.
     SystemLocalizedString:
       type: object
       additionalProperties:
@@ -6433,6 +10465,93 @@ components:
       nullable: true
       example:
         en_GB: Some text
+    Thesis:
+      type: object
+      description: A thesis.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          placeOfPublication:
+            type: string
+            description: The place of publication.
+            nullable: true
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
+          edition:
+            type: string
+            description: The edition that the production was published in.
+            nullable: true
+          printISBNs:
+            type: array
+            description: The ISBN number for the printed versions of the production.
+            nullable: true
+            items:
+              type: string
+          electronicISBNs:
+            type: array
+            description: The ISBN number for the electronic versions of the production.
+            nullable: true
+            items:
+              type: string
+          publisher:
+            $ref: '#/components/schemas/PublisherRef'
+          volume:
+            type: string
+            description: The volume that the research output was published in.
+            nullable: true
+          publicationSeries:
+            type: array
+            description: The publication series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/PublicationSeries'
+          bookSeries:
+            type: array
+            description: The book series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/BookSeriesJournalAssociation'
+          qualification:
+            $ref: '#/components/schemas/ClassificationRef'
+          awardingInstitutions:
+            type: array
+            description: The awarding institution.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/OrganizationOrExternalOrganizationRef'
+          supervisorOrganisations:
+            type: array
+            description: A collection of organisational unit affiliations associated
+              with supervisors of this research output.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/OrganizationRef'
+          supervisorExternalOrganisations:
+            type: array
+            description: A collection of external organisation affiliations associated
+              with supervisors of this research output.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/ExternalOrganizationRef'
+          supervisors:
+            type: array
+            description: The supervisors of this research output.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/SupervisorAssociation'
+          sponsors:
+            type: array
+            description: The sponsors of this research output.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/ExternalOrganizationRef'
+          awardDate:
+            type: string
+            format: date-time
     UploadedFile:
       required:
       - key
@@ -6472,12 +10591,116 @@ components:
           readOnly: true
       description: Information about the uploaded file
       writeOnly: true
+    User:
+      required:
+      - email
+      - username
+      type: object
+      properties:
+        pureId:
+          type: integer
+          description: Pure database ID of the object, prefer using the UUID if it
+            is present on the entity
+          format: int64
+          readOnly: true
+        uuid:
+          type: string
+          description: UUID, this is the primary identity of the entity
+          format: uuid
+          readOnly: true
+        createdBy:
+          type: string
+          description: Username of creator
+          readOnly: true
+        createdDate:
+          type: string
+          description: Date and time of creation
+          format: date-time
+          readOnly: true
+        modifiedBy:
+          type: string
+          description: Username of the user that performed a modification
+          readOnly: true
+        modifiedDate:
+          type: string
+          description: Date and time of last modification
+          format: date-time
+          readOnly: true
+        portalUrl:
+          type: string
+          description: URL of the content on the Pure Portal
+          readOnly: true
+        prettyUrlIdentifiers:
+          type: array
+          description: All pretty URLs
+          readOnly: true
+          items:
+            type: string
+            description: All pretty URLs
+            readOnly: true
+        previousUuids:
+          type: array
+          description: UUIDs of other content items which have been merged into this
+            content item (or similar)
+          readOnly: true
+          items:
+            type: string
+            description: UUIDs of other content items which have been merged into
+              this content item (or similar)
+            readOnly: true
+        version:
+          type: string
+          description: A hash representing the current version of the content. For
+            new content this is null, and for existing content the current value.
+            The property should never be modified explicitly by a client.
+          nullable: true
+        username:
+          type: string
+          description: Username
+        name:
+          $ref: '#/components/schemas/Name'
+        email:
+          type: string
+          description: The user's email address
+        externallyAuthenticated:
+          type: boolean
+          description: Is the user externally authenticated.
+        pureSystemUser:
+          type: boolean
+          description: Is the user a Pure system user. Set to false when creating
+            normal Pure users.
+          default: false
+        locked:
+          type: boolean
+          description: Is the user locked. A locked user cannot log into Pure.
+          default: false
+        systemName:
+          type: string
+          description: The content system name
+          readOnly: true
+      description: A user that can be attached to a person in Pure
+    UserListResult:
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The full count, ignoring paging
+          format: int32
+        pageInformation:
+          $ref: '#/components/schemas/PageInformation'
+        items:
+          type: array
+          description: Users
+          items:
+            $ref: '#/components/schemas/User'
+      description: List of users. Can contain a subset of all items along with the
+        full count
     UserRef:
       required:
-      - systemName
       - uuid
       type: object
       description: A reference to an user
+      nullable: true
       allOf:
       - $ref: '#/components/schemas/ContentRef'
     ValidationError:
@@ -6513,6 +10736,7 @@ components:
           - FREE
           - CAMPUS
           - BACKEND
+          - CONFIDENTIAL
         description:
           $ref: '#/components/schemas/SystemLocalizedString'
       description: Visibility of an object
@@ -6531,6 +10755,7 @@ components:
           purposeOfStay:
             type: string
             description: Why the visiting shcolar has transfered to the organization.
+            nullable: true
           visitorFrom:
             $ref: '#/components/schemas/ExternalOrganizationRef'
     Workflow:
@@ -6553,6 +10778,64 @@ components:
           items:
             $ref: '#/components/schemas/Workflow'
       description: List of workflow steps.
+    WorkingPaper:
+      type: object
+      description: A working paper is a document that constitutes an early version
+        of a publication. Working papers are primarily used for exchanging ideas or
+        to get feedback, before submitting it to a publisher. Working papers are usually
+        published by the authors own institution.
+      allOf:
+      - $ref: '#/components/schemas/ResearchOutput'
+      - type: object
+        properties:
+          volume:
+            type: string
+            description: The volume that the research output was published in.
+            nullable: true
+          numberOfPages:
+            type: integer
+            description: The number of pages in the research output.
+            format: int32
+            nullable: true
+          pages:
+            type: string
+            description: The pages of the host publication covered by this contribution,
+              for example 10-15.
+            nullable: true
+          publicationSeries:
+            type: array
+            description: The publication series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/PublicationSeries'
+          placeOfPublication:
+            type: string
+            description: The place of publication.
+            nullable: true
+          edition:
+            type: string
+            description: The edition that the production was published in.
+            nullable: true
+          printISBNs:
+            type: array
+            description: The ISBN number for the printed versions of the production.
+            nullable: true
+            items:
+              type: string
+          electronicISBNs:
+            type: array
+            description: The ISBN number for the electronic versions of the production.
+            nullable: true
+            items:
+              type: string
+          publisher:
+            $ref: '#/components/schemas/PublisherRef'
+          bookSeries:
+            type: array
+            description: The book series this research output is part of.
+            nullable: true
+            items:
+              $ref: '#/components/schemas/BookSeriesJournalAssociation'
   securitySchemes:
     api-key:
       type: apiKey

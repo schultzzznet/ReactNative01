@@ -1,6 +1,6 @@
 #!/bin/sh
 
-rm -rf pure-api 
+rm -rf pure-api
 
 brew upgrade
 brew update
@@ -15,6 +15,9 @@ npm update openapi-generator
 
 rm openapi.yaml
 wget https://api.elsevierpure.com/ws/api/openapi.yaml
+
+#openapi-generator-cli generate -i openapi.yaml --generator-name typescript-axios --output pure-api --strict-spec true --additional-properties=pubVersion=1.0-SNAPSHOT
+#npm run api
 
 openapi-generator-cli generate -i openapi.yaml --generator-name typescript --output pure-api --strict-spec true --additional-properties=pubVersion=1.0-SNAPSHOT
 

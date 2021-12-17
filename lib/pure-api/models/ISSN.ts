@@ -17,6 +17,10 @@ import { HttpFile } from '../http/http';
 * An ISSN of a journal, can be populated with a start and end date if the ISSN is only used in a specific period.
 */
 export class ISSN {
+    /**
+    * Pure database ID of the object, prefer using the UUID if it is present on the entity
+    */
+    'pureId'?: number;
     'startDate'?: CompoundDate;
     'endDate'?: CompoundDate;
     /**
@@ -27,6 +31,12 @@ export class ISSN {
     static readonly discriminator: string | undefined = undefined;
 
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
+        {
+            "name": "pureId",
+            "baseName": "pureId",
+            "type": "number",
+            "format": "int64"
+        },
         {
             "name": "startDate",
             "baseName": "startDate",

@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { NavigationLink } from './NavigationLink';
 import { PageInformation } from './PageInformation';
 import { Publisher } from './Publisher';
 import { HttpFile } from '../http/http';
@@ -24,10 +23,6 @@ export class PublisherListResult {
     */
     'count'?: number;
     'pageInformation'?: PageInformation;
-    /**
-    * Links to navigate from this result. Such as a 'prev' link to link to the previous page of items
-    */
-    'navigationLinks'?: Array<NavigationLink>;
     /**
     * Publishers
     */
@@ -46,12 +41,6 @@ export class PublisherListResult {
             "name": "pageInformation",
             "baseName": "pageInformation",
             "type": "PageInformation",
-            "format": ""
-        },
-        {
-            "name": "navigationLinks",
-            "baseName": "navigationLinks",
-            "type": "Array<NavigationLink>",
             "format": ""
         },
         {

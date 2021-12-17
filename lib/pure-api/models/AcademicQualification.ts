@@ -30,17 +30,17 @@ export class AcademicQualification {
     'period'?: CompoundDateRange;
     'fieldOfStudy'?: ClassificationRef;
     /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
+    * A set of string values, one for each submission locale. Note: invalid locale values will be ignored.
     */
     'fieldOfStudyUnstructured'?: { [key: string]: string; };
     'organization'?: OrganizationOrExternalOrganizationRef;
     /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
+    * A set of string values, one for each submission locale. Note: invalid locale values will be ignored.
     */
     'projectTitle'?: { [key: string]: string; };
     'qualification'?: ClassificationRef;
     /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
+    * A set of string values, one for each submission locale. Note: invalid locale values will be ignored.
     */
     'qualificationUnstructured'?: { [key: string]: string; };
 

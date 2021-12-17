@@ -18,17 +18,14 @@ export class KeywordGroup {
     */
     'pureId'?: number;
     /**
-    * A KeywordGroup type discriminator property so we can differentiate between the different sub-types, this is the schema type name of the child type.
-    */
-    'typeDiscriminator': string;
-    /**
     * Unique name of the configuration that specifies this keyword group
     */
     'logicalName': string;
     /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
+    * A set of string values, one for each submission locale. Note: invalid locale values will be ignored.
     */
     'name'?: { [key: string]: string; };
+    'typeDiscriminator': string;
 
     static readonly discriminator: string | undefined = "typeDiscriminator";
 
@@ -40,12 +37,6 @@ export class KeywordGroup {
             "format": "int64"
         },
         {
-            "name": "typeDiscriminator",
-            "baseName": "typeDiscriminator",
-            "type": "string",
-            "format": ""
-        },
-        {
             "name": "logicalName",
             "baseName": "logicalName",
             "type": "string",
@@ -55,6 +46,12 @@ export class KeywordGroup {
             "name": "name",
             "baseName": "name",
             "type": "{ [key: string]: string; }",
+            "format": ""
+        },
+        {
+            "name": "typeDiscriminator",
+            "baseName": "typeDiscriminator",
+            "type": "string",
             "format": ""
         }    ];
 

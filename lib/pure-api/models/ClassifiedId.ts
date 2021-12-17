@@ -27,7 +27,7 @@ export class ClassifiedId extends Identifier {
     * Classified ID
     */
     'id': string;
-    'type': ClassificationRef;
+    'type'?: ClassificationRef;
 
     static readonly discriminator: string | undefined = undefined;
 

@@ -11,7 +11,6 @@
  */
 
 import { Event } from './Event';
-import { NavigationLink } from './NavigationLink';
 import { PageInformation } from './PageInformation';
 import { HttpFile } from '../http/http';
 
@@ -24,10 +23,6 @@ export class EventListResult {
     */
     'count'?: number;
     'pageInformation'?: PageInformation;
-    /**
-    * Links to navigate from this result. Such as a 'prev' link to link to the previous page of items
-    */
-    'navigationLinks'?: Array<NavigationLink>;
     /**
     * Events
     */
@@ -46,12 +41,6 @@ export class EventListResult {
             "name": "pageInformation",
             "baseName": "pageInformation",
             "type": "PageInformation",
-            "format": ""
-        },
-        {
-            "name": "navigationLinks",
-            "baseName": "navigationLinks",
-            "type": "Array<NavigationLink>",
             "format": ""
         },
         {

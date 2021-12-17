@@ -62,15 +62,11 @@ export class ExternalOrganization {
     */
     'previousUuids'?: Array<string>;
     /**
-    * Signals that the information is maintained by synchronization from an external system
-    */
-    'externallyManaged'?: boolean;
-    /**
     * A hash representing the current version of the content. For new content this is null, and for existing content the current value. The property should never be modified explicitly by a client.
     */
     'version'?: string;
     /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
+    * A set of string values, one for each submission locale. Note: invalid locale values will be ignored.
     */
     'name'?: { [key: string]: string; };
     'type'?: ClassificationRef;
@@ -197,12 +193,6 @@ export class ExternalOrganization {
             "name": "previousUuids",
             "baseName": "previousUuids",
             "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "externallyManaged",
-            "baseName": "externallyManaged",
-            "type": "boolean",
             "format": ""
         },
         {

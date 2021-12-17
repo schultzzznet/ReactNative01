@@ -3,13 +3,23 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
 import { AcademicQualification } from '../models/AcademicQualification';
+import { AccessDefinitionRef } from '../models/AccessDefinitionRef';
 import { ActivityRef } from '../models/ActivityRef';
+import { AdditionalFileElectronicVersion } from '../models/AdditionalFileElectronicVersion';
 import { AdditionalISSN } from '../models/AdditionalISSN';
 import { Address } from '../models/Address';
+import { AllowedTemplate } from '../models/AllowedTemplate';
+import { AllowedTemplateListResult } from '../models/AllowedTemplateListResult';
 import { AlternativeISSN } from '../models/AlternativeISSN';
 import { ApplicationRef } from '../models/ApplicationRef';
+import { ArticleProcessingCharge } from '../models/ArticleProcessingCharge';
+import { AuthorCollaborationRef } from '../models/AuthorCollaborationRef';
 import { AwardRef } from '../models/AwardRef';
+import { BookAnthology } from '../models/BookAnthology';
+import { BookAnthologyAllOf } from '../models/BookAnthologyAllOf';
+import { BookSeriesJournalAssociation } from '../models/BookSeriesJournalAssociation';
 import { CERIFAddress } from '../models/CERIFAddress';
+import { CaseNote } from '../models/CaseNote';
 import { ClassificationRef } from '../models/ClassificationRef';
 import { ClassificationRefList } from '../models/ClassificationRefList';
 import { ClassificationSchemeRef } from '../models/ClassificationSchemeRef';
@@ -17,6 +27,7 @@ import { ClassificationSchemeRefAllOf } from '../models/ClassificationSchemeRefA
 import { ClassificationsKeywordGroup } from '../models/ClassificationsKeywordGroup';
 import { ClassificationsKeywordGroupAllOf } from '../models/ClassificationsKeywordGroupAllOf';
 import { ClassifiedAddress } from '../models/ClassifiedAddress';
+import { ClassifiedCaseNoteSource } from '../models/ClassifiedCaseNoteSource';
 import { ClassifiedFile } from '../models/ClassifiedFile';
 import { ClassifiedId } from '../models/ClassifiedId';
 import { ClassifiedIdAllOf } from '../models/ClassifiedIdAllOf';
@@ -25,14 +36,39 @@ import { ClassifiedName } from '../models/ClassifiedName';
 import { ClassifiedValue } from '../models/ClassifiedValue';
 import { CompoundDate } from '../models/CompoundDate';
 import { CompoundDateRange } from '../models/CompoundDateRange';
+import { ConferenceSeriesRef } from '../models/ConferenceSeriesRef';
 import { ContentRef } from '../models/ContentRef';
 import { ContentRefListResult } from '../models/ContentRefListResult';
+import { ContributionToBookAnthology } from '../models/ContributionToBookAnthology';
+import { ContributionToBookAnthologyAllOf } from '../models/ContributionToBookAnthologyAllOf';
+import { ContributionToConference } from '../models/ContributionToConference';
+import { ContributionToConferenceAllOf } from '../models/ContributionToConferenceAllOf';
+import { ContributionToJournal } from '../models/ContributionToJournal';
+import { ContributionToJournalAllOf } from '../models/ContributionToJournalAllOf';
+import { ContributionToMemorandum } from '../models/ContributionToMemorandum';
+import { ContributionToMemorandumAllOf } from '../models/ContributionToMemorandumAllOf';
+import { ContributionToPeriodical } from '../models/ContributionToPeriodical';
+import { ContributionToPeriodicalAllOf } from '../models/ContributionToPeriodicalAllOf';
+import { ContributorAssociation } from '../models/ContributorAssociation';
 import { DataSetRef } from '../models/DataSetRef';
 import { DateRange } from '../models/DateRange';
 import { DependencyViolationProblemDetails } from '../models/DependencyViolationProblemDetails';
 import { DependencyViolationProblemDetailsAllOf } from '../models/DependencyViolationProblemDetailsAllOf';
+import { DisciplinesAssociation } from '../models/DisciplinesAssociation';
+import { DisciplinesAssociationListResult } from '../models/DisciplinesAssociationListResult';
+import { DisciplinesAssociationsQuery } from '../models/DisciplinesAssociationsQuery';
+import { DisciplinesDiscipline } from '../models/DisciplinesDiscipline';
+import { DisciplinesDisciplineAssignment } from '../models/DisciplinesDisciplineAssignment';
+import { DisciplinesDisciplineListResult } from '../models/DisciplinesDisciplineListResult';
+import { DisciplinesDisciplineScheme } from '../models/DisciplinesDisciplineScheme';
+import { DisciplinesDisciplineSchemeListResult } from '../models/DisciplinesDisciplineSchemeListResult';
 import { Document } from '../models/Document';
+import { DoiElectronicVersion } from '../models/DoiElectronicVersion';
+import { DoiElectronicVersionAllOf } from '../models/DoiElectronicVersionAllOf';
 import { ElectronicISSN } from '../models/ElectronicISSN';
+import { ElectronicVersion } from '../models/ElectronicVersion';
+import { ElectronicVersionFile } from '../models/ElectronicVersionFile';
+import { EquipmentRef } from '../models/EquipmentRef';
 import { Event } from '../models/Event';
 import { EventListResult } from '../models/EventListResult';
 import { EventRef } from '../models/EventRef';
@@ -48,6 +84,9 @@ import { ExternalPerson } from '../models/ExternalPerson';
 import { ExternalPersonListResult } from '../models/ExternalPersonListResult';
 import { ExternalPersonRef } from '../models/ExternalPersonRef';
 import { ExternalPersonsQuery } from '../models/ExternalPersonsQuery';
+import { FileElectronicVersion } from '../models/FileElectronicVersion';
+import { FileElectronicVersionAllOf } from '../models/FileElectronicVersionAllOf';
+import { FormattedString } from '../models/FormattedString';
 import { FreeKeywordsKeywordGroup } from '../models/FreeKeywordsKeywordGroup';
 import { FreeKeywordsKeywordGroupAllOf } from '../models/FreeKeywordsKeywordGroupAllOf';
 import { FullKeywordGroup } from '../models/FullKeywordGroup';
@@ -59,14 +98,18 @@ import { HighlightedContent } from '../models/HighlightedContent';
 import { HonoraryStaffOrganizationAssociation } from '../models/HonoraryStaffOrganizationAssociation';
 import { HonoraryStaffOrganizationAssociationAllOf } from '../models/HonoraryStaffOrganizationAssociationAllOf';
 import { ISSN } from '../models/ISSN';
+import { ISSNRef } from '../models/ISSNRef';
 import { Id } from '../models/Id';
 import { IdAllOf } from '../models/IdAllOf';
 import { Identifier } from '../models/Identifier';
+import { ImpactRef } from '../models/ImpactRef';
 import { InternalOrExternalSupervisor } from '../models/InternalOrExternalSupervisor';
 import { Journal } from '../models/Journal';
+import { JournalAssociation } from '../models/JournalAssociation';
 import { JournalListResult } from '../models/JournalListResult';
 import { JournalRef } from '../models/JournalRef';
 import { JournalTitle } from '../models/JournalTitle';
+import { JournalTitleRef } from '../models/JournalTitleRef';
 import { JournalsQuery } from '../models/JournalsQuery';
 import { Keyword } from '../models/Keyword';
 import { KeywordContainer } from '../models/KeywordContainer';
@@ -74,9 +117,14 @@ import { KeywordGroup } from '../models/KeywordGroup';
 import { KeywordGroupConfiguration } from '../models/KeywordGroupConfiguration';
 import { KeywordGroupConfigurationList } from '../models/KeywordGroupConfigurationList';
 import { Link } from '../models/Link';
+import { LinkElectronicVersion } from '../models/LinkElectronicVersion';
+import { LinkElectronicVersionAllOf } from '../models/LinkElectronicVersionAllOf';
 import { LocalesList } from '../models/LocalesList';
+import { Memorandum } from '../models/Memorandum';
 import { Name } from '../models/Name';
 import { NavigationLink } from '../models/NavigationLink';
+import { NonTextual } from '../models/NonTextual';
+import { NonTextualAllOf } from '../models/NonTextualAllOf';
 import { Note } from '../models/Note';
 import { NoteListResult } from '../models/NoteListResult';
 import { OrderingsList } from '../models/OrderingsList';
@@ -85,7 +133,11 @@ import { OrganizationListResult } from '../models/OrganizationListResult';
 import { OrganizationOrExternalOrganizationRef } from '../models/OrganizationOrExternalOrganizationRef';
 import { OrganizationRef } from '../models/OrganizationRef';
 import { OrganizationsQuery } from '../models/OrganizationsQuery';
+import { OtherContribution } from '../models/OtherContribution';
+import { OtherContributionAllOf } from '../models/OtherContributionAllOf';
 import { PageInformation } from '../models/PageInformation';
+import { Patent } from '../models/Patent';
+import { PatentAllOf } from '../models/PatentAllOf';
 import { Person } from '../models/Person';
 import { PersonClassifiedLeaveOfAbsence } from '../models/PersonClassifiedLeaveOfAbsence';
 import { PersonListResult } from '../models/PersonListResult';
@@ -95,18 +147,37 @@ import { PersonSuperviseeAssociation } from '../models/PersonSuperviseeAssociati
 import { PersonSuperviseeAssociationListResult } from '../models/PersonSuperviseeAssociationListResult';
 import { PersonSupervisorAssociation } from '../models/PersonSupervisorAssociation';
 import { PersonsQuery } from '../models/PersonsQuery';
+import { PressMediaRef } from '../models/PressMediaRef';
+import { PrimaryId } from '../models/PrimaryId';
+import { PrimaryIdAllOf } from '../models/PrimaryIdAllOf';
+import { PrizeRef } from '../models/PrizeRef';
 import { ProblemDetails } from '../models/ProblemDetails';
 import { ProfessionalQualification } from '../models/ProfessionalQualification';
+import { ProjectRef } from '../models/ProjectRef';
+import { PublicationSeries } from '../models/PublicationSeries';
+import { PublicationStatus } from '../models/PublicationStatus';
 import { Publisher } from '../models/Publisher';
 import { PublisherListResult } from '../models/PublisherListResult';
 import { PublisherRef } from '../models/PublisherRef';
 import { PublishersQuery } from '../models/PublishersQuery';
+import { ResearchOutput } from '../models/ResearchOutput';
+import { ResearchOutputListResult } from '../models/ResearchOutputListResult';
+import { ResearchOutputPeerReviewConfiguration } from '../models/ResearchOutputPeerReviewConfiguration';
+import { ResearchOutputPeerReviewConfigurationCombination } from '../models/ResearchOutputPeerReviewConfigurationCombination';
+import { ResearchOutputPeerReviewConfigurationListResult } from '../models/ResearchOutputPeerReviewConfigurationListResult';
 import { ResearchOutputRef } from '../models/ResearchOutputRef';
+import { ResearchOutputsQuery } from '../models/ResearchOutputsQuery';
 import { StaffOrganizationAssociation } from '../models/StaffOrganizationAssociation';
 import { StaffOrganizationAssociationAllOf } from '../models/StaffOrganizationAssociationAllOf';
 import { StudentOrganizationAssociation } from '../models/StudentOrganizationAssociation';
 import { StudentOrganizationAssociationAllOf } from '../models/StudentOrganizationAssociationAllOf';
+import { StudentThesisRef } from '../models/StudentThesisRef';
+import { SupervisorAssociation } from '../models/SupervisorAssociation';
+import { Thesis } from '../models/Thesis';
+import { ThesisAllOf } from '../models/ThesisAllOf';
 import { UploadedFile } from '../models/UploadedFile';
+import { User } from '../models/User';
+import { UserListResult } from '../models/UserListResult';
 import { UserRef } from '../models/UserRef';
 import { ValidationError } from '../models/ValidationError';
 import { ValidationProblemDetails } from '../models/ValidationProblemDetails';
@@ -116,6 +187,8 @@ import { VisitingScholarOrganizationAssociation } from '../models/VisitingSchola
 import { VisitingScholarOrganizationAssociationAllOf } from '../models/VisitingScholarOrganizationAssociationAllOf';
 import { Workflow } from '../models/Workflow';
 import { WorkflowListResult } from '../models/WorkflowListResult';
+import { WorkingPaper } from '../models/WorkingPaper';
+import { WorkingPaperAllOf } from '../models/WorkingPaperAllOf';
 
 import { ObservableEventApi } from "./ObservableAPI";
 import { EventApiRequestFactory, EventApiResponseProcessor} from "../apis/EventApi";
@@ -153,6 +226,15 @@ export interface EventApiEventDeleteRequest {
     uuid: string
 }
 
+export interface EventApiEventGetRequest {
+    /**
+     * UUID of the desired event
+     * @type string
+     * @memberof EventApieventGet
+     */
+    uuid: string
+}
+
 export interface EventApiEventGetAllowedClassifiedIdentifierTypesRequest {
 }
 
@@ -160,6 +242,30 @@ export interface EventApiEventGetAllowedCountriesRequest {
 }
 
 export interface EventApiEventGetAllowedDegreeOfRecognitionsRequest {
+}
+
+export interface EventApiEventGetAllowedDisciplineSchemesRequest {
+}
+
+export interface EventApiEventGetAllowedDisciplinesRequest {
+    /**
+     * Identifier for the discipline scheme for events
+     * @type string
+     * @memberof EventApieventGetAllowedDisciplines
+     */
+    disciplineScheme: string
+    /**
+     * Number of returned disciplines per request
+     * @type number
+     * @memberof EventApieventGetAllowedDisciplines
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof EventApieventGetAllowedDisciplines
+     */
+    offset?: number
 }
 
 export interface EventApiEventGetAllowedKeywordGroupConfigurationClassificationsRequest {
@@ -189,6 +295,21 @@ export interface EventApiEventGetAllowedTypesRequest {
 export interface EventApiEventGetAllowedWorkflowStepsRequest {
 }
 
+export interface EventApiEventGetDisciplineAssociationRequest {
+    /**
+     * UUID of the desired event
+     * @type string
+     * @memberof EventApieventGetDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof EventApieventGetDisciplineAssociation
+     */
+    disciplineScheme: string
+}
+
 export interface EventApiEventGetOrderingsRequest {
 }
 
@@ -213,6 +334,21 @@ export interface EventApiEventListRequest {
     order?: string
 }
 
+export interface EventApiEventListDisciplineAssociationsRequest {
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof EventApieventListDisciplineAssociations
+     */
+    disciplineScheme: string
+    /**
+     * The query to perform
+     * @type DisciplinesAssociationsQuery
+     * @memberof EventApieventListDisciplineAssociations
+     */
+    disciplinesAssociationsQuery: DisciplinesAssociationsQuery
+}
+
 export interface EventApiEventListNotesRequest {
     /**
      * UUID of the event to get notes for
@@ -232,6 +368,27 @@ export interface EventApiEventListNotesRequest {
      * @memberof EventApieventListNotes
      */
     offset?: number
+}
+
+export interface EventApiEventPutDisciplineAssociationRequest {
+    /**
+     * UUID of the event to update
+     * @type string
+     * @memberof EventApieventPutDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof EventApieventPutDisciplineAssociation
+     */
+    disciplineScheme: string
+    /**
+     * The disciplines association to create
+     * @type DisciplinesAssociation
+     * @memberof EventApieventPutDisciplineAssociation
+     */
+    disciplinesAssociation: DisciplinesAssociation
 }
 
 export interface EventApiEventUpdateRequest {
@@ -293,6 +450,15 @@ export class ObjectEventApi {
     }
 
     /**
+     * Get event with specific UUID.
+     * Get event
+     * @param param the request object
+     */
+    public eventGet(param: EventApiEventGetRequest, options?: Configuration): Promise<Event> {
+        return this.api.eventGet(param.uuid,  options).toPromise();
+    }
+
+    /**
      * Get a list of allowed classified identifier types that can be used for the 'identifiers.type' attribute of events
      * A list of allowed classified identifier types
      * @param param the request object
@@ -317,6 +483,24 @@ export class ObjectEventApi {
      */
     public eventGetAllowedDegreeOfRecognitions(param: EventApiEventGetAllowedDegreeOfRecognitionsRequest, options?: Configuration): Promise<ClassificationRefList> {
         return this.api.eventGetAllowedDegreeOfRecognitions( options).toPromise();
+    }
+
+    /**
+     * Get a list fo a allowed discipline schemes for events
+     * A list of allowed discipline schemes
+     * @param param the request object
+     */
+    public eventGetAllowedDisciplineSchemes(param: EventApiEventGetAllowedDisciplineSchemesRequest, options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        return this.api.eventGetAllowedDisciplineSchemes( options).toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for events
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param param the request object
+     */
+    public eventGetAllowedDisciplines(param: EventApiEventGetAllowedDisciplinesRequest, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        return this.api.eventGetAllowedDisciplines(param.disciplineScheme, param.size, param.offset,  options).toPromise();
     }
 
     /**
@@ -383,6 +567,15 @@ export class ObjectEventApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme  associated with the event with specific UUID.
+     * Get disciplines from the discipline scheme associated with the event
+     * @param param the request object
+     */
+    public eventGetDisciplineAssociation(param: EventApiEventGetDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.eventGetDisciplineAssociation(param.uuid, param.disciplineScheme,  options).toPromise();
+    }
+
+    /**
      * Lists all orderings available to the event endpoint. These values can be used by the order parameter.
      * Lists available orderings
      * @param param the request object
@@ -401,12 +594,30 @@ export class ObjectEventApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with events in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with events
+     * @param param the request object
+     */
+    public eventListDisciplineAssociations(param: EventApiEventListDisciplineAssociationsRequest, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        return this.api.eventListDisciplineAssociations(param.disciplineScheme, param.disciplinesAssociationsQuery,  options).toPromise();
+    }
+
+    /**
      * Lists notes associated with an event ordered by date (nulls last)
      * Lists notes
      * @param param the request object
      */
     public eventListNotes(param: EventApiEventListNotesRequest, options?: Configuration): Promise<NoteListResult> {
         return this.api.eventListNotes(param.uuid, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the event with specific UUID.
+     * Update disciplines from the discipline scheme associated with the event
+     * @param param the request object
+     */
+    public eventPutDisciplineAssociation(param: EventApiEventPutDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.eventPutDisciplineAssociation(param.uuid, param.disciplineScheme, param.disciplinesAssociation,  options).toPromise();
     }
 
     /**
@@ -516,6 +727,30 @@ export interface ExternalOrganizationApiExternalOrganizationGetAllowedClassified
 export interface ExternalOrganizationApiExternalOrganizationGetAllowedClassifiedImageTypesRequest {
 }
 
+export interface ExternalOrganizationApiExternalOrganizationGetAllowedDisciplineSchemesRequest {
+}
+
+export interface ExternalOrganizationApiExternalOrganizationGetAllowedDisciplinesRequest {
+    /**
+     * Identifier for the discipline scheme for external organizations
+     * @type string
+     * @memberof ExternalOrganizationApiexternalOrganizationGetAllowedDisciplines
+     */
+    disciplineScheme: string
+    /**
+     * Number of returned disciplines per request
+     * @type number
+     * @memberof ExternalOrganizationApiexternalOrganizationGetAllowedDisciplines
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof ExternalOrganizationApiexternalOrganizationGetAllowedDisciplines
+     */
+    offset?: number
+}
+
 export interface ExternalOrganizationApiExternalOrganizationGetAllowedDocumentLicensesRequest {
 }
 
@@ -547,6 +782,21 @@ export interface ExternalOrganizationApiExternalOrganizationGetAllowedTypesReque
 }
 
 export interface ExternalOrganizationApiExternalOrganizationGetAllowedWorkflowStepsRequest {
+}
+
+export interface ExternalOrganizationApiExternalOrganizationGetDisciplineAssociationRequest {
+    /**
+     * UUID of the desired external organization
+     * @type string
+     * @memberof ExternalOrganizationApiexternalOrganizationGetDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof ExternalOrganizationApiexternalOrganizationGetDisciplineAssociation
+     */
+    disciplineScheme: string
 }
 
 export interface ExternalOrganizationApiExternalOrganizationGetFileRequest {
@@ -588,6 +838,21 @@ export interface ExternalOrganizationApiExternalOrganizationListRequest {
     order?: string
 }
 
+export interface ExternalOrganizationApiExternalOrganizationListDisciplineAssociationsRequest {
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof ExternalOrganizationApiexternalOrganizationListDisciplineAssociations
+     */
+    disciplineScheme: string
+    /**
+     * The query to perform
+     * @type DisciplinesAssociationsQuery
+     * @memberof ExternalOrganizationApiexternalOrganizationListDisciplineAssociations
+     */
+    disciplinesAssociationsQuery: DisciplinesAssociationsQuery
+}
+
 export interface ExternalOrganizationApiExternalOrganizationListNotesRequest {
     /**
      * UUID of the external organization to get notes for
@@ -625,6 +890,27 @@ export interface ExternalOrganizationApiExternalOrganizationPreviewDeduplication
      * @memberof ExternalOrganizationApiexternalOrganizationPreviewDeduplication
      */
     externalOrganizationList: ExternalOrganizationList
+}
+
+export interface ExternalOrganizationApiExternalOrganizationPutDisciplineAssociationRequest {
+    /**
+     * UUID of the external organization to update
+     * @type string
+     * @memberof ExternalOrganizationApiexternalOrganizationPutDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof ExternalOrganizationApiexternalOrganizationPutDisciplineAssociation
+     */
+    disciplineScheme: string
+    /**
+     * The disciplines association to create
+     * @type DisciplinesAssociation
+     * @memberof ExternalOrganizationApiexternalOrganizationPutDisciplineAssociation
+     */
+    disciplinesAssociation: DisciplinesAssociation
 }
 
 export interface ExternalOrganizationApiExternalOrganizationQueryRequest {
@@ -749,6 +1035,24 @@ export class ObjectExternalOrganizationApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for external organizations
+     * A list of allowed discipline schemes
+     * @param param the request object
+     */
+    public externalOrganizationGetAllowedDisciplineSchemes(param: ExternalOrganizationApiExternalOrganizationGetAllowedDisciplineSchemesRequest, options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        return this.api.externalOrganizationGetAllowedDisciplineSchemes( options).toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for external organizations
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param param the request object
+     */
+    public externalOrganizationGetAllowedDisciplines(param: ExternalOrganizationApiExternalOrganizationGetAllowedDisciplinesRequest, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        return this.api.externalOrganizationGetAllowedDisciplines(param.disciplineScheme, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
      * Get a list of allowed document licenses that can be used for the 'documents.license' attribute of external organizations
      * A list of allowed document licenses
      * @param param the request object
@@ -830,6 +1134,15 @@ export class ObjectExternalOrganizationApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the external organization with specific UUID.
+     * Get disciplines from the discipline scheme associated with the external organization
+     * @param param the request object
+     */
+    public externalOrganizationGetDisciplineAssociation(param: ExternalOrganizationApiExternalOrganizationGetDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.externalOrganizationGetDisciplineAssociation(param.uuid, param.disciplineScheme,  options).toPromise();
+    }
+
+    /**
      * Get file from the external organization
      * Get file from the external organization
      * @param param the request object
@@ -857,6 +1170,15 @@ export class ObjectExternalOrganizationApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with external organizations in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with external organizations
+     * @param param the request object
+     */
+    public externalOrganizationListDisciplineAssociations(param: ExternalOrganizationApiExternalOrganizationListDisciplineAssociationsRequest, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        return this.api.externalOrganizationListDisciplineAssociations(param.disciplineScheme, param.disciplinesAssociationsQuery,  options).toPromise();
+    }
+
+    /**
      * Lists notes associated with an external organization ordered by date (nulls last)
      * Lists notes
      * @param param the request object
@@ -881,6 +1203,15 @@ export class ObjectExternalOrganizationApi {
      */
     public externalOrganizationPreviewDeduplication(param: ExternalOrganizationApiExternalOrganizationPreviewDeduplicationRequest, options?: Configuration): Promise<ExternalOrganizationListResult> {
         return this.api.externalOrganizationPreviewDeduplication(param.externalOrganizationList,  options).toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the external organization with specific UUID.
+     * Update disciplines from the discipline scheme associated with the external organization
+     * @param param the request object
+     */
+    public externalOrganizationPutDisciplineAssociation(param: ExternalOrganizationApiExternalOrganizationPutDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.externalOrganizationPutDisciplineAssociation(param.uuid, param.disciplineScheme, param.disciplinesAssociation,  options).toPromise();
     }
 
     /**
@@ -954,6 +1285,9 @@ export interface ExternalPersonApiExternalPersonGetAllowedClassifiedIdentifierTy
 export interface ExternalPersonApiExternalPersonGetAllowedCountriesRequest {
 }
 
+export interface ExternalPersonApiExternalPersonGetAllowedDisciplineSchemesRequest {
+}
+
 export interface ExternalPersonApiExternalPersonGetAllowedKeywordGroupConfigurationClassificationsRequest {
     /**
      * Pure id of the keyword group configuration
@@ -973,6 +1307,21 @@ export interface ExternalPersonApiExternalPersonGetAllowedTypesRequest {
 }
 
 export interface ExternalPersonApiExternalPersonGetAllowedWorkflowStepsRequest {
+}
+
+export interface ExternalPersonApiExternalPersonGetDisciplineAssociationRequest {
+    /**
+     * UUID of the desired external person
+     * @type string
+     * @memberof ExternalPersonApiexternalPersonGetDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof ExternalPersonApiexternalPersonGetDisciplineAssociation
+     */
+    disciplineScheme: string
 }
 
 export interface ExternalPersonApiExternalPersonGetOrderingsRequest {
@@ -999,6 +1348,42 @@ export interface ExternalPersonApiExternalPersonListRequest {
     order?: string
 }
 
+export interface ExternalPersonApiExternalPersonListDisciplineAssociationsRequest {
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof ExternalPersonApiexternalPersonListDisciplineAssociations
+     */
+    disciplineScheme: string
+    /**
+     * The query to perform
+     * @type DisciplinesAssociationsQuery
+     * @memberof ExternalPersonApiexternalPersonListDisciplineAssociations
+     */
+    disciplinesAssociationsQuery: DisciplinesAssociationsQuery
+}
+
+export interface ExternalPersonApiExternalPersonPutDisciplineAssociationRequest {
+    /**
+     * UUID of the external person to update
+     * @type string
+     * @memberof ExternalPersonApiexternalPersonPutDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof ExternalPersonApiexternalPersonPutDisciplineAssociation
+     */
+    disciplineScheme: string
+    /**
+     * The disciplines association to create
+     * @type DisciplinesAssociation
+     * @memberof ExternalPersonApiexternalPersonPutDisciplineAssociation
+     */
+    disciplinesAssociation: DisciplinesAssociation
+}
+
 export interface ExternalPersonApiExternalPersonQueryRequest {
     /**
      * The query to perform
@@ -1021,6 +1406,27 @@ export interface ExternalPersonApiExternalPersonUpdateRequest {
      * @memberof ExternalPersonApiexternalPersonUpdate
      */
     externalPerson: ExternalPerson
+}
+
+export interface ExternalPersonApiGetAllowedDisciplinesRequest {
+    /**
+     * Identifier for the discipline scheme for external persons
+     * @type string
+     * @memberof ExternalPersonApigetAllowedDisciplines
+     */
+    disciplineScheme: string
+    /**
+     * Number of returned disciplines per request
+     * @type number
+     * @memberof ExternalPersonApigetAllowedDisciplines
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof ExternalPersonApigetAllowedDisciplines
+     */
+    offset?: number
 }
 
 export class ObjectExternalPersonApi {
@@ -1085,6 +1491,15 @@ export class ObjectExternalPersonApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for external persons
+     * A list of allowed discipline schemes
+     * @param param the request object
+     */
+    public externalPersonGetAllowedDisciplineSchemes(param: ExternalPersonApiExternalPersonGetAllowedDisciplineSchemesRequest, options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        return this.api.externalPersonGetAllowedDisciplineSchemes( options).toPromise();
+    }
+
+    /**
      * Get a list of allowed classifications that can be used when submitting a specified keyword group.
      * A list of allowed classifications for the specified keyword group
      * @param param the request object
@@ -1130,6 +1545,15 @@ export class ObjectExternalPersonApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the external person with specific UUID.
+     * Get disciplines from the discipline scheme associated with the external person
+     * @param param the request object
+     */
+    public externalPersonGetDisciplineAssociation(param: ExternalPersonApiExternalPersonGetDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.externalPersonGetDisciplineAssociation(param.uuid, param.disciplineScheme,  options).toPromise();
+    }
+
+    /**
      * Lists all orderings available to the external person endpoint. These values can be used by the order parameter.
      * Lists available orderings
      * @param param the request object
@@ -1148,6 +1572,24 @@ export class ObjectExternalPersonApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with external persons in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with external persons
+     * @param param the request object
+     */
+    public externalPersonListDisciplineAssociations(param: ExternalPersonApiExternalPersonListDisciplineAssociationsRequest, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        return this.api.externalPersonListDisciplineAssociations(param.disciplineScheme, param.disciplinesAssociationsQuery,  options).toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the external person with specific UUID.
+     * Update disciplines from the discipline scheme associated with the external person
+     * @param param the request object
+     */
+    public externalPersonPutDisciplineAssociation(param: ExternalPersonApiExternalPersonPutDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.externalPersonPutDisciplineAssociation(param.uuid, param.disciplineScheme, param.disciplinesAssociation,  options).toPromise();
+    }
+
+    /**
      * Lists external persons in the Pure instance that matches the provided query, similar to the GET version, instead of using parameters to alter the response, an JSON document is posted with the request. The JSON document contains fields for all the parameters available for the GET version, but also additional filtering options.
      * Query operation for external persons
      * @param param the request object
@@ -1163,6 +1605,15 @@ export class ObjectExternalPersonApi {
      */
     public externalPersonUpdate(param: ExternalPersonApiExternalPersonUpdateRequest, options?: Configuration): Promise<ExternalPerson> {
         return this.api.externalPersonUpdate(param.uuid, param.externalPerson,  options).toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for external persons
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param param the request object
+     */
+    public getAllowedDisciplines(param: ExternalPersonApiGetAllowedDisciplinesRequest, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        return this.api.getAllowedDisciplines(param.disciplineScheme, param.size, param.offset,  options).toPromise();
     }
 
 }
@@ -1233,6 +1684,30 @@ export interface JournalApiJournalGetAllowedClassifiedIdentifierTypesRequest {
 export interface JournalApiJournalGetAllowedCountriesRequest {
 }
 
+export interface JournalApiJournalGetAllowedDisciplineSchemesRequest {
+}
+
+export interface JournalApiJournalGetAllowedDisciplinesRequest {
+    /**
+     * Identifier for the discipline scheme for journals
+     * @type string
+     * @memberof JournalApijournalGetAllowedDisciplines
+     */
+    disciplineScheme: string
+    /**
+     * Number of returned disciplines per request
+     * @type number
+     * @memberof JournalApijournalGetAllowedDisciplines
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof JournalApijournalGetAllowedDisciplines
+     */
+    offset?: number
+}
+
 export interface JournalApiJournalGetAllowedKeywordGroupConfigurationClassificationsRequest {
     /**
      * Pure id of the keyword group configuration
@@ -1255,6 +1730,21 @@ export interface JournalApiJournalGetAllowedTypesRequest {
 }
 
 export interface JournalApiJournalGetAllowedWorkflowStepsRequest {
+}
+
+export interface JournalApiJournalGetDisciplineAssociationRequest {
+    /**
+     * UUID of the desired journal
+     * @type string
+     * @memberof JournalApijournalGetDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof JournalApijournalGetDisciplineAssociation
+     */
+    disciplineScheme: string
 }
 
 export interface JournalApiJournalGetOrderingsRequest {
@@ -1281,6 +1771,21 @@ export interface JournalApiJournalListRequest {
     order?: string
 }
 
+export interface JournalApiJournalListDisciplineAssociationsRequest {
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof JournalApijournalListDisciplineAssociations
+     */
+    disciplineScheme: string
+    /**
+     * The query to perform
+     * @type DisciplinesAssociationsQuery
+     * @memberof JournalApijournalListDisciplineAssociations
+     */
+    disciplinesAssociationsQuery: DisciplinesAssociationsQuery
+}
+
 export interface JournalApiJournalListNotesRequest {
     /**
      * UUID of the journal to get notes for
@@ -1300,6 +1805,27 @@ export interface JournalApiJournalListNotesRequest {
      * @memberof JournalApijournalListNotes
      */
     offset?: number
+}
+
+export interface JournalApiJournalPutDisciplineAssociationRequest {
+    /**
+     * UUID of the journal to update
+     * @type string
+     * @memberof JournalApijournalPutDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof JournalApijournalPutDisciplineAssociation
+     */
+    disciplineScheme: string
+    /**
+     * The disciplines association to create
+     * @type DisciplinesAssociation
+     * @memberof JournalApijournalPutDisciplineAssociation
+     */
+    disciplinesAssociation: DisciplinesAssociation
 }
 
 export interface JournalApiJournalQueryRequest {
@@ -1397,6 +1923,24 @@ export class ObjectJournalApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for journals
+     * A list of allowed discipline schemes
+     * @param param the request object
+     */
+    public journalGetAllowedDisciplineSchemes(param: JournalApiJournalGetAllowedDisciplineSchemesRequest, options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        return this.api.journalGetAllowedDisciplineSchemes( options).toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for journals
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param param the request object
+     */
+    public journalGetAllowedDisciplines(param: JournalApiJournalGetAllowedDisciplinesRequest, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        return this.api.journalGetAllowedDisciplines(param.disciplineScheme, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
      * Get a list of allowed classifications that can be used when submitting a specified keyword group.
      * A list of allowed classifications for the specified keyword group
      * @param param the request object
@@ -1451,6 +1995,15 @@ export class ObjectJournalApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the journal with specific UUID.
+     * Get disciplines from the discipline scheme associated with the journal
+     * @param param the request object
+     */
+    public journalGetDisciplineAssociation(param: JournalApiJournalGetDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.journalGetDisciplineAssociation(param.uuid, param.disciplineScheme,  options).toPromise();
+    }
+
+    /**
      * Lists all orderings available to the journal endpoint. These values can be used by the order parameter.
      * Lists available orderings
      * @param param the request object
@@ -1469,12 +2022,30 @@ export class ObjectJournalApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with journals in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with journals
+     * @param param the request object
+     */
+    public journalListDisciplineAssociations(param: JournalApiJournalListDisciplineAssociationsRequest, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        return this.api.journalListDisciplineAssociations(param.disciplineScheme, param.disciplinesAssociationsQuery,  options).toPromise();
+    }
+
+    /**
      * Lists notes associated with the journal ordered by date (nulls last)
      * Lists notes
      * @param param the request object
      */
     public journalListNotes(param: JournalApiJournalListNotesRequest, options?: Configuration): Promise<NoteListResult> {
         return this.api.journalListNotes(param.uuid, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the journal with specific UUID.
+     * Update disciplines from the discipline scheme associated with the journal
+     * @param param the request object
+     */
+    public journalPutDisciplineAssociation(param: JournalApiJournalPutDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.journalPutDisciplineAssociation(param.uuid, param.disciplineScheme, param.disciplinesAssociation,  options).toPromise();
     }
 
     /**
@@ -1590,6 +2161,30 @@ export interface OrganizationApiOrganizationGetAllowedClassifiedImageTypesReques
 export interface OrganizationApiOrganizationGetAllowedCostCentersRequest {
 }
 
+export interface OrganizationApiOrganizationGetAllowedDisciplineSchemesRequest {
+}
+
+export interface OrganizationApiOrganizationGetAllowedDisciplinesRequest {
+    /**
+     * Identifier for the discipline scheme for organizations
+     * @type string
+     * @memberof OrganizationApiorganizationGetAllowedDisciplines
+     */
+    disciplineScheme: string
+    /**
+     * Number of returned disciplines per request
+     * @type number
+     * @memberof OrganizationApiorganizationGetAllowedDisciplines
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof OrganizationApiorganizationGetAllowedDisciplines
+     */
+    offset?: number
+}
+
 export interface OrganizationApiOrganizationGetAllowedEmailTypesRequest {
 }
 
@@ -1624,6 +2219,21 @@ export interface OrganizationApiOrganizationGetAllowedTypesRequest {
 }
 
 export interface OrganizationApiOrganizationGetAllowedWebAddressTypesRequest {
+}
+
+export interface OrganizationApiOrganizationGetDisciplineAssociationRequest {
+    /**
+     * UUID of the desired organization
+     * @type string
+     * @memberof OrganizationApiorganizationGetDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof OrganizationApiorganizationGetDisciplineAssociation
+     */
+    disciplineScheme: string
 }
 
 export interface OrganizationApiOrganizationGetFileRequest {
@@ -1665,6 +2275,21 @@ export interface OrganizationApiOrganizationListRequest {
     order?: string
 }
 
+export interface OrganizationApiOrganizationListDisciplineAssociationsRequest {
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof OrganizationApiorganizationListDisciplineAssociations
+     */
+    disciplineScheme: string
+    /**
+     * The query to perform
+     * @type DisciplinesAssociationsQuery
+     * @memberof OrganizationApiorganizationListDisciplineAssociations
+     */
+    disciplinesAssociationsQuery: DisciplinesAssociationsQuery
+}
+
 export interface OrganizationApiOrganizationListNotesRequest {
     /**
      * UUID of the organization to get notes for
@@ -1684,6 +2309,27 @@ export interface OrganizationApiOrganizationListNotesRequest {
      * @memberof OrganizationApiorganizationListNotes
      */
     offset?: number
+}
+
+export interface OrganizationApiOrganizationPutDisciplineAssociationRequest {
+    /**
+     * UUID of the organization to update
+     * @type string
+     * @memberof OrganizationApiorganizationPutDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof OrganizationApiorganizationPutDisciplineAssociation
+     */
+    disciplineScheme: string
+    /**
+     * The disciplines association to create
+     * @type DisciplinesAssociation
+     * @memberof OrganizationApiorganizationPutDisciplineAssociation
+     */
+    disciplinesAssociation: DisciplinesAssociation
 }
 
 export interface OrganizationApiOrganizationQueryRequest {
@@ -1826,6 +2472,24 @@ export class ObjectOrganizationApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for organizations
+     * A list of allowed discipline schemes
+     * @param param the request object
+     */
+    public organizationGetAllowedDisciplineSchemes(param: OrganizationApiOrganizationGetAllowedDisciplineSchemesRequest, options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        return this.api.organizationGetAllowedDisciplineSchemes( options).toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for organizations
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param param the request object
+     */
+    public organizationGetAllowedDisciplines(param: OrganizationApiOrganizationGetAllowedDisciplinesRequest, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        return this.api.organizationGetAllowedDisciplines(param.disciplineScheme, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
      * Get a list of allowed e-mail types that can be used for the 'emails.type' attribute of organizations
      * A list of allowed e-mail types
      * @param param the request object
@@ -1916,6 +2580,15 @@ export class ObjectOrganizationApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the organization with specific UUID.
+     * Get disciplines from the discipline scheme associated with the organization
+     * @param param the request object
+     */
+    public organizationGetDisciplineAssociation(param: OrganizationApiOrganizationGetDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.organizationGetDisciplineAssociation(param.uuid, param.disciplineScheme,  options).toPromise();
+    }
+
+    /**
      * Get file from the organization
      * Get file from the organization
      * @param param the request object
@@ -1943,12 +2616,30 @@ export class ObjectOrganizationApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with organizations in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with organizations
+     * @param param the request object
+     */
+    public organizationListDisciplineAssociations(param: OrganizationApiOrganizationListDisciplineAssociationsRequest, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        return this.api.organizationListDisciplineAssociations(param.disciplineScheme, param.disciplinesAssociationsQuery,  options).toPromise();
+    }
+
+    /**
      * Lists notes associated with an organization ordered by date (nulls last)
      * Lists notes
      * @param param the request object
      */
     public organizationListNotes(param: OrganizationApiOrganizationListNotesRequest, options?: Configuration): Promise<NoteListResult> {
         return this.api.organizationListNotes(param.uuid, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the organization with specific UUID.
+     * Update disciplines from the discipline scheme associated with the organization
+     * @param param the request object
+     */
+    public organizationPutDisciplineAssociation(param: OrganizationApiOrganizationPutDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.organizationPutDisciplineAssociation(param.uuid, param.disciplineScheme, param.disciplinesAssociation,  options).toPromise();
     }
 
     /**
@@ -2049,6 +2740,30 @@ export interface PersonApiPersonGetAllowedAddressTypesRequest {
 export interface PersonApiPersonGetAllowedClassifiedIdentifierTypesRequest {
 }
 
+export interface PersonApiPersonGetAllowedDisciplineSchemesRequest {
+}
+
+export interface PersonApiPersonGetAllowedDisciplinesRequest {
+    /**
+     * Identifier for the discipline scheme for persons
+     * @type string
+     * @memberof PersonApipersonGetAllowedDisciplines
+     */
+    disciplineScheme: string
+    /**
+     * Number of returned disciplines per request
+     * @type number
+     * @memberof PersonApipersonGetAllowedDisciplines
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof PersonApipersonGetAllowedDisciplines
+     */
+    offset?: number
+}
+
 export interface PersonApiPersonGetAllowedExternalPositionsAppointmentsRequest {
 }
 
@@ -2127,6 +2842,21 @@ export interface PersonApiPersonGetAllowedTitlesTypesRequest {
 export interface PersonApiPersonGetAllowedVisitingScholarAssociationsEmploymentTypesRequest {
 }
 
+export interface PersonApiPersonGetDisciplineAssociationRequest {
+    /**
+     * UUID of the desired person
+     * @type string
+     * @memberof PersonApipersonGetDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof PersonApipersonGetDisciplineAssociation
+     */
+    disciplineScheme: string
+}
+
 export interface PersonApiPersonGetFileRequest {
     /**
      * UUID of the person
@@ -2175,6 +2905,21 @@ export interface PersonApiPersonListRequest {
     order?: string
 }
 
+export interface PersonApiPersonListDisciplineAssociationsRequest {
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof PersonApipersonListDisciplineAssociations
+     */
+    disciplineScheme: string
+    /**
+     * The query to perform
+     * @type DisciplinesAssociationsQuery
+     * @memberof PersonApipersonListDisciplineAssociations
+     */
+    disciplinesAssociationsQuery: DisciplinesAssociationsQuery
+}
+
 export interface PersonApiPersonListNotesRequest {
     /**
      * UUID of the person to get notes for
@@ -2194,6 +2939,27 @@ export interface PersonApiPersonListNotesRequest {
      * @memberof PersonApipersonListNotes
      */
     offset?: number
+}
+
+export interface PersonApiPersonPutDisciplineAssociationRequest {
+    /**
+     * UUID of the person to update
+     * @type string
+     * @memberof PersonApipersonPutDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof PersonApipersonPutDisciplineAssociation
+     */
+    disciplineScheme: string
+    /**
+     * The disciplines association to create
+     * @type DisciplinesAssociation
+     * @memberof PersonApipersonPutDisciplineAssociation
+     */
+    disciplinesAssociation: DisciplinesAssociation
 }
 
 export interface PersonApiPersonQueryRequest {
@@ -2348,6 +3114,24 @@ export class ObjectPersonApi {
      */
     public personGetAllowedClassifiedIdentifierTypes(param: PersonApiPersonGetAllowedClassifiedIdentifierTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
         return this.api.personGetAllowedClassifiedIdentifierTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list fo a allowed discipline schemes for persons
+     * A list of allowed discipline schemes
+     * @param param the request object
+     */
+    public personGetAllowedDisciplineSchemes(param: PersonApiPersonGetAllowedDisciplineSchemesRequest, options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        return this.api.personGetAllowedDisciplineSchemes( options).toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for persons
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param param the request object
+     */
+    public personGetAllowedDisciplines(param: PersonApiPersonGetAllowedDisciplinesRequest, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        return this.api.personGetAllowedDisciplines(param.disciplineScheme, param.size, param.offset,  options).toPromise();
     }
 
     /**
@@ -2567,6 +3351,15 @@ export class ObjectPersonApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the person with specific UUID.
+     * Get disciplines from the discipline scheme associated with the person
+     * @param param the request object
+     */
+    public personGetDisciplineAssociation(param: PersonApiPersonGetDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.personGetDisciplineAssociation(param.uuid, param.disciplineScheme,  options).toPromise();
+    }
+
+    /**
      * Get file from the person
      * Get file from the person
      * @param param the request object
@@ -2603,12 +3396,30 @@ export class ObjectPersonApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with persons in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with persons
+     * @param param the request object
+     */
+    public personListDisciplineAssociations(param: PersonApiPersonListDisciplineAssociationsRequest, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        return this.api.personListDisciplineAssociations(param.disciplineScheme, param.disciplinesAssociationsQuery,  options).toPromise();
+    }
+
+    /**
      * Lists notes associated with an person ordered by date (nulls last)
      * Lists notes
      * @param param the request object
      */
     public personListNotes(param: PersonApiPersonListNotesRequest, options?: Configuration): Promise<NoteListResult> {
         return this.api.personListNotes(param.uuid, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the person with specific UUID.
+     * Update disciplines from the discipline scheme associated with the person
+     * @param param the request object
+     */
+    public personPutDisciplineAssociation(param: PersonApiPersonPutDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.personPutDisciplineAssociation(param.uuid, param.disciplineScheme, param.disciplinesAssociation,  options).toPromise();
     }
 
     /**
@@ -2709,6 +3520,30 @@ export interface PublisherApiPublisherGetRequest {
     uuid: string
 }
 
+export interface PublisherApiPublisherGetAllowedDisciplineSchemesRequest {
+}
+
+export interface PublisherApiPublisherGetAllowedDisciplinesRequest {
+    /**
+     * Identifier for the discipline scheme for publishers
+     * @type string
+     * @memberof PublisherApipublisherGetAllowedDisciplines
+     */
+    disciplineScheme: string
+    /**
+     * Number of returned disciplines per request
+     * @type number
+     * @memberof PublisherApipublisherGetAllowedDisciplines
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof PublisherApipublisherGetAllowedDisciplines
+     */
+    offset?: number
+}
+
 export interface PublisherApiPublisherGetAllowedKeywordGroupConfigurationClassificationsRequest {
     /**
      * Pure id of the keyword group configuration
@@ -2728,6 +3563,21 @@ export interface PublisherApiPublisherGetAllowedTypesRequest {
 }
 
 export interface PublisherApiPublisherGetAllowedWorkflowStepsRequest {
+}
+
+export interface PublisherApiPublisherGetDisciplineAssociationRequest {
+    /**
+     * UUID of the desired publisher
+     * @type string
+     * @memberof PublisherApipublisherGetDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof PublisherApipublisherGetDisciplineAssociation
+     */
+    disciplineScheme: string
 }
 
 export interface PublisherApiPublisherGetOrderingsRequest {
@@ -2754,6 +3604,21 @@ export interface PublisherApiPublisherListRequest {
     order?: string
 }
 
+export interface PublisherApiPublisherListDisciplineAssociationsRequest {
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof PublisherApipublisherListDisciplineAssociations
+     */
+    disciplineScheme: string
+    /**
+     * The query to perform
+     * @type DisciplinesAssociationsQuery
+     * @memberof PublisherApipublisherListDisciplineAssociations
+     */
+    disciplinesAssociationsQuery: DisciplinesAssociationsQuery
+}
+
 export interface PublisherApiPublisherListNotesRequest {
     /**
      * UUID of the publisher to get notes for
@@ -2773,6 +3638,27 @@ export interface PublisherApiPublisherListNotesRequest {
      * @memberof PublisherApipublisherListNotes
      */
     offset?: number
+}
+
+export interface PublisherApiPublisherPutDisciplineAssociationRequest {
+    /**
+     * UUID of the publisher to update
+     * @type string
+     * @memberof PublisherApipublisherPutDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof PublisherApipublisherPutDisciplineAssociation
+     */
+    disciplineScheme: string
+    /**
+     * The disciplines association to create
+     * @type DisciplinesAssociation
+     * @memberof PublisherApipublisherPutDisciplineAssociation
+     */
+    disciplinesAssociation: DisciplinesAssociation
 }
 
 export interface PublisherApiPublisherQueryRequest {
@@ -2855,6 +3741,24 @@ export class ObjectPublisherApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for publishers
+     * A list of allowed discipline schemes
+     * @param param the request object
+     */
+    public publisherGetAllowedDisciplineSchemes(param: PublisherApiPublisherGetAllowedDisciplineSchemesRequest, options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        return this.api.publisherGetAllowedDisciplineSchemes( options).toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for publishers
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param param the request object
+     */
+    public publisherGetAllowedDisciplines(param: PublisherApiPublisherGetAllowedDisciplinesRequest, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        return this.api.publisherGetAllowedDisciplines(param.disciplineScheme, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
      * Get a list of allowed classifications that can be used when submitting a specified keyword group.
      * A list of allowed classifications for the specified keyword group
      * @param param the request object
@@ -2900,6 +3804,15 @@ export class ObjectPublisherApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the publisher with specific UUID.
+     * Get disciplines from the discipline scheme associated with the publisher
+     * @param param the request object
+     */
+    public publisherGetDisciplineAssociation(param: PublisherApiPublisherGetDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.publisherGetDisciplineAssociation(param.uuid, param.disciplineScheme,  options).toPromise();
+    }
+
+    /**
      * Lists all orderings available to the publisher endpoint. These values can be used by the order parameter.
      * Lists available orderings
      * @param param the request object
@@ -2918,12 +3831,30 @@ export class ObjectPublisherApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with publishers in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with publishers
+     * @param param the request object
+     */
+    public publisherListDisciplineAssociations(param: PublisherApiPublisherListDisciplineAssociationsRequest, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        return this.api.publisherListDisciplineAssociations(param.disciplineScheme, param.disciplinesAssociationsQuery,  options).toPromise();
+    }
+
+    /**
      * Lists notes associated with a publisher ordered by date (nulls last)
      * Lists notes
      * @param param the request object
      */
     public publisherListNotes(param: PublisherApiPublisherListNotesRequest, options?: Configuration): Promise<NoteListResult> {
         return this.api.publisherListNotes(param.uuid, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the publisher with specific UUID.
+     * Update disciplines from the discipline scheme associated with the publisher
+     * @param param the request object
+     */
+    public publisherPutDisciplineAssociation(param: PublisherApiPublisherPutDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.publisherPutDisciplineAssociation(param.uuid, param.disciplineScheme, param.disciplinesAssociation,  options).toPromise();
     }
 
     /**
@@ -2951,6 +3882,1116 @@ export class ObjectPublisherApi {
      */
     public publishersGetAllowedCountries(param: PublisherApiPublishersGetAllowedCountriesRequest, options?: Configuration): Promise<ClassificationRefList> {
         return this.api.publishersGetAllowedCountries( options).toPromise();
+    }
+
+}
+
+import { ObservableResearchOutputApi } from "./ObservableAPI";
+import { ResearchOutputApiRequestFactory, ResearchOutputApiResponseProcessor} from "../apis/ResearchOutputApi";
+
+export interface ResearchOutputApiResearchOutputCreateRequest {
+    /**
+     * The content to create
+     * @type ResearchOutput
+     * @memberof ResearchOutputApiresearchOutputCreate
+     */
+    researchOutput: ResearchOutput
+}
+
+export interface ResearchOutputApiResearchOutputCreateNoteRequest {
+    /**
+     * UUID of the research output to add note to
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputCreateNote
+     */
+    uuid: string
+    /**
+     * The note to create
+     * @type Note
+     * @memberof ResearchOutputApiresearchOutputCreateNote
+     */
+    note: Note
+}
+
+export interface ResearchOutputApiResearchOutputDeleteRequest {
+    /**
+     * UUID of the research output
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputDelete
+     */
+    uuid: string
+}
+
+export interface ResearchOutputApiResearchOutputDependentsRequest {
+    /**
+     * UUID of the research output
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputDependents
+     */
+    uuid: string
+    /**
+     * Default: false. Setting this to true will add links and names to the output but will also have an impact on performance. Use with coution.
+     * @type boolean
+     * @memberof ResearchOutputApiresearchOutputDependents
+     */
+    verbose?: boolean
+}
+
+export interface ResearchOutputApiResearchOutputFileUploadsRequest {
+    /**
+     * 
+     * @type HttpFile
+     * @memberof ResearchOutputApiresearchOutputFileUploads
+     */
+    body: HttpFile
+    /**
+     * Set the mime type for the file
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputFileUploads
+     */
+    contentType?: string
+}
+
+export interface ResearchOutputApiResearchOutputGetRequest {
+    /**
+     * UUID of the desired research output
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputGet
+     */
+    uuid: string
+}
+
+export interface ResearchOutputApiResearchOutputGetAllowedCountriesRequest {
+}
+
+export interface ResearchOutputApiResearchOutputGetAllowedKeywordGroupConfigurationClassificationsRequest {
+    /**
+     * Pure id of the keyword group configuration
+     * @type number
+     * @memberof ResearchOutputApiresearchOutputGetAllowedKeywordGroupConfigurationClassifications
+     */
+    id: number
+}
+
+export interface ResearchOutputApiResearchOutputGetAllowedKeywordGroupConfigurationsRequest {
+}
+
+export interface ResearchOutputApiResearchOutputGetAllowedLocalesRequest {
+}
+
+export interface ResearchOutputApiResearchOutputGetAllowedPeerReviewConfigurationsRequest {
+}
+
+export interface ResearchOutputApiResearchOutputGetAllowedTemplatesRequest {
+}
+
+export interface ResearchOutputApiResearchOutputGetAllowedTypesRequest {
+}
+
+export interface ResearchOutputApiResearchOutputGetAllowedWorkflowStepsRequest {
+}
+
+export interface ResearchOutputApiResearchOutputGetFileRequest {
+    /**
+     * UUID of the research output
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputGetFile
+     */
+    uuid: string
+    /**
+     * File id 
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputGetFile
+     */
+    fileId: string
+}
+
+export interface ResearchOutputApiResearchOutputGetOrderingsRequest {
+}
+
+export interface ResearchOutputApiResearchOutputListRequest {
+    /**
+     * Number of returned  research outputs per request.
+     * @type number
+     * @memberof ResearchOutputApiresearchOutputList
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof ResearchOutputApiresearchOutputList
+     */
+    offset?: number
+    /**
+     * The order of the list, must be a value from getResearchOutputOrderings
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputList
+     */
+    order?: string
+}
+
+export interface ResearchOutputApiResearchOutputListDisciplineAssociationsRequest {
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputListDisciplineAssociations
+     */
+    disciplineScheme: string
+    /**
+     * The query to perform
+     * @type DisciplinesAssociationsQuery
+     * @memberof ResearchOutputApiresearchOutputListDisciplineAssociations
+     */
+    disciplinesAssociationsQuery: DisciplinesAssociationsQuery
+}
+
+export interface ResearchOutputApiResearchOutputListNotesRequest {
+    /**
+     * UUID of the research output to get notes for
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputListNotes
+     */
+    uuid: string
+    /**
+     * Number of returned notes per request
+     * @type number
+     * @memberof ResearchOutputApiresearchOutputListNotes
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof ResearchOutputApiresearchOutputListNotes
+     */
+    offset?: number
+}
+
+export interface ResearchOutputApiResearchOutputPutDisciplineAssociationRequest {
+    /**
+     * UUID of the research output to update
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputPutDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputPutDisciplineAssociation
+     */
+    disciplineScheme: string
+    /**
+     * The disciplines association to create
+     * @type DisciplinesAssociation
+     * @memberof ResearchOutputApiresearchOutputPutDisciplineAssociation
+     */
+    disciplinesAssociation: DisciplinesAssociation
+}
+
+export interface ResearchOutputApiResearchOutputQueryRequest {
+    /**
+     * The query to perform
+     * @type ResearchOutputsQuery
+     * @memberof ResearchOutputApiresearchOutputQuery
+     */
+    researchOutputsQuery: ResearchOutputsQuery
+}
+
+export interface ResearchOutputApiResearchOutputUpdateRequest {
+    /**
+     * UUID of the research output to update
+     * @type string
+     * @memberof ResearchOutputApiresearchOutputUpdate
+     */
+    uuid: string
+    /**
+     * The content to update
+     * @type ResearchOutput
+     * @memberof ResearchOutputApiresearchOutputUpdate
+     */
+    researchOutput: ResearchOutput
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedAdditionalFileAccessTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedAdditionalFileLicenseTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedArticleProcessingChargeCurrenciesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedBookAnthologyContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedBookAnthologyDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedCaseNoteSourcesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedCategoriesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToBookAnthologyContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToBookAnthologyDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToConferenceContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToConferenceDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToJournalContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToJournalDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToMemorandumContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToMemorandumDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToPeriodicalContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributionToPeriodicalDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedContributorCountriesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedDisciplineSchemesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedDisciplinesRequest {
+    /**
+     * Identifier for the discipline scheme for research output
+     * @type string
+     * @memberof ResearchOutputApiresearchoutputGetAllowedDisciplines
+     */
+    disciplineScheme: string
+    /**
+     * Number of returned disciplines per request
+     * @type number
+     * @memberof ResearchOutputApiresearchoutputGetAllowedDisciplines
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof ResearchOutputApiresearchoutputGetAllowedDisciplines
+     */
+    offset?: number
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedElectronicVersionAccessTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedElectronicVersionLicenseTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedElectronicVersionVersionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedLanguagesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedLinkTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedMainResearchAreasRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedMemorandumContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedMemorandumDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedNonTextualContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedNonTextualDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedOpenAccessPermissionsRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedOtherContributionContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedOtherContributionDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedOutputMediasRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedPatentContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedPatentDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedPublicationStatusesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedQualificationsRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedSupervisorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedThesisContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedThesisDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedWorkingPaperContributorRolesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetAllowedWorkingPaperDescriptionTypesRequest {
+}
+
+export interface ResearchOutputApiResearchoutputGetDisciplineAssociationRequest {
+    /**
+     * UUID of the desired research output
+     * @type string
+     * @memberof ResearchOutputApiresearchoutputGetDisciplineAssociation
+     */
+    uuid: string
+    /**
+     * Identifier for the discipline scheme
+     * @type string
+     * @memberof ResearchOutputApiresearchoutputGetDisciplineAssociation
+     */
+    disciplineScheme: string
+}
+
+export class ObjectResearchOutputApi {
+    private api: ObservableResearchOutputApi
+
+    public constructor(configuration: Configuration, requestFactory?: ResearchOutputApiRequestFactory, responseProcessor?: ResearchOutputApiResponseProcessor) {
+        this.api = new ObservableResearchOutputApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create research output
+     * Create research output
+     * @param param the request object
+     */
+    public researchOutputCreate(param: ResearchOutputApiResearchOutputCreateRequest, options?: Configuration): Promise<ResearchOutput> {
+        return this.api.researchOutputCreate(param.researchOutput,  options).toPromise();
+    }
+
+    /**
+     * Create note and associate it with a research output
+     * Create note
+     * @param param the request object
+     */
+    public researchOutputCreateNote(param: ResearchOutputApiResearchOutputCreateNoteRequest, options?: Configuration): Promise<Note> {
+        return this.api.researchOutputCreateNote(param.uuid, param.note,  options).toPromise();
+    }
+
+    /**
+     * Delete research output with specific UUID.
+     * Delete research output
+     * @param param the request object
+     */
+    public researchOutputDelete(param: ResearchOutputApiResearchOutputDeleteRequest, options?: Configuration): Promise<void> {
+        return this.api.researchOutputDelete(param.uuid,  options).toPromise();
+    }
+
+    /**
+     * Lists all dependents to a research output with the specified UUID. If the user dont have access to view all the dependent content, an authorization error will be thrown. 
+     * Lists all dependents to a research output
+     * @param param the request object
+     */
+    public researchOutputDependents(param: ResearchOutputApiResearchOutputDependentsRequest, options?: Configuration): Promise<ContentRefListResult> {
+        return this.api.researchOutputDependents(param.uuid, param.verbose,  options).toPromise();
+    }
+
+    /**
+     * Uploads file for the research output
+     * Upload file to a specific research output
+     * @param param the request object
+     */
+    public researchOutputFileUploads(param: ResearchOutputApiResearchOutputFileUploadsRequest, options?: Configuration): Promise<void> {
+        return this.api.researchOutputFileUploads(param.body, param.contentType,  options).toPromise();
+    }
+
+    /**
+     * Get research output with specific UUID.
+     * Get research output
+     * @param param the request object
+     */
+    public researchOutputGet(param: ResearchOutputApiResearchOutputGetRequest, options?: Configuration): Promise<ResearchOutput> {
+        return this.api.researchOutputGet(param.uuid,  options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed countries that can be used for the 'countries' attribute of research outputs
+     * A list of allowed countries
+     * @param param the request object
+     */
+    public researchOutputGetAllowedCountries(param: ResearchOutputApiResearchOutputGetAllowedCountriesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchOutputGetAllowedCountries( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed classifications that can be used when submitting a specified keyword group.
+     * A list of allowed classifications for the specified keyword group
+     * @param param the request object
+     */
+    public researchOutputGetAllowedKeywordGroupConfigurationClassifications(param: ResearchOutputApiResearchOutputGetAllowedKeywordGroupConfigurationClassificationsRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchOutputGetAllowedKeywordGroupConfigurationClassifications(param.id,  options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed keyword group configurations that can be used when submitting keyword groups.
+     * A list of keyword group configurations
+     * @param param the request object
+     */
+    public researchOutputGetAllowedKeywordGroupConfigurations(param: ResearchOutputApiResearchOutputGetAllowedKeywordGroupConfigurationsRequest, options?: Configuration): Promise<KeywordGroupConfigurationList> {
+        return this.api.researchOutputGetAllowedKeywordGroupConfigurations( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed locales that can be used when submitting localized string entities.
+     * A list of allowed locales in localized strings
+     * @param param the request object
+     */
+    public researchOutputGetAllowedLocales(param: ResearchOutputApiResearchOutputGetAllowedLocalesRequest, options?: Configuration): Promise<LocalesList> {
+        return this.api.researchOutputGetAllowedLocales( options).toPromise();
+    }
+
+    /**
+     * Get a list of peer review configurations that describe the allowed combinations of values for the interrelated fields: type, category, peerReview, and internationalPeerReview
+     * A list of peer review configurations
+     * @param param the request object
+     */
+    public researchOutputGetAllowedPeerReviewConfigurations(param: ResearchOutputApiResearchOutputGetAllowedPeerReviewConfigurationsRequest, options?: Configuration): Promise<ResearchOutputPeerReviewConfigurationListResult> {
+        return this.api.researchOutputGetAllowedPeerReviewConfigurations( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed templates that can be used for research outputs, such as 'ContributionToJournal' or 'BookAnthology'. Some of the templates that exists in the API specification may be disabled for the Pure installation.
+     * A list of allowed research output templates
+     * @param param the request object
+     */
+    public researchOutputGetAllowedTemplates(param: ResearchOutputApiResearchOutputGetAllowedTemplatesRequest, options?: Configuration): Promise<AllowedTemplateListResult> {
+        return this.api.researchOutputGetAllowedTemplates( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed types that can be used for the 'type' attribute of research outputs
+     * A list of allowed research output types
+     * @param param the request object
+     */
+    public researchOutputGetAllowedTypes(param: ResearchOutputApiResearchOutputGetAllowedTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchOutputGetAllowedTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed workflow steps that can be used for the 'workflow' attribute of research outputs
+     * A list of allowed workflow steps
+     * @param param the request object
+     */
+    public researchOutputGetAllowedWorkflowSteps(param: ResearchOutputApiResearchOutputGetAllowedWorkflowStepsRequest, options?: Configuration): Promise<WorkflowListResult> {
+        return this.api.researchOutputGetAllowedWorkflowSteps( options).toPromise();
+    }
+
+    /**
+     * Get file from the research output
+     * Get file from the research output
+     * @param param the request object
+     */
+    public researchOutputGetFile(param: ResearchOutputApiResearchOutputGetFileRequest, options?: Configuration): Promise<HttpFile> {
+        return this.api.researchOutputGetFile(param.uuid, param.fileId,  options).toPromise();
+    }
+
+    /**
+     * Lists all orderings available to the research output endpoint. These values can be used by the order parameter.
+     * Lists available orderings
+     * @param param the request object
+     */
+    public researchOutputGetOrderings(param: ResearchOutputApiResearchOutputGetOrderingsRequest, options?: Configuration): Promise<OrderingsList> {
+        return this.api.researchOutputGetOrderings( options).toPromise();
+    }
+
+    /**
+     * Lists all  research outputs in the Pure instance. If you need to filter the research outputs returned, see the POST version which supports additional filtering.
+     * Lists all  research outputs
+     * @param param the request object
+     */
+    public researchOutputList(param: ResearchOutputApiResearchOutputListRequest, options?: Configuration): Promise<ResearchOutputListResult> {
+        return this.api.researchOutputList(param.size, param.offset, param.order,  options).toPromise();
+    }
+
+    /**
+     * Lists disciplines from the discipline scheme associated with research outputs in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with research outputs
+     * @param param the request object
+     */
+    public researchOutputListDisciplineAssociations(param: ResearchOutputApiResearchOutputListDisciplineAssociationsRequest, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        return this.api.researchOutputListDisciplineAssociations(param.disciplineScheme, param.disciplinesAssociationsQuery,  options).toPromise();
+    }
+
+    /**
+     * Lists notes associated with a research output ordered by date (nulls last)
+     * Lists notes
+     * @param param the request object
+     */
+    public researchOutputListNotes(param: ResearchOutputApiResearchOutputListNotesRequest, options?: Configuration): Promise<NoteListResult> {
+        return this.api.researchOutputListNotes(param.uuid, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the research output with specific UUID.
+     * Update disciplines from the discipline scheme associated with the research output
+     * @param param the request object
+     */
+    public researchOutputPutDisciplineAssociation(param: ResearchOutputApiResearchOutputPutDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.researchOutputPutDisciplineAssociation(param.uuid, param.disciplineScheme, param.disciplinesAssociation,  options).toPromise();
+    }
+
+    /**
+     * Lists research outputs in the Pure instance that matches the provided query, similar to the GET version, instead of using parameters to alter the response, an JSON document is posted with the request. The JSON document contains fields for all the parameters available for the GET version, but also additional filtering options.
+     * Query operation for research outputs
+     * @param param the request object
+     */
+    public researchOutputQuery(param: ResearchOutputApiResearchOutputQueryRequest, options?: Configuration): Promise<ResearchOutputListResult> {
+        return this.api.researchOutputQuery(param.researchOutputsQuery,  options).toPromise();
+    }
+
+    /**
+     * Update research outputs with specific UUID.
+     * Update research outputs
+     * @param param the request object
+     */
+    public researchOutputUpdate(param: ResearchOutputApiResearchOutputUpdateRequest, options?: Configuration): Promise<ResearchOutput> {
+        return this.api.researchOutputUpdate(param.uuid, param.researchOutput,  options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed access types for additional files on research outputs
+     * A list of allowed access types
+     * @param param the request object
+     */
+    public researchoutputGetAllowedAdditionalFileAccessTypes(param: ResearchOutputApiResearchoutputGetAllowedAdditionalFileAccessTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedAdditionalFileAccessTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed license types for additional files on research outputs
+     * A list of allowed license types
+     * @param param the request object
+     */
+    public researchoutputGetAllowedAdditionalFileLicenseTypes(param: ResearchOutputApiResearchoutputGetAllowedAdditionalFileLicenseTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedAdditionalFileLicenseTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed article processing charge currencies on research outputs
+     * A list of allowed article processing charge currencies
+     * @param param the request object
+     */
+    public researchoutputGetAllowedArticleProcessingChargeCurrencies(param: ResearchOutputApiResearchoutputGetAllowedArticleProcessingChargeCurrenciesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedArticleProcessingChargeCurrencies( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the book anthology subtype of research outputs
+     * A list of allowed contributor roles for the book anthology subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedBookAnthologyContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedBookAnthologyContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedBookAnthologyContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the book anthology subtype of research outputs
+     * A list of allowed description types for the book anthology subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedBookAnthologyDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedBookAnthologyDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedBookAnthologyDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed case note sources for select subtypes of research outputs
+     * A list of allowed case note sources
+     * @param param the request object
+     */
+    public researchoutputGetAllowedCaseNoteSources(param: ResearchOutputApiResearchoutputGetAllowedCaseNoteSourcesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedCaseNoteSources( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed categories on research outputs
+     * A list of allowed categories
+     * @param param the request object
+     */
+    public researchoutputGetAllowedCategories(param: ResearchOutputApiResearchoutputGetAllowedCategoriesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedCategories( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to book anthology subtype of research outputs
+     * A list of allowed contributor roles for the contribution to book anthology subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToBookAnthologyContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedContributionToBookAnthologyContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToBookAnthologyContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to book anthology subtype of research outputs
+     * A list of allowed description types for the contribution to book anthology subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToBookAnthologyDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedContributionToBookAnthologyDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToBookAnthologyDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to conference subtype of research outputs
+     * A list of allowed contributor roles for the contribution to conference subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToConferenceContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedContributionToConferenceContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToConferenceContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to conference subtype of research outputs
+     * A list of allowed description types for the contribution to conference subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToConferenceDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedContributionToConferenceDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToConferenceDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to journal subtype of research outputs
+     * A list of allowed contributor roles for the contribution to journal subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToJournalContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedContributionToJournalContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToJournalContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to journal subtype of research outputs
+     * A list of allowed description types for the contribution to journal subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToJournalDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedContributionToJournalDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToJournalDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to memorandum subtype of research outputs
+     * A list of allowed contributor roles for the contribution to memorandum subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToMemorandumContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedContributionToMemorandumContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToMemorandumContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to memorandum subtype of research outputs
+     * A list of allowed description types for the contribution to memorandum subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToMemorandumDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedContributionToMemorandumDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToMemorandumDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to periodical subtype of research outputs
+     * A list of allowed contributor roles for the contribution to periodical subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToPeriodicalContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedContributionToPeriodicalContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToPeriodicalContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to periodical subtype of research outputs
+     * A list of allowed description types for the contribution to periodical subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributionToPeriodicalDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedContributionToPeriodicalDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributionToPeriodicalDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed countries for contributors on research outputs
+     * A list of allowed contributor countries
+     * @param param the request object
+     */
+    public researchoutputGetAllowedContributorCountries(param: ResearchOutputApiResearchoutputGetAllowedContributorCountriesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedContributorCountries( options).toPromise();
+    }
+
+    /**
+     * Get a list fo a allowed discipline schemes for research outputs
+     * A list of allowed discipline schemes
+     * @param param the request object
+     */
+    public researchoutputGetAllowedDisciplineSchemes(param: ResearchOutputApiResearchoutputGetAllowedDisciplineSchemesRequest, options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        return this.api.researchoutputGetAllowedDisciplineSchemes( options).toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for research outputs
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param param the request object
+     */
+    public researchoutputGetAllowedDisciplines(param: ResearchOutputApiResearchoutputGetAllowedDisciplinesRequest, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        return this.api.researchoutputGetAllowedDisciplines(param.disciplineScheme, param.size, param.offset,  options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed access types for electronic versions on research outputs
+     * A list of allowed access types
+     * @param param the request object
+     */
+    public researchoutputGetAllowedElectronicVersionAccessTypes(param: ResearchOutputApiResearchoutputGetAllowedElectronicVersionAccessTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedElectronicVersionAccessTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed license types for electronic versions on research outputs
+     * A list of allowed license types
+     * @param param the request object
+     */
+    public researchoutputGetAllowedElectronicVersionLicenseTypes(param: ResearchOutputApiResearchoutputGetAllowedElectronicVersionLicenseTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedElectronicVersionLicenseTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed version types for electronic versions on research outputs
+     * A list of allowed version types
+     * @param param the request object
+     */
+    public researchoutputGetAllowedElectronicVersionVersionTypes(param: ResearchOutputApiResearchoutputGetAllowedElectronicVersionVersionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedElectronicVersionVersionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed languages on research outputs
+     * A list of allowed languages
+     * @param param the request object
+     */
+    public researchoutputGetAllowedLanguages(param: ResearchOutputApiResearchoutputGetAllowedLanguagesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedLanguages( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed link types on research outputs
+     * A list of allowed link types
+     * @param param the request object
+     */
+    public researchoutputGetAllowedLinkTypes(param: ResearchOutputApiResearchoutputGetAllowedLinkTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedLinkTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed main research areas on research outputs
+     * A list of allowed main research areas
+     * @param param the request object
+     */
+    public researchoutputGetAllowedMainResearchAreas(param: ResearchOutputApiResearchoutputGetAllowedMainResearchAreasRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedMainResearchAreas( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the memorandum subtype of research outputs
+     * A list of allowed contributor roles for the memorandum subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedMemorandumContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedMemorandumContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedMemorandumContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the memorandum subtype of research outputs
+     * A list of allowed description types for the memorandum subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedMemorandumDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedMemorandumDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedMemorandumDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the non-textual subtype of research outputs
+     * A list of allowed contributor roles for the non-textual subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedNonTextualContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedNonTextualContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedNonTextualContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the non-textual subtype of research outputs
+     * A list of allowed description types for the non-textual subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedNonTextualDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedNonTextualDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedNonTextualDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed open access permissions on research outputs
+     * A list of allowed open access permissions
+     * @param param the request object
+     */
+    public researchoutputGetAllowedOpenAccessPermissions(param: ResearchOutputApiResearchoutputGetAllowedOpenAccessPermissionsRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedOpenAccessPermissions( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the other contribution subtype of research outputs
+     * A list of allowed contributor roles for the other contribution subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedOtherContributionContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedOtherContributionContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedOtherContributionContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the other contribution subtype of research outputs
+     * A list of allowed description types for the other contribution subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedOtherContributionDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedOtherContributionDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedOtherContributionDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed output medias for the non-textual subtype of research outputs
+     * A list of allowed output medias
+     * @param param the request object
+     */
+    public researchoutputGetAllowedOutputMedias(param: ResearchOutputApiResearchoutputGetAllowedOutputMediasRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedOutputMedias( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the patent subtype of research outputs
+     * A list of allowed contributor roles for the patent subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedPatentContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedPatentContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedPatentContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the patent subtype of research outputs
+     * A list of allowed description types for the patent subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedPatentDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedPatentDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedPatentDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed publication statuses on research output
+     * A list of allowed publication statuses
+     * @param param the request object
+     */
+    public researchoutputGetAllowedPublicationStatuses(param: ResearchOutputApiResearchoutputGetAllowedPublicationStatusesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedPublicationStatuses( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed qualifications for the thesis subtype of research outputs
+     * A list of allowed qualifications
+     * @param param the request object
+     */
+    public researchoutputGetAllowedQualifications(param: ResearchOutputApiResearchoutputGetAllowedQualificationsRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedQualifications( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed supervisors roles for the thesis subtype of research outputs
+     * A list of allowed supervisor roles
+     * @param param the request object
+     */
+    public researchoutputGetAllowedSupervisorRoles(param: ResearchOutputApiResearchoutputGetAllowedSupervisorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedSupervisorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the thesis subtype of research outputs
+     * A list of allowed contributor roles for the thesis subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedThesisContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedThesisContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedThesisContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the thesis subtype of research outputs
+     * A list of allowed description types for the thesis subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedThesisDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedThesisDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedThesisDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the working paper subtype of research outputs
+     * A list of allowed contributor roles for the working paper subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedWorkingPaperContributorRoles(param: ResearchOutputApiResearchoutputGetAllowedWorkingPaperContributorRolesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedWorkingPaperContributorRoles( options).toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the working paper subtype of research outputs
+     * A list of allowed description types for the working paper subtype
+     * @param param the request object
+     */
+    public researchoutputGetAllowedWorkingPaperDescriptionTypes(param: ResearchOutputApiResearchoutputGetAllowedWorkingPaperDescriptionTypesRequest, options?: Configuration): Promise<ClassificationRefList> {
+        return this.api.researchoutputGetAllowedWorkingPaperDescriptionTypes( options).toPromise();
+    }
+
+    /**
+     * Get disciplines from the discipline scheme associated with the research output with specific UUID.
+     * Get disciplinesfrom the discipline scheme associated with the research output
+     * @param param the request object
+     */
+    public researchoutputGetDisciplineAssociation(param: ResearchOutputApiResearchoutputGetDisciplineAssociationRequest, options?: Configuration): Promise<DisciplinesAssociation> {
+        return this.api.researchoutputGetDisciplineAssociation(param.uuid, param.disciplineScheme,  options).toPromise();
+    }
+
+}
+
+import { ObservableUserApi } from "./ObservableAPI";
+import { UserApiRequestFactory, UserApiResponseProcessor} from "../apis/UserApi";
+
+export interface UserApiUserCreateRequest {
+    /**
+     * The content to create
+     * @type User
+     * @memberof UserApiuserCreate
+     */
+    user: User
+}
+
+export interface UserApiUserDeleteRequest {
+    /**
+     * UUID of the user
+     * @type string
+     * @memberof UserApiuserDelete
+     */
+    uuid: string
+}
+
+export interface UserApiUserGetRequest {
+    /**
+     * UUID of the desired user
+     * @type string
+     * @memberof UserApiuserGet
+     */
+    uuid: string
+}
+
+export interface UserApiUserListRequest {
+    /**
+     * Number of returned users per request.
+     * @type number
+     * @memberof UserApiuserList
+     */
+    size?: number
+    /**
+     * The offset for the returned list. 0 or null value is from the start
+     * @type number
+     * @memberof UserApiuserList
+     */
+    offset?: number
+    /**
+     * The order of the list, must be a value from user_getOrderings
+     * @type string
+     * @memberof UserApiuserList
+     */
+    order?: string
+}
+
+export interface UserApiUserUpdateRequest {
+    /**
+     * UUID of the user to update
+     * @type string
+     * @memberof UserApiuserUpdate
+     */
+    uuid: string
+    /**
+     * The content to update
+     * @type User
+     * @memberof UserApiuserUpdate
+     */
+    user: User
+}
+
+export class ObjectUserApi {
+    private api: ObservableUserApi
+
+    public constructor(configuration: Configuration, requestFactory?: UserApiRequestFactory, responseProcessor?: UserApiResponseProcessor) {
+        this.api = new ObservableUserApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create user
+     * Create user
+     * @param param the request object
+     */
+    public userCreate(param: UserApiUserCreateRequest, options?: Configuration): Promise<User> {
+        return this.api.userCreate(param.user,  options).toPromise();
+    }
+
+    /**
+     * Delete user with specific UUID.
+     * Delete user
+     * @param param the request object
+     */
+    public userDelete(param: UserApiUserDeleteRequest, options?: Configuration): Promise<void> {
+        return this.api.userDelete(param.uuid,  options).toPromise();
+    }
+
+    /**
+     * Get user UUID.
+     * Get user
+     * @param param the request object
+     */
+    public userGet(param: UserApiUserGetRequest, options?: Configuration): Promise<User> {
+        return this.api.userGet(param.uuid,  options).toPromise();
+    }
+
+    /**
+     * Lists all users in the Pure instance. If you need to filter the users returned, see the POST version which supports additional filtering.
+     * Lists all users
+     * @param param the request object
+     */
+    public userList(param: UserApiUserListRequest, options?: Configuration): Promise<UserListResult> {
+        return this.api.userList(param.size, param.offset, param.order,  options).toPromise();
+    }
+
+    /**
+     * Update user with specific UUID.
+     * Update user
+     * @param param the request object
+     */
+    public userUpdate(param: UserApiUserUpdateRequest, options?: Configuration): Promise<User> {
+        return this.api.userUpdate(param.uuid, param.user,  options).toPromise();
     }
 
 }

@@ -8,6 +8,11 @@ import {isCodeInRange} from '../util';
 
 import { ClassificationRefList } from '../models/ClassificationRefList';
 import { ContentRefListResult } from '../models/ContentRefListResult';
+import { DisciplinesAssociation } from '../models/DisciplinesAssociation';
+import { DisciplinesAssociationListResult } from '../models/DisciplinesAssociationListResult';
+import { DisciplinesAssociationsQuery } from '../models/DisciplinesAssociationsQuery';
+import { DisciplinesDisciplineListResult } from '../models/DisciplinesDisciplineListResult';
+import { DisciplinesDisciplineSchemeListResult } from '../models/DisciplinesDisciplineSchemeListResult';
 import { Journal } from '../models/Journal';
 import { JournalListResult } from '../models/JournalListResult';
 import { JournalsQuery } from '../models/JournalsQuery';
@@ -325,6 +330,90 @@ export class JournalApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for journals
+     * A list of allowed discipline schemes
+     */
+    public async journalGetAllowedDisciplineSchemes(options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // Path Params
+        const localVarPath = '/journals/disciplines/allowed-discipline-schemes';
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for journals
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for journals
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public async journalGetAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling journalGetAllowedDisciplines.');
+        }
+
+
+
+
+        // Path Params
+        const localVarPath = '/journals/disciplines/{discipline-scheme}/allowed-disciplines'
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+        if (size !== undefined) {
+            requestContext.setQueryParam("size", ObjectSerializer.serialize(size, "number", "int32"));
+        }
+        if (offset !== undefined) {
+            requestContext.setQueryParam("offset", ObjectSerializer.serialize(offset, "number", "int32"));
+        }
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Get a list of allowed classifications that can be used when submitting a specified keyword group.
      * A list of allowed classifications for the specified keyword group
      * @param id Pure id of the keyword group configuration
@@ -531,6 +620,55 @@ export class JournalApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the journal with specific UUID.
+     * Get disciplines from the discipline scheme associated with the journal
+     * @param uuid UUID of the desired journal
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public async journalGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'uuid' is not null or undefined
+        if (uuid === null || uuid === undefined) {
+            throw new RequiredError('Required parameter uuid was null or undefined when calling journalGetDisciplineAssociation.');
+        }
+
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling journalGetDisciplineAssociation.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/journals/{uuid}/disciplines/{discipline-scheme}'
+            .replace('{' + 'uuid' + '}', encodeURIComponent(String(uuid)))
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Lists all orderings available to the journal endpoint. These values can be used by the order parameter.
      * Lists available orderings
      */
@@ -612,6 +750,63 @@ export class JournalApiRequestFactory extends BaseAPIRequestFactory {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with journals in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with journals
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public async journalListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling journalListDisciplineAssociations.');
+        }
+
+
+        // verify required parameter 'disciplinesAssociationsQuery' is not null or undefined
+        if (disciplinesAssociationsQuery === null || disciplinesAssociationsQuery === undefined) {
+            throw new RequiredError('Required parameter disciplinesAssociationsQuery was null or undefined when calling journalListDisciplineAssociations.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/journals/disciplines/{discipline-scheme}/search'
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(disciplinesAssociationsQuery, "DisciplinesAssociationsQuery", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
      * Lists notes associated with the journal ordered by date (nulls last)
      * Lists notes
      * @param uuid UUID of the journal to get notes for
@@ -651,6 +846,71 @@ export class JournalApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Body Params
+
+        let authMethod = null;
+        // Apply auth methods
+        authMethod = config.authMethods["api-key"]
+        if (authMethod) {
+            await authMethod.applySecurityAuthentication(requestContext);
+        }
+
+        return requestContext;
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the journal with specific UUID.
+     * Update disciplines from the discipline scheme associated with the journal
+     * @param uuid UUID of the journal to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public async journalPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<RequestContext> {
+        let config = options || this.configuration;
+
+        // verify required parameter 'uuid' is not null or undefined
+        if (uuid === null || uuid === undefined) {
+            throw new RequiredError('Required parameter uuid was null or undefined when calling journalPutDisciplineAssociation.');
+        }
+
+
+        // verify required parameter 'disciplineScheme' is not null or undefined
+        if (disciplineScheme === null || disciplineScheme === undefined) {
+            throw new RequiredError('Required parameter disciplineScheme was null or undefined when calling journalPutDisciplineAssociation.');
+        }
+
+
+        // verify required parameter 'disciplinesAssociation' is not null or undefined
+        if (disciplinesAssociation === null || disciplinesAssociation === undefined) {
+            throw new RequiredError('Required parameter disciplinesAssociation was null or undefined when calling journalPutDisciplineAssociation.');
+        }
+
+
+        // Path Params
+        const localVarPath = '/journals/{uuid}/disciplines/{discipline-scheme}'
+            .replace('{' + 'uuid' + '}', encodeURIComponent(String(uuid)))
+            .replace('{' + 'discipline-scheme' + '}', encodeURIComponent(String(disciplineScheme)));
+
+        // Make Request Context
+        const requestContext = config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
+        requestContext.setHeaderParam("Accept", "application/json, */*;q=0.8")
+
+        // Query Params
+
+        // Header Params
+
+        // Form Params
+
+
+        // Body Params
+        const contentType = ObjectSerializer.getPreferredMediaType([
+            "application/json"
+        ]);
+        requestContext.setHeaderParam("Content-Type", contentType);
+        const serializedBody = ObjectSerializer.stringify(
+            ObjectSerializer.serialize(disciplinesAssociation, "DisciplinesAssociation", ""),
+            contentType
+        );
+        requestContext.setBody(serializedBody);
 
         let authMethod = null;
         // Apply auth methods
@@ -1013,6 +1273,66 @@ export class JournalApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to journalGetAllowedDisciplineSchemes
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async journalGetAllowedDisciplineSchemes(response: ResponseContext): Promise<DisciplinesDisciplineSchemeListResult > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesDisciplineSchemeListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineSchemeListResult", ""
+            ) as DisciplinesDisciplineSchemeListResult;
+            return body;
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesDisciplineSchemeListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineSchemeListResult", ""
+            ) as DisciplinesDisciplineSchemeListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to journalGetAllowedDisciplines
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async journalGetAllowedDisciplines(response: ResponseContext): Promise<DisciplinesDisciplineListResult > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesDisciplineListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineListResult", ""
+            ) as DisciplinesDisciplineListResult;
+            return body;
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesDisciplineListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesDisciplineListResult", ""
+            ) as DisciplinesDisciplineListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to journalGetAllowedKeywordGroupConfigurationClassifications
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1193,6 +1513,43 @@ export class JournalApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to journalGetDisciplineAssociation
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async journalGetDisciplineAssociation(response: ResponseContext): Promise<DisciplinesAssociation > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
+            return body;
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(404, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to journalGetOrderings
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1253,6 +1610,43 @@ export class JournalApiResponseProcessor {
      * Unwraps the actual response sent by the server from the response context and deserializes the response content
      * to the expected objects
      *
+     * @params response Response returned by the server for a request to journalListDisciplineAssociations
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async journalListDisciplineAssociations(response: ResponseContext): Promise<DisciplinesAssociationListResult > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesAssociationListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociationListResult", ""
+            ) as DisciplinesAssociationListResult;
+            return body;
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(400, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesAssociationListResult = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociationListResult", ""
+            ) as DisciplinesAssociationListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
      * @params response Response returned by the server for a request to journalListNotes
      * @throws ApiException if the response code was not in [200, 299]
      */
@@ -1279,6 +1673,50 @@ export class JournalApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "NoteListResult", ""
             ) as NoteListResult;
+            return body;
+        }
+
+        let body = response.body || "";
+        throw new ApiException<string>(response.httpStatusCode, "Unknown API Status Code!\nBody: \"" + body + "\"");
+    }
+
+    /**
+     * Unwraps the actual response sent by the server from the response context and deserializes the response content
+     * to the expected objects
+     *
+     * @params response Response returned by the server for a request to journalPutDisciplineAssociation
+     * @throws ApiException if the response code was not in [200, 299]
+     */
+     public async journalPutDisciplineAssociation(response: ResponseContext): Promise<DisciplinesAssociation > {
+        const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
+        if (isCodeInRange("200", response.httpStatusCode)) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
+            return body;
+        }
+        if (isCodeInRange("400", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(400, body);
+        }
+        if (isCodeInRange("404", response.httpStatusCode)) {
+            const body: ProblemDetails = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "ProblemDetails", ""
+            ) as ProblemDetails;
+            throw new ApiException<ProblemDetails>(404, body);
+        }
+
+        // Work around for missing responses in specification, e.g. for petstore.yaml
+        if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
+            const body: DisciplinesAssociation = ObjectSerializer.deserialize(
+                ObjectSerializer.parse(await response.body.text(), contentType),
+                "DisciplinesAssociation", ""
+            ) as DisciplinesAssociation;
             return body;
         }
 

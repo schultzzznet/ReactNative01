@@ -50,5 +50,5 @@ export class Visibility {
 }
 
 
-export type VisibilityKeyEnum = "FREE" | "CAMPUS" | "BACKEND" ;
+export type VisibilityKeyEnum = "FREE" | "CAMPUS" | "BACKEND" | "CONFIDENTIAL" ;
 

@@ -57,10 +57,6 @@ export class Publisher {
     */
     'previousUuids'?: Array<string>;
     /**
-    * Signals that the information is maintained by synchronization from an external system
-    */
-    'externallyManaged'?: boolean;
-    /**
     * A hash representing the current version of the content. For new content this is null, and for existing content the current value. The property should never be modified explicitly by a client.
     */
     'version'?: string;
@@ -146,12 +142,6 @@ export class Publisher {
             "name": "previousUuids",
             "baseName": "previousUuids",
             "type": "Array<string>",
-            "format": ""
-        },
-        {
-            "name": "externallyManaged",
-            "baseName": "externallyManaged",
-            "type": "boolean",
             "format": ""
         },
         {

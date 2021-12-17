@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { NavigationLink } from './NavigationLink';
 import { Organization } from './Organization';
 import { PageInformation } from './PageInformation';
 import { HttpFile } from '../http/http';
@@ -24,10 +23,6 @@ export class OrganizationListResult {
     */
     'count'?: number;
     'pageInformation'?: PageInformation;
-    /**
-    * Links to navigate from this result. Such as a 'prev' link to link to the previous page of items
-    */
-    'navigationLinks'?: Array<NavigationLink>;
     'items'?: Array<Organization>;
 
     static readonly discriminator: string | undefined = undefined;
@@ -43,12 +38,6 @@ export class OrganizationListResult {
             "name": "pageInformation",
             "baseName": "pageInformation",
             "type": "PageInformation",
-            "format": ""
-        },
-        {
-            "name": "navigationLinks",
-            "baseName": "navigationLinks",
-            "type": "Array<NavigationLink>",
             "format": ""
         },
         {

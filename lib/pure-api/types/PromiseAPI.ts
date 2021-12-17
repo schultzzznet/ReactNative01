@@ -3,13 +3,23 @@ import * as models from '../models/all';
 import { Configuration} from '../configuration'
 
 import { AcademicQualification } from '../models/AcademicQualification';
+import { AccessDefinitionRef } from '../models/AccessDefinitionRef';
 import { ActivityRef } from '../models/ActivityRef';
+import { AdditionalFileElectronicVersion } from '../models/AdditionalFileElectronicVersion';
 import { AdditionalISSN } from '../models/AdditionalISSN';
 import { Address } from '../models/Address';
+import { AllowedTemplate } from '../models/AllowedTemplate';
+import { AllowedTemplateListResult } from '../models/AllowedTemplateListResult';
 import { AlternativeISSN } from '../models/AlternativeISSN';
 import { ApplicationRef } from '../models/ApplicationRef';
+import { ArticleProcessingCharge } from '../models/ArticleProcessingCharge';
+import { AuthorCollaborationRef } from '../models/AuthorCollaborationRef';
 import { AwardRef } from '../models/AwardRef';
+import { BookAnthology } from '../models/BookAnthology';
+import { BookAnthologyAllOf } from '../models/BookAnthologyAllOf';
+import { BookSeriesJournalAssociation } from '../models/BookSeriesJournalAssociation';
 import { CERIFAddress } from '../models/CERIFAddress';
+import { CaseNote } from '../models/CaseNote';
 import { ClassificationRef } from '../models/ClassificationRef';
 import { ClassificationRefList } from '../models/ClassificationRefList';
 import { ClassificationSchemeRef } from '../models/ClassificationSchemeRef';
@@ -17,6 +27,7 @@ import { ClassificationSchemeRefAllOf } from '../models/ClassificationSchemeRefA
 import { ClassificationsKeywordGroup } from '../models/ClassificationsKeywordGroup';
 import { ClassificationsKeywordGroupAllOf } from '../models/ClassificationsKeywordGroupAllOf';
 import { ClassifiedAddress } from '../models/ClassifiedAddress';
+import { ClassifiedCaseNoteSource } from '../models/ClassifiedCaseNoteSource';
 import { ClassifiedFile } from '../models/ClassifiedFile';
 import { ClassifiedId } from '../models/ClassifiedId';
 import { ClassifiedIdAllOf } from '../models/ClassifiedIdAllOf';
@@ -25,14 +36,39 @@ import { ClassifiedName } from '../models/ClassifiedName';
 import { ClassifiedValue } from '../models/ClassifiedValue';
 import { CompoundDate } from '../models/CompoundDate';
 import { CompoundDateRange } from '../models/CompoundDateRange';
+import { ConferenceSeriesRef } from '../models/ConferenceSeriesRef';
 import { ContentRef } from '../models/ContentRef';
 import { ContentRefListResult } from '../models/ContentRefListResult';
+import { ContributionToBookAnthology } from '../models/ContributionToBookAnthology';
+import { ContributionToBookAnthologyAllOf } from '../models/ContributionToBookAnthologyAllOf';
+import { ContributionToConference } from '../models/ContributionToConference';
+import { ContributionToConferenceAllOf } from '../models/ContributionToConferenceAllOf';
+import { ContributionToJournal } from '../models/ContributionToJournal';
+import { ContributionToJournalAllOf } from '../models/ContributionToJournalAllOf';
+import { ContributionToMemorandum } from '../models/ContributionToMemorandum';
+import { ContributionToMemorandumAllOf } from '../models/ContributionToMemorandumAllOf';
+import { ContributionToPeriodical } from '../models/ContributionToPeriodical';
+import { ContributionToPeriodicalAllOf } from '../models/ContributionToPeriodicalAllOf';
+import { ContributorAssociation } from '../models/ContributorAssociation';
 import { DataSetRef } from '../models/DataSetRef';
 import { DateRange } from '../models/DateRange';
 import { DependencyViolationProblemDetails } from '../models/DependencyViolationProblemDetails';
 import { DependencyViolationProblemDetailsAllOf } from '../models/DependencyViolationProblemDetailsAllOf';
+import { DisciplinesAssociation } from '../models/DisciplinesAssociation';
+import { DisciplinesAssociationListResult } from '../models/DisciplinesAssociationListResult';
+import { DisciplinesAssociationsQuery } from '../models/DisciplinesAssociationsQuery';
+import { DisciplinesDiscipline } from '../models/DisciplinesDiscipline';
+import { DisciplinesDisciplineAssignment } from '../models/DisciplinesDisciplineAssignment';
+import { DisciplinesDisciplineListResult } from '../models/DisciplinesDisciplineListResult';
+import { DisciplinesDisciplineScheme } from '../models/DisciplinesDisciplineScheme';
+import { DisciplinesDisciplineSchemeListResult } from '../models/DisciplinesDisciplineSchemeListResult';
 import { Document } from '../models/Document';
+import { DoiElectronicVersion } from '../models/DoiElectronicVersion';
+import { DoiElectronicVersionAllOf } from '../models/DoiElectronicVersionAllOf';
 import { ElectronicISSN } from '../models/ElectronicISSN';
+import { ElectronicVersion } from '../models/ElectronicVersion';
+import { ElectronicVersionFile } from '../models/ElectronicVersionFile';
+import { EquipmentRef } from '../models/EquipmentRef';
 import { Event } from '../models/Event';
 import { EventListResult } from '../models/EventListResult';
 import { EventRef } from '../models/EventRef';
@@ -48,6 +84,9 @@ import { ExternalPerson } from '../models/ExternalPerson';
 import { ExternalPersonListResult } from '../models/ExternalPersonListResult';
 import { ExternalPersonRef } from '../models/ExternalPersonRef';
 import { ExternalPersonsQuery } from '../models/ExternalPersonsQuery';
+import { FileElectronicVersion } from '../models/FileElectronicVersion';
+import { FileElectronicVersionAllOf } from '../models/FileElectronicVersionAllOf';
+import { FormattedString } from '../models/FormattedString';
 import { FreeKeywordsKeywordGroup } from '../models/FreeKeywordsKeywordGroup';
 import { FreeKeywordsKeywordGroupAllOf } from '../models/FreeKeywordsKeywordGroupAllOf';
 import { FullKeywordGroup } from '../models/FullKeywordGroup';
@@ -59,14 +98,18 @@ import { HighlightedContent } from '../models/HighlightedContent';
 import { HonoraryStaffOrganizationAssociation } from '../models/HonoraryStaffOrganizationAssociation';
 import { HonoraryStaffOrganizationAssociationAllOf } from '../models/HonoraryStaffOrganizationAssociationAllOf';
 import { ISSN } from '../models/ISSN';
+import { ISSNRef } from '../models/ISSNRef';
 import { Id } from '../models/Id';
 import { IdAllOf } from '../models/IdAllOf';
 import { Identifier } from '../models/Identifier';
+import { ImpactRef } from '../models/ImpactRef';
 import { InternalOrExternalSupervisor } from '../models/InternalOrExternalSupervisor';
 import { Journal } from '../models/Journal';
+import { JournalAssociation } from '../models/JournalAssociation';
 import { JournalListResult } from '../models/JournalListResult';
 import { JournalRef } from '../models/JournalRef';
 import { JournalTitle } from '../models/JournalTitle';
+import { JournalTitleRef } from '../models/JournalTitleRef';
 import { JournalsQuery } from '../models/JournalsQuery';
 import { Keyword } from '../models/Keyword';
 import { KeywordContainer } from '../models/KeywordContainer';
@@ -74,9 +117,14 @@ import { KeywordGroup } from '../models/KeywordGroup';
 import { KeywordGroupConfiguration } from '../models/KeywordGroupConfiguration';
 import { KeywordGroupConfigurationList } from '../models/KeywordGroupConfigurationList';
 import { Link } from '../models/Link';
+import { LinkElectronicVersion } from '../models/LinkElectronicVersion';
+import { LinkElectronicVersionAllOf } from '../models/LinkElectronicVersionAllOf';
 import { LocalesList } from '../models/LocalesList';
+import { Memorandum } from '../models/Memorandum';
 import { Name } from '../models/Name';
 import { NavigationLink } from '../models/NavigationLink';
+import { NonTextual } from '../models/NonTextual';
+import { NonTextualAllOf } from '../models/NonTextualAllOf';
 import { Note } from '../models/Note';
 import { NoteListResult } from '../models/NoteListResult';
 import { OrderingsList } from '../models/OrderingsList';
@@ -85,7 +133,11 @@ import { OrganizationListResult } from '../models/OrganizationListResult';
 import { OrganizationOrExternalOrganizationRef } from '../models/OrganizationOrExternalOrganizationRef';
 import { OrganizationRef } from '../models/OrganizationRef';
 import { OrganizationsQuery } from '../models/OrganizationsQuery';
+import { OtherContribution } from '../models/OtherContribution';
+import { OtherContributionAllOf } from '../models/OtherContributionAllOf';
 import { PageInformation } from '../models/PageInformation';
+import { Patent } from '../models/Patent';
+import { PatentAllOf } from '../models/PatentAllOf';
 import { Person } from '../models/Person';
 import { PersonClassifiedLeaveOfAbsence } from '../models/PersonClassifiedLeaveOfAbsence';
 import { PersonListResult } from '../models/PersonListResult';
@@ -95,18 +147,37 @@ import { PersonSuperviseeAssociation } from '../models/PersonSuperviseeAssociati
 import { PersonSuperviseeAssociationListResult } from '../models/PersonSuperviseeAssociationListResult';
 import { PersonSupervisorAssociation } from '../models/PersonSupervisorAssociation';
 import { PersonsQuery } from '../models/PersonsQuery';
+import { PressMediaRef } from '../models/PressMediaRef';
+import { PrimaryId } from '../models/PrimaryId';
+import { PrimaryIdAllOf } from '../models/PrimaryIdAllOf';
+import { PrizeRef } from '../models/PrizeRef';
 import { ProblemDetails } from '../models/ProblemDetails';
 import { ProfessionalQualification } from '../models/ProfessionalQualification';
+import { ProjectRef } from '../models/ProjectRef';
+import { PublicationSeries } from '../models/PublicationSeries';
+import { PublicationStatus } from '../models/PublicationStatus';
 import { Publisher } from '../models/Publisher';
 import { PublisherListResult } from '../models/PublisherListResult';
 import { PublisherRef } from '../models/PublisherRef';
 import { PublishersQuery } from '../models/PublishersQuery';
+import { ResearchOutput } from '../models/ResearchOutput';
+import { ResearchOutputListResult } from '../models/ResearchOutputListResult';
+import { ResearchOutputPeerReviewConfiguration } from '../models/ResearchOutputPeerReviewConfiguration';
+import { ResearchOutputPeerReviewConfigurationCombination } from '../models/ResearchOutputPeerReviewConfigurationCombination';
+import { ResearchOutputPeerReviewConfigurationListResult } from '../models/ResearchOutputPeerReviewConfigurationListResult';
 import { ResearchOutputRef } from '../models/ResearchOutputRef';
+import { ResearchOutputsQuery } from '../models/ResearchOutputsQuery';
 import { StaffOrganizationAssociation } from '../models/StaffOrganizationAssociation';
 import { StaffOrganizationAssociationAllOf } from '../models/StaffOrganizationAssociationAllOf';
 import { StudentOrganizationAssociation } from '../models/StudentOrganizationAssociation';
 import { StudentOrganizationAssociationAllOf } from '../models/StudentOrganizationAssociationAllOf';
+import { StudentThesisRef } from '../models/StudentThesisRef';
+import { SupervisorAssociation } from '../models/SupervisorAssociation';
+import { Thesis } from '../models/Thesis';
+import { ThesisAllOf } from '../models/ThesisAllOf';
 import { UploadedFile } from '../models/UploadedFile';
+import { User } from '../models/User';
+import { UserListResult } from '../models/UserListResult';
 import { UserRef } from '../models/UserRef';
 import { ValidationError } from '../models/ValidationError';
 import { ValidationProblemDetails } from '../models/ValidationProblemDetails';
@@ -116,6 +187,8 @@ import { VisitingScholarOrganizationAssociation } from '../models/VisitingSchola
 import { VisitingScholarOrganizationAssociationAllOf } from '../models/VisitingScholarOrganizationAssociationAllOf';
 import { Workflow } from '../models/Workflow';
 import { WorkflowListResult } from '../models/WorkflowListResult';
+import { WorkingPaper } from '../models/WorkingPaper';
+import { WorkingPaperAllOf } from '../models/WorkingPaperAllOf';
 import { ObservableEventApi } from './ObservableAPI';
 
 import { EventApiRequestFactory, EventApiResponseProcessor} from "../apis/EventApi";
@@ -162,6 +235,16 @@ export class PromiseEventApi {
     }
 
     /**
+     * Get event with specific UUID.
+     * Get event
+     * @param uuid UUID of the desired event
+     */
+    public eventGet(uuid: string, options?: Configuration): Promise<Event> {
+        const result = this.api.eventGet(uuid, options);
+        return result.toPromise();
+    }
+
+    /**
      * Get a list of allowed classified identifier types that can be used for the 'identifiers.type' attribute of events
      * A list of allowed classified identifier types
      */
@@ -185,6 +268,27 @@ export class PromiseEventApi {
      */
     public eventGetAllowedDegreeOfRecognitions(options?: Configuration): Promise<ClassificationRefList> {
         const result = this.api.eventGetAllowedDegreeOfRecognitions(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list fo a allowed discipline schemes for events
+     * A list of allowed discipline schemes
+     */
+    public eventGetAllowedDisciplineSchemes(options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        const result = this.api.eventGetAllowedDisciplineSchemes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for events
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for events
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public eventGetAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        const result = this.api.eventGetAllowedDisciplines(disciplineScheme, size, offset, options);
         return result.toPromise();
     }
 
@@ -253,6 +357,17 @@ export class PromiseEventApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme  associated with the event with specific UUID.
+     * Get disciplines from the discipline scheme associated with the event
+     * @param uuid UUID of the desired event
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public eventGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.eventGetDisciplineAssociation(uuid, disciplineScheme, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists all orderings available to the event endpoint. These values can be used by the order parameter.
      * Lists available orderings
      */
@@ -274,6 +389,17 @@ export class PromiseEventApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with events in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with events
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public eventListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        const result = this.api.eventListDisciplineAssociations(disciplineScheme, disciplinesAssociationsQuery, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists notes associated with an event ordered by date (nulls last)
      * Lists notes
      * @param uuid UUID of the event to get notes for
@@ -282,6 +408,18 @@ export class PromiseEventApi {
      */
     public eventListNotes(uuid: string, size?: number, offset?: number, options?: Configuration): Promise<NoteListResult> {
         const result = this.api.eventListNotes(uuid, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the event with specific UUID.
+     * Update disciplines from the discipline scheme associated with the event
+     * @param uuid UUID of the event to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public eventPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.eventPutDisciplineAssociation(uuid, disciplineScheme, disciplinesAssociation, options);
         return result.toPromise();
     }
 
@@ -425,6 +563,27 @@ export class PromiseExternalOrganizationApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for external organizations
+     * A list of allowed discipline schemes
+     */
+    public externalOrganizationGetAllowedDisciplineSchemes(options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        const result = this.api.externalOrganizationGetAllowedDisciplineSchemes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for external organizations
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for external organizations
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public externalOrganizationGetAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        const result = this.api.externalOrganizationGetAllowedDisciplines(disciplineScheme, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
      * Get a list of allowed document licenses that can be used for the 'documents.license' attribute of external organizations
      * A list of allowed document licenses
      */
@@ -507,6 +666,17 @@ export class PromiseExternalOrganizationApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the external organization with specific UUID.
+     * Get disciplines from the discipline scheme associated with the external organization
+     * @param uuid UUID of the desired external organization
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public externalOrganizationGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.externalOrganizationGetDisciplineAssociation(uuid, disciplineScheme, options);
+        return result.toPromise();
+    }
+
+    /**
      * Get file from the external organization
      * Get file from the external organization
      * @param uuid UUID of the external organization
@@ -539,6 +709,17 @@ export class PromiseExternalOrganizationApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with external organizations in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with external organizations
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public externalOrganizationListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        const result = this.api.externalOrganizationListDisciplineAssociations(disciplineScheme, disciplinesAssociationsQuery, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists notes associated with an external organization ordered by date (nulls last)
      * Lists notes
      * @param uuid UUID of the external organization to get notes for
@@ -567,6 +748,18 @@ export class PromiseExternalOrganizationApi {
      */
     public externalOrganizationPreviewDeduplication(externalOrganizationList: ExternalOrganizationList, options?: Configuration): Promise<ExternalOrganizationListResult> {
         const result = this.api.externalOrganizationPreviewDeduplication(externalOrganizationList, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the external organization with specific UUID.
+     * Update disciplines from the discipline scheme associated with the external organization
+     * @param uuid UUID of the external organization to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public externalOrganizationPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.externalOrganizationPutDisciplineAssociation(uuid, disciplineScheme, disciplinesAssociation, options);
         return result.toPromise();
     }
 
@@ -670,6 +863,15 @@ export class PromiseExternalPersonApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for external persons
+     * A list of allowed discipline schemes
+     */
+    public externalPersonGetAllowedDisciplineSchemes(options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        const result = this.api.externalPersonGetAllowedDisciplineSchemes(options);
+        return result.toPromise();
+    }
+
+    /**
      * Get a list of allowed classifications that can be used when submitting a specified keyword group.
      * A list of allowed classifications for the specified keyword group
      * @param id Pure id of the keyword group configuration
@@ -716,6 +918,17 @@ export class PromiseExternalPersonApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the external person with specific UUID.
+     * Get disciplines from the discipline scheme associated with the external person
+     * @param uuid UUID of the desired external person
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public externalPersonGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.externalPersonGetDisciplineAssociation(uuid, disciplineScheme, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists all orderings available to the external person endpoint. These values can be used by the order parameter.
      * Lists available orderings
      */
@@ -737,6 +950,29 @@ export class PromiseExternalPersonApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with external persons in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with external persons
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public externalPersonListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        const result = this.api.externalPersonListDisciplineAssociations(disciplineScheme, disciplinesAssociationsQuery, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the external person with specific UUID.
+     * Update disciplines from the discipline scheme associated with the external person
+     * @param uuid UUID of the external person to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public externalPersonPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.externalPersonPutDisciplineAssociation(uuid, disciplineScheme, disciplinesAssociation, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists external persons in the Pure instance that matches the provided query, similar to the GET version, instead of using parameters to alter the response, an JSON document is posted with the request. The JSON document contains fields for all the parameters available for the GET version, but also additional filtering options.
      * Query operation for external persons
      * @param externalPersonsQuery The query to perform
@@ -754,6 +990,18 @@ export class PromiseExternalPersonApi {
      */
     public externalPersonUpdate(uuid: string, externalPerson: ExternalPerson, options?: Configuration): Promise<ExternalPerson> {
         const result = this.api.externalPersonUpdate(uuid, externalPerson, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for external persons
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for external persons
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public getAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        const result = this.api.getAllowedDisciplines(disciplineScheme, size, offset, options);
         return result.toPromise();
     }
 
@@ -847,6 +1095,27 @@ export class PromiseJournalApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for journals
+     * A list of allowed discipline schemes
+     */
+    public journalGetAllowedDisciplineSchemes(options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        const result = this.api.journalGetAllowedDisciplineSchemes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for journals
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for journals
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public journalGetAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        const result = this.api.journalGetAllowedDisciplines(disciplineScheme, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
      * Get a list of allowed classifications that can be used when submitting a specified keyword group.
      * A list of allowed classifications for the specified keyword group
      * @param id Pure id of the keyword group configuration
@@ -902,6 +1171,17 @@ export class PromiseJournalApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the journal with specific UUID.
+     * Get disciplines from the discipline scheme associated with the journal
+     * @param uuid UUID of the desired journal
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public journalGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.journalGetDisciplineAssociation(uuid, disciplineScheme, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists all orderings available to the journal endpoint. These values can be used by the order parameter.
      * Lists available orderings
      */
@@ -923,6 +1203,17 @@ export class PromiseJournalApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with journals in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with journals
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public journalListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        const result = this.api.journalListDisciplineAssociations(disciplineScheme, disciplinesAssociationsQuery, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists notes associated with the journal ordered by date (nulls last)
      * Lists notes
      * @param uuid UUID of the journal to get notes for
@@ -931,6 +1222,18 @@ export class PromiseJournalApi {
      */
     public journalListNotes(uuid: string, size?: number, offset?: number, options?: Configuration): Promise<NoteListResult> {
         const result = this.api.journalListNotes(uuid, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the journal with specific UUID.
+     * Update disciplines from the discipline scheme associated with the journal
+     * @param uuid UUID of the journal to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public journalPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.journalPutDisciplineAssociation(uuid, disciplineScheme, disciplinesAssociation, options);
         return result.toPromise();
     }
 
@@ -1092,6 +1395,27 @@ export class PromiseOrganizationApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for organizations
+     * A list of allowed discipline schemes
+     */
+    public organizationGetAllowedDisciplineSchemes(options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        const result = this.api.organizationGetAllowedDisciplineSchemes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for organizations
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for organizations
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public organizationGetAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        const result = this.api.organizationGetAllowedDisciplines(disciplineScheme, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
      * Get a list of allowed e-mail types that can be used for the 'emails.type' attribute of organizations
      * A list of allowed e-mail types
      */
@@ -1183,6 +1507,17 @@ export class PromiseOrganizationApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the organization with specific UUID.
+     * Get disciplines from the discipline scheme associated with the organization
+     * @param uuid UUID of the desired organization
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public organizationGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.organizationGetDisciplineAssociation(uuid, disciplineScheme, options);
+        return result.toPromise();
+    }
+
+    /**
      * Get file from the organization
      * Get file from the organization
      * @param uuid UUID of the organization
@@ -1215,6 +1550,17 @@ export class PromiseOrganizationApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with organizations in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with organizations
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public organizationListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        const result = this.api.organizationListDisciplineAssociations(disciplineScheme, disciplinesAssociationsQuery, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists notes associated with an organization ordered by date (nulls last)
      * Lists notes
      * @param uuid UUID of the organization to get notes for
@@ -1223,6 +1569,18 @@ export class PromiseOrganizationApi {
      */
     public organizationListNotes(uuid: string, size?: number, offset?: number, options?: Configuration): Promise<NoteListResult> {
         const result = this.api.organizationListNotes(uuid, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the organization with specific UUID.
+     * Update disciplines from the discipline scheme associated with the organization
+     * @param uuid UUID of the organization to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public organizationPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.organizationPutDisciplineAssociation(uuid, disciplineScheme, disciplinesAssociation, options);
         return result.toPromise();
     }
 
@@ -1369,6 +1727,27 @@ export class PromisePersonApi {
      */
     public personGetAllowedClassifiedIdentifierTypes(options?: Configuration): Promise<ClassificationRefList> {
         const result = this.api.personGetAllowedClassifiedIdentifierTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list fo a allowed discipline schemes for persons
+     * A list of allowed discipline schemes
+     */
+    public personGetAllowedDisciplineSchemes(options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        const result = this.api.personGetAllowedDisciplineSchemes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for persons
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for persons
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public personGetAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        const result = this.api.personGetAllowedDisciplines(disciplineScheme, size, offset, options);
         return result.toPromise();
     }
 
@@ -1590,6 +1969,17 @@ export class PromisePersonApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the person with specific UUID.
+     * Get disciplines from the discipline scheme associated with the person
+     * @param uuid UUID of the desired person
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public personGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.personGetDisciplineAssociation(uuid, disciplineScheme, options);
+        return result.toPromise();
+    }
+
+    /**
      * Get file from the person
      * Get file from the person
      * @param uuid UUID of the person
@@ -1632,6 +2022,17 @@ export class PromisePersonApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with persons in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with persons
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public personListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        const result = this.api.personListDisciplineAssociations(disciplineScheme, disciplinesAssociationsQuery, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists notes associated with an person ordered by date (nulls last)
      * Lists notes
      * @param uuid UUID of the person to get notes for
@@ -1640,6 +2041,18 @@ export class PromisePersonApi {
      */
     public personListNotes(uuid: string, size?: number, offset?: number, options?: Configuration): Promise<NoteListResult> {
         const result = this.api.personListNotes(uuid, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the person with specific UUID.
+     * Update disciplines from the discipline scheme associated with the person
+     * @param uuid UUID of the person to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public personPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.personPutDisciplineAssociation(uuid, disciplineScheme, disciplinesAssociation, options);
         return result.toPromise();
     }
 
@@ -1757,6 +2170,27 @@ export class PromisePublisherApi {
     }
 
     /**
+     * Get a list fo a allowed discipline schemes for publishers
+     * A list of allowed discipline schemes
+     */
+    public publisherGetAllowedDisciplineSchemes(options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        const result = this.api.publisherGetAllowedDisciplineSchemes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for publishers
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for publishers
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public publisherGetAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        const result = this.api.publisherGetAllowedDisciplines(disciplineScheme, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
      * Get a list of allowed classifications that can be used when submitting a specified keyword group.
      * A list of allowed classifications for the specified keyword group
      * @param id Pure id of the keyword group configuration
@@ -1803,6 +2237,17 @@ export class PromisePublisherApi {
     }
 
     /**
+     * Get disciplines from the discipline scheme associated with the publisher with specific UUID.
+     * Get disciplines from the discipline scheme associated with the publisher
+     * @param uuid UUID of the desired publisher
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public publisherGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.publisherGetDisciplineAssociation(uuid, disciplineScheme, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists all orderings available to the publisher endpoint. These values can be used by the order parameter.
      * Lists available orderings
      */
@@ -1824,6 +2269,17 @@ export class PromisePublisherApi {
     }
 
     /**
+     * Lists disciplines from the discipline scheme associated with publishers in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with publishers
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public publisherListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        const result = this.api.publisherListDisciplineAssociations(disciplineScheme, disciplinesAssociationsQuery, options);
+        return result.toPromise();
+    }
+
+    /**
      * Lists notes associated with a publisher ordered by date (nulls last)
      * Lists notes
      * @param uuid UUID of the publisher to get notes for
@@ -1832,6 +2288,18 @@ export class PromisePublisherApi {
      */
     public publisherListNotes(uuid: string, size?: number, offset?: number, options?: Configuration): Promise<NoteListResult> {
         const result = this.api.publisherListNotes(uuid, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the publisher with specific UUID.
+     * Update disciplines from the discipline scheme associated with the publisher
+     * @param uuid UUID of the publisher to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public publisherPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.publisherPutDisciplineAssociation(uuid, disciplineScheme, disciplinesAssociation, options);
         return result.toPromise();
     }
 
@@ -1862,6 +2330,722 @@ export class PromisePublisherApi {
      */
     public publishersGetAllowedCountries(options?: Configuration): Promise<ClassificationRefList> {
         const result = this.api.publishersGetAllowedCountries(options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableResearchOutputApi } from './ObservableAPI';
+
+import { ResearchOutputApiRequestFactory, ResearchOutputApiResponseProcessor} from "../apis/ResearchOutputApi";
+export class PromiseResearchOutputApi {
+    private api: ObservableResearchOutputApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: ResearchOutputApiRequestFactory,
+        responseProcessor?: ResearchOutputApiResponseProcessor
+    ) {
+        this.api = new ObservableResearchOutputApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create research output
+     * Create research output
+     * @param researchOutput The content to create
+     */
+    public researchOutputCreate(researchOutput: ResearchOutput, options?: Configuration): Promise<ResearchOutput> {
+        const result = this.api.researchOutputCreate(researchOutput, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Create note and associate it with a research output
+     * Create note
+     * @param uuid UUID of the research output to add note to
+     * @param note The note to create
+     */
+    public researchOutputCreateNote(uuid: string, note: Note, options?: Configuration): Promise<Note> {
+        const result = this.api.researchOutputCreateNote(uuid, note, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Delete research output with specific UUID.
+     * Delete research output
+     * @param uuid UUID of the research output
+     */
+    public researchOutputDelete(uuid: string, options?: Configuration): Promise<void> {
+        const result = this.api.researchOutputDelete(uuid, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Lists all dependents to a research output with the specified UUID. If the user dont have access to view all the dependent content, an authorization error will be thrown. 
+     * Lists all dependents to a research output
+     * @param uuid UUID of the research output
+     * @param verbose Default: false. Setting this to true will add links and names to the output but will also have an impact on performance. Use with coution.
+     */
+    public researchOutputDependents(uuid: string, verbose?: boolean, options?: Configuration): Promise<ContentRefListResult> {
+        const result = this.api.researchOutputDependents(uuid, verbose, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Uploads file for the research output
+     * Upload file to a specific research output
+     * @param body 
+     * @param contentType Set the mime type for the file
+     */
+    public researchOutputFileUploads(body: HttpFile, contentType?: string, options?: Configuration): Promise<void> {
+        const result = this.api.researchOutputFileUploads(body, contentType, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get research output with specific UUID.
+     * Get research output
+     * @param uuid UUID of the desired research output
+     */
+    public researchOutputGet(uuid: string, options?: Configuration): Promise<ResearchOutput> {
+        const result = this.api.researchOutputGet(uuid, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed countries that can be used for the 'countries' attribute of research outputs
+     * A list of allowed countries
+     */
+    public researchOutputGetAllowedCountries(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchOutputGetAllowedCountries(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed classifications that can be used when submitting a specified keyword group.
+     * A list of allowed classifications for the specified keyword group
+     * @param id Pure id of the keyword group configuration
+     */
+    public researchOutputGetAllowedKeywordGroupConfigurationClassifications(id: number, options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchOutputGetAllowedKeywordGroupConfigurationClassifications(id, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed keyword group configurations that can be used when submitting keyword groups.
+     * A list of keyword group configurations
+     */
+    public researchOutputGetAllowedKeywordGroupConfigurations(options?: Configuration): Promise<KeywordGroupConfigurationList> {
+        const result = this.api.researchOutputGetAllowedKeywordGroupConfigurations(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed locales that can be used when submitting localized string entities.
+     * A list of allowed locales in localized strings
+     */
+    public researchOutputGetAllowedLocales(options?: Configuration): Promise<LocalesList> {
+        const result = this.api.researchOutputGetAllowedLocales(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of peer review configurations that describe the allowed combinations of values for the interrelated fields: type, category, peerReview, and internationalPeerReview
+     * A list of peer review configurations
+     */
+    public researchOutputGetAllowedPeerReviewConfigurations(options?: Configuration): Promise<ResearchOutputPeerReviewConfigurationListResult> {
+        const result = this.api.researchOutputGetAllowedPeerReviewConfigurations(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed templates that can be used for research outputs, such as 'ContributionToJournal' or 'BookAnthology'. Some of the templates that exists in the API specification may be disabled for the Pure installation.
+     * A list of allowed research output templates
+     */
+    public researchOutputGetAllowedTemplates(options?: Configuration): Promise<AllowedTemplateListResult> {
+        const result = this.api.researchOutputGetAllowedTemplates(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed types that can be used for the 'type' attribute of research outputs
+     * A list of allowed research output types
+     */
+    public researchOutputGetAllowedTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchOutputGetAllowedTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed workflow steps that can be used for the 'workflow' attribute of research outputs
+     * A list of allowed workflow steps
+     */
+    public researchOutputGetAllowedWorkflowSteps(options?: Configuration): Promise<WorkflowListResult> {
+        const result = this.api.researchOutputGetAllowedWorkflowSteps(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get file from the research output
+     * Get file from the research output
+     * @param uuid UUID of the research output
+     * @param fileId File id 
+     */
+    public researchOutputGetFile(uuid: string, fileId: string, options?: Configuration): Promise<HttpFile> {
+        const result = this.api.researchOutputGetFile(uuid, fileId, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Lists all orderings available to the research output endpoint. These values can be used by the order parameter.
+     * Lists available orderings
+     */
+    public researchOutputGetOrderings(options?: Configuration): Promise<OrderingsList> {
+        const result = this.api.researchOutputGetOrderings(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Lists all  research outputs in the Pure instance. If you need to filter the research outputs returned, see the POST version which supports additional filtering.
+     * Lists all  research outputs
+     * @param size Number of returned  research outputs per request.
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     * @param order The order of the list, must be a value from getResearchOutputOrderings
+     */
+    public researchOutputList(size?: number, offset?: number, order?: string, options?: Configuration): Promise<ResearchOutputListResult> {
+        const result = this.api.researchOutputList(size, offset, order, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Lists disciplines from the discipline scheme associated with research outputs in the Pure instance that matches the provided query.
+     * Query operation for disciplines associated with research outputs
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociationsQuery The query to perform
+     */
+    public researchOutputListDisciplineAssociations(disciplineScheme: string, disciplinesAssociationsQuery: DisciplinesAssociationsQuery, options?: Configuration): Promise<DisciplinesAssociationListResult> {
+        const result = this.api.researchOutputListDisciplineAssociations(disciplineScheme, disciplinesAssociationsQuery, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Lists notes associated with a research output ordered by date (nulls last)
+     * Lists notes
+     * @param uuid UUID of the research output to get notes for
+     * @param size Number of returned notes per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public researchOutputListNotes(uuid: string, size?: number, offset?: number, options?: Configuration): Promise<NoteListResult> {
+        const result = this.api.researchOutputListNotes(uuid, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update disciplines from the discipline scheme associated with the research output with specific UUID.
+     * Update disciplines from the discipline scheme associated with the research output
+     * @param uuid UUID of the research output to update
+     * @param disciplineScheme Identifier for the discipline scheme
+     * @param disciplinesAssociation The disciplines association to create
+     */
+    public researchOutputPutDisciplineAssociation(uuid: string, disciplineScheme: string, disciplinesAssociation: DisciplinesAssociation, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.researchOutputPutDisciplineAssociation(uuid, disciplineScheme, disciplinesAssociation, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Lists research outputs in the Pure instance that matches the provided query, similar to the GET version, instead of using parameters to alter the response, an JSON document is posted with the request. The JSON document contains fields for all the parameters available for the GET version, but also additional filtering options.
+     * Query operation for research outputs
+     * @param researchOutputsQuery The query to perform
+     */
+    public researchOutputQuery(researchOutputsQuery: ResearchOutputsQuery, options?: Configuration): Promise<ResearchOutputListResult> {
+        const result = this.api.researchOutputQuery(researchOutputsQuery, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update research outputs with specific UUID.
+     * Update research outputs
+     * @param uuid UUID of the research output to update
+     * @param researchOutput The content to update
+     */
+    public researchOutputUpdate(uuid: string, researchOutput: ResearchOutput, options?: Configuration): Promise<ResearchOutput> {
+        const result = this.api.researchOutputUpdate(uuid, researchOutput, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed access types for additional files on research outputs
+     * A list of allowed access types
+     */
+    public researchoutputGetAllowedAdditionalFileAccessTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedAdditionalFileAccessTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed license types for additional files on research outputs
+     * A list of allowed license types
+     */
+    public researchoutputGetAllowedAdditionalFileLicenseTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedAdditionalFileLicenseTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed article processing charge currencies on research outputs
+     * A list of allowed article processing charge currencies
+     */
+    public researchoutputGetAllowedArticleProcessingChargeCurrencies(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedArticleProcessingChargeCurrencies(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the book anthology subtype of research outputs
+     * A list of allowed contributor roles for the book anthology subtype
+     */
+    public researchoutputGetAllowedBookAnthologyContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedBookAnthologyContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the book anthology subtype of research outputs
+     * A list of allowed description types for the book anthology subtype
+     */
+    public researchoutputGetAllowedBookAnthologyDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedBookAnthologyDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed case note sources for select subtypes of research outputs
+     * A list of allowed case note sources
+     */
+    public researchoutputGetAllowedCaseNoteSources(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedCaseNoteSources(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed categories on research outputs
+     * A list of allowed categories
+     */
+    public researchoutputGetAllowedCategories(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedCategories(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to book anthology subtype of research outputs
+     * A list of allowed contributor roles for the contribution to book anthology subtype
+     */
+    public researchoutputGetAllowedContributionToBookAnthologyContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToBookAnthologyContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to book anthology subtype of research outputs
+     * A list of allowed description types for the contribution to book anthology subtype
+     */
+    public researchoutputGetAllowedContributionToBookAnthologyDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToBookAnthologyDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to conference subtype of research outputs
+     * A list of allowed contributor roles for the contribution to conference subtype
+     */
+    public researchoutputGetAllowedContributionToConferenceContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToConferenceContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to conference subtype of research outputs
+     * A list of allowed description types for the contribution to conference subtype
+     */
+    public researchoutputGetAllowedContributionToConferenceDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToConferenceDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to journal subtype of research outputs
+     * A list of allowed contributor roles for the contribution to journal subtype
+     */
+    public researchoutputGetAllowedContributionToJournalContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToJournalContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to journal subtype of research outputs
+     * A list of allowed description types for the contribution to journal subtype
+     */
+    public researchoutputGetAllowedContributionToJournalDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToJournalDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to memorandum subtype of research outputs
+     * A list of allowed contributor roles for the contribution to memorandum subtype
+     */
+    public researchoutputGetAllowedContributionToMemorandumContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToMemorandumContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to memorandum subtype of research outputs
+     * A list of allowed description types for the contribution to memorandum subtype
+     */
+    public researchoutputGetAllowedContributionToMemorandumDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToMemorandumDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the contribution to periodical subtype of research outputs
+     * A list of allowed contributor roles for the contribution to periodical subtype
+     */
+    public researchoutputGetAllowedContributionToPeriodicalContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToPeriodicalContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the contribution to periodical subtype of research outputs
+     * A list of allowed description types for the contribution to periodical subtype
+     */
+    public researchoutputGetAllowedContributionToPeriodicalDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributionToPeriodicalDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed countries for contributors on research outputs
+     * A list of allowed contributor countries
+     */
+    public researchoutputGetAllowedContributorCountries(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedContributorCountries(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list fo a allowed discipline schemes for research outputs
+     * A list of allowed discipline schemes
+     */
+    public researchoutputGetAllowedDisciplineSchemes(options?: Configuration): Promise<DisciplinesDisciplineSchemeListResult> {
+        const result = this.api.researchoutputGetAllowedDisciplineSchemes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of a allowed disciplines for specific discipline scheme for research outputs
+     * A list of allowed disciplines for a specific discipline scheme
+     * @param disciplineScheme Identifier for the discipline scheme for research output
+     * @param size Number of returned disciplines per request
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     */
+    public researchoutputGetAllowedDisciplines(disciplineScheme: string, size?: number, offset?: number, options?: Configuration): Promise<DisciplinesDisciplineListResult> {
+        const result = this.api.researchoutputGetAllowedDisciplines(disciplineScheme, size, offset, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed access types for electronic versions on research outputs
+     * A list of allowed access types
+     */
+    public researchoutputGetAllowedElectronicVersionAccessTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedElectronicVersionAccessTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed license types for electronic versions on research outputs
+     * A list of allowed license types
+     */
+    public researchoutputGetAllowedElectronicVersionLicenseTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedElectronicVersionLicenseTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed version types for electronic versions on research outputs
+     * A list of allowed version types
+     */
+    public researchoutputGetAllowedElectronicVersionVersionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedElectronicVersionVersionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed languages on research outputs
+     * A list of allowed languages
+     */
+    public researchoutputGetAllowedLanguages(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedLanguages(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed link types on research outputs
+     * A list of allowed link types
+     */
+    public researchoutputGetAllowedLinkTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedLinkTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed main research areas on research outputs
+     * A list of allowed main research areas
+     */
+    public researchoutputGetAllowedMainResearchAreas(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedMainResearchAreas(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the memorandum subtype of research outputs
+     * A list of allowed contributor roles for the memorandum subtype
+     */
+    public researchoutputGetAllowedMemorandumContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedMemorandumContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the memorandum subtype of research outputs
+     * A list of allowed description types for the memorandum subtype
+     */
+    public researchoutputGetAllowedMemorandumDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedMemorandumDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the non-textual subtype of research outputs
+     * A list of allowed contributor roles for the non-textual subtype
+     */
+    public researchoutputGetAllowedNonTextualContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedNonTextualContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the non-textual subtype of research outputs
+     * A list of allowed description types for the non-textual subtype
+     */
+    public researchoutputGetAllowedNonTextualDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedNonTextualDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed open access permissions on research outputs
+     * A list of allowed open access permissions
+     */
+    public researchoutputGetAllowedOpenAccessPermissions(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedOpenAccessPermissions(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the other contribution subtype of research outputs
+     * A list of allowed contributor roles for the other contribution subtype
+     */
+    public researchoutputGetAllowedOtherContributionContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedOtherContributionContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the other contribution subtype of research outputs
+     * A list of allowed description types for the other contribution subtype
+     */
+    public researchoutputGetAllowedOtherContributionDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedOtherContributionDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed output medias for the non-textual subtype of research outputs
+     * A list of allowed output medias
+     */
+    public researchoutputGetAllowedOutputMedias(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedOutputMedias(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the patent subtype of research outputs
+     * A list of allowed contributor roles for the patent subtype
+     */
+    public researchoutputGetAllowedPatentContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedPatentContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the patent subtype of research outputs
+     * A list of allowed description types for the patent subtype
+     */
+    public researchoutputGetAllowedPatentDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedPatentDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed publication statuses on research output
+     * A list of allowed publication statuses
+     */
+    public researchoutputGetAllowedPublicationStatuses(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedPublicationStatuses(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed qualifications for the thesis subtype of research outputs
+     * A list of allowed qualifications
+     */
+    public researchoutputGetAllowedQualifications(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedQualifications(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed supervisors roles for the thesis subtype of research outputs
+     * A list of allowed supervisor roles
+     */
+    public researchoutputGetAllowedSupervisorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedSupervisorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the thesis subtype of research outputs
+     * A list of allowed contributor roles for the thesis subtype
+     */
+    public researchoutputGetAllowedThesisContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedThesisContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the thesis subtype of research outputs
+     * A list of allowed description types for the thesis subtype
+     */
+    public researchoutputGetAllowedThesisDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedThesisDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed roles for contributors on the working paper subtype of research outputs
+     * A list of allowed contributor roles for the working paper subtype
+     */
+    public researchoutputGetAllowedWorkingPaperContributorRoles(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedWorkingPaperContributorRoles(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get a list of allowed description types on the working paper subtype of research outputs
+     * A list of allowed description types for the working paper subtype
+     */
+    public researchoutputGetAllowedWorkingPaperDescriptionTypes(options?: Configuration): Promise<ClassificationRefList> {
+        const result = this.api.researchoutputGetAllowedWorkingPaperDescriptionTypes(options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get disciplines from the discipline scheme associated with the research output with specific UUID.
+     * Get disciplinesfrom the discipline scheme associated with the research output
+     * @param uuid UUID of the desired research output
+     * @param disciplineScheme Identifier for the discipline scheme
+     */
+    public researchoutputGetDisciplineAssociation(uuid: string, disciplineScheme: string, options?: Configuration): Promise<DisciplinesAssociation> {
+        const result = this.api.researchoutputGetDisciplineAssociation(uuid, disciplineScheme, options);
+        return result.toPromise();
+    }
+
+
+}
+
+
+
+import { ObservableUserApi } from './ObservableAPI';
+
+import { UserApiRequestFactory, UserApiResponseProcessor} from "../apis/UserApi";
+export class PromiseUserApi {
+    private api: ObservableUserApi
+
+    public constructor(
+        configuration: Configuration,
+        requestFactory?: UserApiRequestFactory,
+        responseProcessor?: UserApiResponseProcessor
+    ) {
+        this.api = new ObservableUserApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * Create user
+     * Create user
+     * @param user The content to create
+     */
+    public userCreate(user: User, options?: Configuration): Promise<User> {
+        const result = this.api.userCreate(user, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Delete user with specific UUID.
+     * Delete user
+     * @param uuid UUID of the user
+     */
+    public userDelete(uuid: string, options?: Configuration): Promise<void> {
+        const result = this.api.userDelete(uuid, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Get user UUID.
+     * Get user
+     * @param uuid UUID of the desired user
+     */
+    public userGet(uuid: string, options?: Configuration): Promise<User> {
+        const result = this.api.userGet(uuid, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Lists all users in the Pure instance. If you need to filter the users returned, see the POST version which supports additional filtering.
+     * Lists all users
+     * @param size Number of returned users per request.
+     * @param offset The offset for the returned list. 0 or null value is from the start
+     * @param order The order of the list, must be a value from user_getOrderings
+     */
+    public userList(size?: number, offset?: number, order?: string, options?: Configuration): Promise<UserListResult> {
+        const result = this.api.userList(size, offset, order, options);
+        return result.toPromise();
+    }
+
+    /**
+     * Update user with specific UUID.
+     * Update user
+     * @param uuid UUID of the user to update
+     * @param user The content to update
+     */
+    public userUpdate(uuid: string, user: User, options?: Configuration): Promise<User> {
+        const result = this.api.userUpdate(uuid, user, options);
         return result.toPromise();
     }
 

@@ -10,7 +10,6 @@
  * Do not edit the class manually.
  */
 
-import { NavigationLink } from './NavigationLink';
 import { HttpFile } from '../http/http';
 
 export class ContentRef {
@@ -18,15 +17,7 @@ export class ContentRef {
     * UUID of the referred content
     */
     'uuid': string;
-    /**
-    * The system name of the content
-    */
     'systemName': string;
-    'link'?: NavigationLink;
-    /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
-    */
-    'name'?: { [key: string]: string; };
 
     static readonly discriminator: string | undefined = "systemName";
 
@@ -41,18 +32,6 @@ export class ContentRef {
             "name": "systemName",
             "baseName": "systemName",
             "type": "string",
-            "format": ""
-        },
-        {
-            "name": "link",
-            "baseName": "link",
-            "type": "NavigationLink",
-            "format": ""
-        },
-        {
-            "name": "name",
-            "baseName": "name",
-            "type": "{ [key: string]: string; }",
             "format": ""
         }    ];
 

@@ -25,7 +25,7 @@ export class ExternalAppointment {
     'pureId'?: number;
     'appointment'?: ClassificationRef;
     /**
-    * A set of localized string values each for a specific submission locale. Please note that invalid locale values will be ignored.
+    * A set of string values, one for each submission locale. Note: invalid locale values will be ignored.
     */
     'appointmentString'?: { [key: string]: string; };
     'period'?: CompoundDateRange;

@@ -24,7 +24,7 @@ export class ClassifiedValue {
     /**
     * Classified value
     */
-    'value'?: string;
+    'value': string;
     'type'?: ClassificationRef;
 
     static readonly discriminator: string | undefined = undefined;
